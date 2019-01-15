@@ -1,0 +1,9 @@
+package ${package.Service};
+
+import ${package.Entity}.${entity};
+import com.mhc.framework.common.base.dal.BaseManager;
+
+
+public interface ${entity}Manager extends BaseManager<${entity}> {
+
+}

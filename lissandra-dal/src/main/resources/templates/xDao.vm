@@ -1,0 +1,8 @@
+package ${package.Mapper};
+
+import ${package.Entity}.${entity};
+import com.mhc.framework.common.base.dal.BaseDao;
+
+public interface ${entity}Dao extends BaseDao<${entity}> {
+
+}
