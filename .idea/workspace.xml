@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="258922b4-1597-4c91-9b30-bd181ad52555" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lissandra-dal/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lissandra-dal/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/Generator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xDao.vm" beforeDir="false" afterPath="$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xDao.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xDomain.vm" beforeDir="false" afterPath="$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xDomain.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xManager.vm" beforeDir="false" afterPath="$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xManager.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xManagerImpl.vm" beforeDir="false" afterPath="$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xManagerImpl.vm" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -22,63 +27,81 @@
     <session id="-2140503934">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.12" value="1" />
-          <entry key="project.open.time.2" value="2" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.open.time.2" value="3" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="4" />
-          <entry key="java" value="125" />
+          <entry key="gitignore" value="9" />
+          <entry key="java" value="263" />
           <entry key="txt" value="5" />
-          <entry key="xml" value="285" />
+          <entry key="vm" value="9" />
+          <entry key="xml" value="295" />
           <entry key="yml" value="124" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="125" />
-          <entry key="PLAIN_TEXT" value="9" />
-          <entry key="XML" value="285" />
+          <entry key="JAVA" value="263" />
+          <entry key="PLAIN_TEXT" value="18" />
+          <entry key="VTL" value="9" />
+          <entry key="XML" value="295" />
           <entry key="YAML" value="124" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="class" value="1" />
-          <entry key="gitignore" value="1" />
-          <entry key="java" value="6" />
+          <entry key="class" value="2" />
+          <entry key="gitignore" value="2" />
+          <entry key="java" value="35" />
           <entry key="properties" value="1" />
-          <entry key="vm" value="6" />
-          <entry key="xml" value="5" />
+          <entry key="vm" value="12" />
+          <entry key="xml" value="9" />
           <entry key="yml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="1" />
-          <entry key="JAVA" value="6" />
-          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="CLASS" value="2" />
+          <entry key="JAVA" value="35" />
+          <entry key="PLAIN_TEXT" value="2" />
           <entry key="Properties" value="1" />
-          <entry key="VTL" value="6" />
-          <entry key="XML" value="5" />
+          <entry key="VTL" value="12" />
+          <entry key="XML" value="9" />
           <entry key="YAML" value="2" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xDaoMapper.vm">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lissandra-dal/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="8" lean-forward="true" selection-start-column="8" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -89,21 +112,44 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/lissandra-service/pom.xml" />
-        <option value="$PROJECT_DIR$/lissandra-dal/pom.xml" />
         <option value="$PROJECT_DIR$/lissandra-test/pom.xml" />
         <option value="$PROJECT_DIR$/lissandra-common/pom.xml" />
         <option value="$PROJECT_DIR$/lissandra-web/pom.xml" />
-        <option value="$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xDao.vm" />
-        <option value="$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xDomain.vm" />
-        <option value="$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xManager.vm" />
-        <option value="$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xManagerImpl.vm" />
-        <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/Generator.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/lissandra-web/src/main/resources/application-local.yml" />
         <option value="$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/enums/ErrorCode.java" />
         <option value="$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/enums/GlobalErrorCodeTT.java" />
         <option value="$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/enums/GlobalErrorCode.java" />
         <option value="$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/entity/APIResult.java" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/Generator.java" />
+        <option value="$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/base/BaseDao.java" />
+        <option value="$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/base/BaseManager.java" />
+        <option value="$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/base/BaseModel.java" />
+        <option value="$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/base/CommonModel.java" />
+        <option value="$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/base/BaseManagerImpl.java" />
+        <option value="$PROJECT_DIR$/lissandra-dal/pom.xml" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/base/CommonModel.java" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/domain/Product.java" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/domain/ProductOrder.java" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/domain/User.java" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/domain/Wallet.java" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/domain/WalletOrder.java" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/dao/ProductDao.java" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/dao/ProductOrderDao.java" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/dao/UserDao.java" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/dao/WalletDao.java" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/dao/WalletOrderDao.java" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/manager/ProductManager.java" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/manager/ProductOrderManager.java" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/manager/UserManager.java" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/manager/WalletManager.java" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/manager/WalletOrderManager.java" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xDao.vm" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xDomain.vm" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xManager.vm" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/manager/impl/ProductManagerImpl.java" />
+        <option value="$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xManagerImpl.vm" />
+        <option value="$PROJECT_DIR$/lissandra-dal/.gitignore" />
       </list>
     </option>
   </component>
@@ -166,7 +212,9 @@
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <autoscrollFromSource ProjectPane="true" />
@@ -191,6 +239,12 @@
               <item name="lissandra" type="462c0819:PsiDirectoryNode" />
               <item name="lissandra-dal" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="lissandra" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lissandra" type="462c0819:PsiDirectoryNode" />
+              <item name="lissandra-dal" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -207,7 +261,7 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547542873302" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548813645469" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
@@ -217,6 +271,7 @@
       <recent name="com.shi.lissandra.dal" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal" />
       <recent name="$PROJECT_DIR$/lissandra-dal/src/main/resources" />
     </key>
   </component>
@@ -232,7 +287,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Generator">
+    <configuration name="Generator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.shi.lissandra.dal.Generator" />
+      <module name="lissandra-dal" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.shi.lissandra.dal.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LissandraWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="lissandra-web" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.shi.lissandra.web.LissandraWebApplication" />
@@ -242,6 +310,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Spring Boot.LissandraWebApplication" />
+      <item itemvalue="Application.Generator" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Generator" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -257,16 +334,18 @@
       <workItem from="1547528773654" duration="6694000" />
       <workItem from="1547535532470" duration="3053000" />
       <workItem from="1547546055678" duration="499000" />
+      <workItem from="1548811875368" duration="1795000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11714000" />
+    <option name="totallyTimeSpent" value="13948000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1920" y="-47" width="1920" height="1057" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15548456" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2454739" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -276,13 +355,13 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32982087" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32982087" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39936775" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32982087" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32982087" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Spring" order="11" />
@@ -307,13 +386,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lissandra-common/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/resources/application.properties" />
     <entry file="file://$PROJECT_DIR$/lissandra-web/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
@@ -322,55 +394,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xDomain.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xManagerImpl.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="9" column="64" lean-forward="true" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xManager.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xDaoMapper.vm">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xDao.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/resources/application-local.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
           <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/Generator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="16" column="49" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lissandra-service/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -392,11 +419,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-577">
           <caret line="152" column="8" selection-start-line="152" selection-start-column="8" selection-end-line="152" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2614#2615#0" expanded="true" />
-            <element signature="e#2669#2670#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -421,17 +443,304 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lissandra-dal/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lissandra-test/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="397">
           <caret line="17" column="50" lean-forward="true" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/Generator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1042">
+          <caret line="55" column="31" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/baomidou/mybatis-plus-generate/2.3/mybatis-plus-generate-2.3.jar!/com/baomidou/mybatisplus/generator/engine/VelocityTemplateEngine.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/base/BaseDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/base/BaseModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="9" column="34" lean-forward="true" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/base/BaseManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2160">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/base/CommonModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="46" column="27" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/base/BaseManagerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="320" column="13" selection-start-line="320" selection-start-column="13" selection-end-line="320" selection-end-column="13" />
+          <folding>
+            <element signature="e#12020#12021#0" expanded="true" />
+            <element signature="e#12117#12118#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-service/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="18" column="49" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/base/BaseManagerImpl.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/base/BaseManager.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/base/CommonModel.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/base/BaseModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/base/BaseDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/domain/ProductOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="6" column="46" lean-forward="true" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/domain/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="6" column="46" lean-forward="true" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/domain/Wallet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="6" column="46" lean-forward="true" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/domain/WalletOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="6" column="46" lean-forward="true" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-common/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/dao/ProductOrderDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/dao/UserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/dao/WalletDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/dao/WalletOrderDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="5" column="44" lean-forward="true" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/manager/ProductOrderManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/manager/UserManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/manager/WalletManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="6" column="45" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/manager/WalletOrderManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/dao/ProductDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" selection-start-line="2" selection-end-line="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xDao.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/resources/mapper/ProductMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-92" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/domain/Product.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="14" selection-start-line="14" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xDomain.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xManager.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/manager/impl/ProductManagerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xManagerImpl.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/manager/ProductManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" selection-start-line="2" selection-end-line="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xDaoMapper.vm">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="8" lean-forward="true" selection-start-column="8" selection-end-column="8" />
         </state>
       </provider>
     </entry>

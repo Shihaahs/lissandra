@@ -1,7 +1,8 @@
 package ${package.Service};
 
 import ${package.Entity}.${entity};
-import com.mhc.framework.common.base.dal.BaseManager;
+import com.shi.lissandra.common.base.BaseManager;
+
 
 
 public interface ${entity}Manager extends BaseManager<${entity}> {

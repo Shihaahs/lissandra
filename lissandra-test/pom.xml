@@ -16,10 +16,12 @@
         <dependency>
             <groupId>com.shi</groupId>
             <artifactId>lissandra-dal</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.shi</groupId>
             <artifactId>lissandra-service</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <!-- ===== 一方包 END ===== -->
 

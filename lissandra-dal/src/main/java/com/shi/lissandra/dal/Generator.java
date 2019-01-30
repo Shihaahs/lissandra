@@ -12,17 +12,16 @@ import java.util.List;
 
 public class Generator {
 
-    public static final String LINK = "jdbc:mysql://localhost:3306/db_pandora?useUnicode=true&characterEncoding=utf-8";
+    public static final String LINK = "jdbc:mysql://localhost:3306/db_lissandra?useUnicode=true&characterEncoding=utf-8";
     public static final String ACCOUNT = "root";
     public static final String PASSWORD = "123456";
 
     public static String[] tables = {
-            "pandora_access_log",
-            "pandora_access_log_ext",
-            "pandora_bury_point",
-            "pandora_user_device",
-            "pandora_user_print",
-            "pandora_app_auth"
+            "product",
+            "product_order",
+            "user",
+            "wallet",
+            "wallet_order",
     };
 
     public static void main(String[] args) {
@@ -31,7 +30,7 @@ public class Generator {
         String projectPath = System.getProperty("user.dir");
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        gc.setOutputDir(projectPath + "/pandora-dal/src/main/java/")
+        gc.setOutputDir(projectPath + "/lissandra-dal/src/main/java/")
                 .setAuthor("Generator")
                 .setOpen(false)
                 .setFileOverride(true)
@@ -58,7 +57,7 @@ public class Generator {
 
         // 包配置
         PackageConfig packageConfig = new PackageConfig()
-                .setParent("com.mhc.pandora.dal")
+                .setParent("com.shi.lissandra.dal")
                 .setEntity("domain")
                 .setMapper("dao")
                 .setService("manager")
@@ -77,7 +76,7 @@ public class Generator {
         focList.add(new FileOutConfig("/templates/xDaoMapper.vm") {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return projectPath + "/pandora-dal/src/main/resources/mapper/" + tableInfo.getEntityName() + "Mapper.xml";
+                return projectPath + "/lissandra-dal/src/main/resources/mapper/" + tableInfo.getEntityName() + "Mapper.xml";
             }
         });
 

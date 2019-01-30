@@ -3,7 +3,7 @@ package ${package.ServiceImpl};
 import ${package.Entity}.${entity};
 import ${package.Mapper}.${table.mapperName};
 import ${package.Service}.${table.serviceName};
-import com.mhc.framework.common.base.dal.BaseManagerImpl;
+import com.shi.lissandra.common.base.BaseManagerImpl;
 import org.springframework.stereotype.Component;
 
 @Component
