@@ -56,6 +56,7 @@ public class ProductOrder extends BaseModel {
      * 逻辑删除，0-存在，1-已被删除
      */
     @TableField("is_delete")
+    @TableLogic
     private Integer isDelete;
     /**
      * 创建时间

@@ -2,20 +2,16 @@ package com.shi.lissandra.dal.domain;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotations.TableLogic;
 import com.baomidou.mybatisplus.enums.IdType;
-import com.baomidou.mybatisplus.annotations.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.Date;
-
-import com.baomidou.mybatisplus.annotations.Version;
 
 import com.shi.lissandra.common.base.BaseModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
+
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class Product extends BaseModel {
@@ -60,6 +56,7 @@ public class Product extends BaseModel {
      * 逻辑删除，0-存在，1-已被删除
      */
     @TableField("is_delete")
+    @TableLogic
     private Integer isDelete;
     /**
      * 创建时间
