@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 29/01/2019 14:01:56
+ Date: 30/01/2019 17:20:59
 */
 
 SET NAMES utf8mb4;
@@ -62,6 +62,7 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL DEFAULT '' COMMENT '登录密码',
   `phone` varchar(11) NOT NULL DEFAULT '' COMMENT '登录手机',
   `permission` tinyint(2) unsigned NOT NULL DEFAULT '3' COMMENT '角色权限，0-管理员，1-品牌商，2-借卖方',
+  `is_approval` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '0-已被审批，1-未被审批',
   `is_delete` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '逻辑删除，0-存在，1-已被删除',
   `gmt_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `gmt_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
@@ -72,7 +73,7 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 BEGIN;
-INSERT INTO `user` VALUES (1, 'admin', '111', '123', 0, 0, '2019-01-29 13:59:09', '2019-01-29 13:59:09');
+INSERT INTO `user` VALUES (1, 'admin', '111', '123', 0, 0, 0, '2019-01-29 13:59:09', '2019-01-30 17:20:47');
 COMMIT;
 
 -- ----------------------------

@@ -1,5 +1,7 @@
 package com.shi.lissandra.web.controller;
 
+import com.shi.lissandra.common.entity.APIResult;
+import com.shi.lissandra.dal.domain.User;
 import com.shi.lissandra.service.core.TestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,7 @@ public class TestController {
     private TestService testService;
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public String getUser(){
-        return testService.getUser();
+    public APIResult getUser(){
+        return APIResult.ok(testService.getUser());
     }
 }
