@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import static com.shi.lissandra.common.constant.LissandraURL.LISSANDRA_LOGIN;
+import static com.shi.lissandra.common.constant.LissandraURL.LISSANDRA_LOGOUT;
+import static com.shi.lissandra.common.constant.LissandraURL.LISSANDRA_REGISTRE;
 import static com.shi.lissandra.common.enums.GlobalErrorCode.*;
 
 /**
@@ -27,6 +30,7 @@ import static com.shi.lissandra.common.enums.GlobalErrorCode.*;
  * 注意：本内容仅限于卖好车内部传阅，禁止外泄以及用于其他的商业目
  * @Description:
  */
+
 @Slf4j
 @RestController
 public class LoginRegisterController {
@@ -38,7 +42,7 @@ public class LoginRegisterController {
 
 
     @ApiOperation(value = "登录", notes = "登录")
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = LISSANDRA_LOGIN, method = RequestMethod.POST)
     public APIResult login(@RequestBody User user, HttpServletRequest request) {
         user = loginRegisterService.checkLogin(user);
         if (null != user){
@@ -50,7 +54,7 @@ public class LoginRegisterController {
     }
 
     @ApiOperation(value = "登出", notes = "登出")
-    @RequestMapping(value = "/logout",method = RequestMethod.POST)
+    @RequestMapping(value = LISSANDRA_LOGOUT,method = RequestMethod.POST)
     public APIResult logout(HttpServletRequest request){
         HttpSession session = request.getSession();
         session.removeAttribute("user");
@@ -63,7 +67,7 @@ public class LoginRegisterController {
 
 
     @ApiOperation(value = "注册", notes = "注册")
-    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    @RequestMapping(value = LISSANDRA_REGISTRE,method = RequestMethod.POST)
     public APIResult register(@RequestBody User user){
         if (null == user.getPhone() || user.getPhone().isEmpty()) {
             log.info("register -> 用户注册失败，未检测到手机号 ");

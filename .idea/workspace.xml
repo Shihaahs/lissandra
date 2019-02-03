@@ -3,11 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="258922b4-1597-4c91-9b30-bd181ad52555" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/enums/GlobalErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/enums/GlobalErrorCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lissandra-common/target/classes/com/shi/lissandra/common/enums/GlobalErrorCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/lissandra-common/target/classes/com/shi/lissandra/common/enums/GlobalErrorCode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/db_lissandra.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/db_lissandra.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/BVOController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/BVOController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/LoginRegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/LoginRegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/MVOController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/MVOController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -17,6 +16,7 @@
     <ignored path="$PROJECT_DIR$/lissandra-service/target/" />
     <ignored path="$PROJECT_DIR$/lissandra-web/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,47 +85,77 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file leaf-file-name="LissandraWebApplication.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/LissandraWebApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application-local.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/resources/application-local.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="164">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LissandraURL.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/constant/LissandraURL.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="5" column="46" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginRegisterController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/LoginRegisterController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="7" column="33" lean-forward="true" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+            <state relative-caret-position="119">
+              <caret line="32" selection-start-line="32" selection-end-line="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/enums/ErrorCode.java">
+      <file leaf-file-name="AdminController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/AdminController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+            <state relative-caret-position="224">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/enums/GlobalErrorCode.java">
+      <file leaf-file-name="MVOController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/MVOController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="22" column="20" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="20" />
+            <state relative-caret-position="197">
+              <caret line="16" column="15" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lissandra-service/src/main/java/com/shi/lissandra/service/core/LoginRegisterService.java">
+      <file leaf-file-name="TestController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/TestController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="972">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
+            <state relative-caret-position="572">
+              <caret line="31" column="20" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lissandra-service/src/main/java/com/shi/lissandra/service/core/impl/LoginRegisterServiceImpl.java">
+      <file leaf-file-name="BVOController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/BVOController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="783">
-              <caret line="41" column="91" selection-start-line="41" selection-start-column="91" selection-end-line="41" selection-end-column="91" />
+            <state relative-caret-position="307">
+              <caret line="16" column="15" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -160,7 +190,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/manager/ProductOrderManager.java" />
         <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/manager/WalletManager.java" />
         <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/manager/WalletOrderManager.java" />
         <option value="$PROJECT_DIR$/lissandra-dal/src/main/resources/templates/xDao.vm" />
@@ -196,9 +225,6 @@
         <option value="$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/LissandraWebApplication.java" />
         <option value="$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/TestController.java" />
         <option value="$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/domain/User.java" />
-        <option value="$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/BVOController.java" />
-        <option value="$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/MVOController.java" />
-        <option value="$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/AdminController.java" />
         <option value="$PROJECT_DIR$/lissandra-service/src/main/java/com/shi/lissandra/service/core/BVOService.java" />
         <option value="$PROJECT_DIR$/lissandra-service/src/main/java/com/shi/lissandra/service/core/MVOService.java" />
         <option value="$PROJECT_DIR$/lissandra-service/src/main/java/com/shi/lissandra/service/core/AdminService.java" />
@@ -210,7 +236,11 @@
         <option value="$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/enums/GlobalErrorCode.java" />
         <option value="$PROJECT_DIR$/lissandra-service/src/main/java/com/shi/lissandra/service/core/LoginRegisterService.java" />
         <option value="$PROJECT_DIR$/lissandra-service/src/main/java/com/shi/lissandra/service/core/impl/LoginRegisterServiceImpl.java" />
+        <option value="$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/constant/LissandraURL.java" />
         <option value="$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/LoginRegisterController.java" />
+        <option value="$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/BVOController.java" />
+        <option value="$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/AdminController.java" />
+        <option value="$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/MVOController.java" />
       </list>
     </option>
   </component>
@@ -233,6 +263,9 @@
         <option name="importAutomatically" value="true" />
       </MavenImportingSettings>
     </option>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
@@ -281,6 +314,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -331,7 +366,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="enums" type="462c0819:PsiDirectoryNode" />
+              <item name="constant" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="lissandra" type="b2602c69:ProjectViewProjectNode" />
@@ -371,16 +406,6 @@
             <path>
               <item name="lissandra" type="b2602c69:ProjectViewProjectNode" />
               <item name="lissandra" type="462c0819:PsiDirectoryNode" />
-              <item name="lissandra-dal" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="dal" type="462c0819:PsiDirectoryNode" />
-              <item name="domain" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lissandra" type="b2602c69:ProjectViewProjectNode" />
-              <item name="lissandra" type="462c0819:PsiDirectoryNode" />
               <item name="lissandra-service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -411,28 +436,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lissandra" type="b2602c69:ProjectViewProjectNode" />
-              <item name="lissandra" type="462c0819:PsiDirectoryNode" />
-              <item name="lissandra-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lissandra" type="b2602c69:ProjectViewProjectNode" />
-              <item name="lissandra" type="462c0819:PsiDirectoryNode" />
-              <item name="lissandra-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="lissandra" type="b2602c69:ProjectViewProjectNode" />
@@ -483,16 +487,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lissandra" type="b2602c69:ProjectViewProjectNode" />
-              <item name="lissandra" type="462c0819:PsiDirectoryNode" />
-              <item name="lissandra-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -503,92 +497,11 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="lissandra" type="b2602c69:ProjectViewProjectNode" />
-              <item name="lissandra" type="462c0819:PsiDirectoryNode" />
-              <item name="sql" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lissandra" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="lissandra" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework.boot:spring-boot-starter-jdbc:1.5.13.RELEASE" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="lissandra" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework.boot:spring-boot-starter-jdbc:1.5.13.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-boot-starter-jdbc-1.5.13.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lissandra" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework.boot:spring-boot-starter-jdbc:1.5.13.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-boot-starter-jdbc-1.5.13.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lissandra" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework.boot:spring-boot-starter-jdbc:1.5.13.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-boot-starter-jdbc-1.5.13.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="spring-boot-starter-jdbc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lissandra" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-web:4.3.17.RELEASE" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="lissandra" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-web:4.3.17.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-web-4.3.17.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lissandra" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-web:4.3.17.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-web-4.3.17.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="springframework" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lissandra" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-web:4.3.17.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-web-4.3.17.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="springframework" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lissandra" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-web:4.3.17.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-web-4.3.17.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="springframework" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="method" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lissandra" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.springframework:spring-web:4.3.17.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-web-4.3.17.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="springframework" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="method" type="462c0819:PsiDirectoryNode" />
-              <item name="support" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -609,7 +522,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -652,22 +565,26 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.shi.lissandra.dal.manager" />
       <option name="MAIN_CLASS_NAME" value="com.shi.lissandra.dal.manager.UserManagerTest" />
       <option name="METHOD_NAME" value="testUserManager" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
     </configuration>
     <configuration name="LissandraWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="lissandra-web" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.shi.lissandra.web.LissandraWebApplication" />
       <option name="ACTIVE_PROFILES" value="local" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <list>
       <item itemvalue="Spring Boot.LissandraWebApplication" />
@@ -734,45 +651,69 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31773000" />
+    <option name="totallyTimeSpent" value="33517000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.18884121" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info id="Web" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32982087" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.66189855" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.49209693" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49946752" weight="0.2655427" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5005325" side_tool="true" weight="0.32982087" />
-      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Spring" order="11" />
-      <window_info anchor="bottom" id="Java Enterprise" order="12" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.32982087" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info anchor="right" id="Database" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5013889" side_tool="true" weight="0.32909784" />
       <window_info anchor="right" id="Maven Projects" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Designer" order="3" />
+      <window_info anchor="right" id="Database" order="7" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.49284786" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.66189855" />
+      <window_info anchor="bottom" id="Spring" order="11" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49861112" visible="true" weight="0.33900523" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19241774" />
       <window_info anchor="right" id="Bean Validation" order="9" weight="0.32960597" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.66189855" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.18884121" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5005325" side_tool="true" weight="0.32982087" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49946752" weight="0.2655427" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Maven Projects" order="8" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Spring" order="11" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="right" id="Bean Validation" order="9" weight="0.32960597" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="Module Dependencies" order="10" weight="0.32960597" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Database" order="7" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32982087" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.49209693" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32982087" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info id="Designer" order="3" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -781,33 +722,7 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/LoginRegisterController.java</url>
-          <line>43</line>
-          <properties />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/resources/mapper/UserMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="2" column="46" lean-forward="true" selection-start-line="2" selection-start-column="46" selection-end-line="2" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lissandra-dal/src/main/java/com/shi/lissandra/dal/manager/UserManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/base/BaseModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -871,18 +786,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lissandra-dal/target/classes/mapper/UserMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-21" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lissandra-dal/target/classes/com/shi/lissandra/dal/manager/UserManager.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/target/classes/mapper/UserMapper.xml" />
+    <entry file="file://$PROJECT_DIR$/lissandra-dal/target/classes/com/shi/lissandra/dal/manager/UserManager.class" />
     <entry file="jar://$MAVEN_REPOSITORY$/com/baomidou/mybatis-plus-support/2.3/mybatis-plus-support-2.3.jar!/com/baomidou/mybatisplus/mapper/BaseMapper.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
@@ -894,9 +799,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="8" column="58" lean-forward="true" selection-start-line="8" selection-start-column="58" selection-end-line="8" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -918,9 +820,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="58" selection-start-line="58" selection-end-line="58" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -980,13 +879,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/h2database/h2/1.4.197/h2-1.4.197.jar!/org/h2/jdbc/JdbcSQLException.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/h2database/h2/1.4.197/h2-1.4.197.jar!/org/h2/jdbc/JdbcSQLException.class" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-jdbc/1.5.13.RELEASE/spring-boot-starter-jdbc-1.5.13.RELEASE.jar!/META-INF/maven/org.springframework.boot/spring-boot-starter-jdbc/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="39">
@@ -996,15 +889,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/LissandraWebApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/resources/application-local.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1107">
-          <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+        <state relative-caret-position="405">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
         </state>
       </provider>
     </entry>
@@ -1022,13 +908,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/TestController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="31" column="20" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sql/db_lissandra.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -1040,16 +919,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/BVOController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="17" selection-start-line="17" selection-end-line="17" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -1088,24 +957,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/AdminController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lissandra-service/src/main/java/com/shi/lissandra/service/core/impl/AdminServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/MVOController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -1117,13 +972,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/RegisterController.java" />
-    <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/LoginRegisterController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" column="33" lean-forward="true" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/enums/ErrorCode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -1149,6 +997,65 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="783">
           <caret line="41" column="91" selection-start-line="41" selection-start-column="91" selection-end-line="41" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/resources/application-local.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-common/src/main/java/com/shi/lissandra/common/constant/LissandraURL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="5" column="46" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/LoginRegisterController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/TestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="31" column="20" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/MVOController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="16" column="15" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/BVOController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="16" column="15" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lissandra-web/src/main/java/com/shi/lissandra/web/controller/AdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
