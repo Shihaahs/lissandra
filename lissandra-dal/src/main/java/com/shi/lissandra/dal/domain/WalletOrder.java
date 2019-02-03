@@ -33,7 +33,7 @@ public class WalletOrder extends BaseModel {
     @TableField("wallet_id")
     private Long walletId;
     /**
-     * 流水是否被审批，0-未处理，1-审批通过，2-审批不通过
+     * 流水是否被审批，0-审批通过，1-审批不通过，2-未处理，
      */
     @TableField("wallet_order_state")
     private Integer walletOrderState;

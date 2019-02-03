@@ -1,5 +1,10 @@
 package com.shi.lissandra.service.core;
 
+import com.shi.lissandra.common.request.PageRequestDTO;
+import com.shi.lissandra.dal.domain.Product;
+
+import java.util.List;
+
 /**
  * All rights Reserved, Designed By www.maihaoche.com
  *
@@ -11,5 +16,7 @@ package com.shi.lissandra.service.core;
  * @Description: 品牌商
  */
 public interface MVOService {
+
+    List<Product> findMVOAllProduct(PageRequestDTO pageRequestDTO);
 
 }

@@ -53,6 +53,11 @@ public class Product extends BaseModel {
     @TableField("product_manufacture_name")
     private String productManufactureName;
     /**
+     * 上架，0-已上架，1-未上架
+     */
+    @TableField("is_shelf")
+    private Integer isShelf;
+    /**
      * 逻辑删除，0-存在，1-已被删除
      */
     @TableField("is_delete")
