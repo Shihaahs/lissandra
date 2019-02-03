@@ -15,6 +15,5 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/bvo")
 public class BVOController {
 }
