@@ -26,15 +26,6 @@ public class PageRequestDTO implements Serializable {
      */
     private String endTime;
     /**
-     * 页面编码
-     */
-    private String pageNo;
-    /**
-     * 页面名称
-     */
-    private String pageName;
-
-    /**
      *当前页码
      */
     private Integer pageCurrent;
