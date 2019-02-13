@@ -27,14 +27,17 @@
         <dependency>
             <groupId>com.shi</groupId>
             <artifactId>lissandra-common</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.shi</groupId>
             <artifactId>lissandra-dal</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.shi</groupId>
             <artifactId>lissandra-service</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <!-- ===== 一方包 END ===== -->
 
@@ -44,6 +47,11 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!--<dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>-->
         <!-- ===== SpringBoot END ===== -->
     </dependencies>
 

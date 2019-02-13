@@ -8,14 +8,25 @@ package com.shi.lissandra.common.enums;
 public enum GlobalErrorCode implements ErrorCode{
 
     SUCCESS("200", "OK"),
-    FAILURE("-1", "Failure"),
+    FAILURE("-1", "Operation Failed"),
+    INVALID_PARAM("100", "Parameter Error"),
     BAD_REQUEST("400", "Bad Request"),
     UNAUTHORIZED("401", "Unauthorized"),
     FORBIDDEN("403", "Forbidden"),
     NOT_FOUND("404", "Not Found"),
     METHOD_NOT_ALLOWED("405", "Method Not Allowed"),
     INTERNAL_SERVER_ERROR("500", "Internal Server Error"),
-    INVALID_PARAM("100", "Parameter Error");
+
+
+
+    LOGIN_FAILURE("1000","Login Failure!"),
+    LOGOUT_FAILURE("1001","Logout Failure!"),
+    REGISTER_FAILURE("1002","Register Failure!"),
+
+
+    SYSTEM_EXCEPTION("9999","System Exception!");
+
+
 
     private final String code;
     private final String message;

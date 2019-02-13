@@ -32,7 +32,7 @@
     </properties>
 
     <dependencies>
-        <!-- ===== 一方包 BEGIN ===== -->
+       <!--  ===== 一方包 BEGIN =====
         <dependency>
             <groupId>com.shi</groupId>
             <artifactId>lissandra-common</artifactId>
@@ -48,7 +48,17 @@
             <artifactId>lissandra-service</artifactId>
             <version>${lissandra.version}</version>
         </dependency>
-        <!-- ===== 一方包 END ===== -->
+        <dependency>
+            <groupId>com.shi</groupId>
+            <artifactId>lissandra-web</artifactId>
+            <version>${lissandra.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.shi</groupId>
+            <artifactId>lissandra-test</artifactId>
+            <version>${lissandra.version}</version>
+        </dependency>
+         ===== 一方包 END ===== -->
 
         <!-- ===== 三方包 BEGIN ===== -->
         <!--import druid-->
@@ -70,8 +80,8 @@
         <!--import mybatis plus-->
         <dependency>
             <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>2.3</version>
+            <artifactId>mybatisplus-spring-boot-starter</artifactId>
+            <version>1.0.5</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
