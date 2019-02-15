@@ -33,6 +33,11 @@ public class WalletOrder extends BaseModel {
     @TableField("wallet_id")
     private Long walletId;
     /**
+     * 钱包流水号
+     */
+    @TableField("wallet_order_no")
+    private String walletOrderNo;
+    /**
      * 流水是否被审批，0-审批通过，1-审批不通过，2-未处理，
      */
     @TableField("wallet_order_state")

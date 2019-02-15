@@ -1,5 +1,10 @@
 package com.shi.lissandra.service.core;
 
+import com.shi.lissandra.common.page.PageResult;
+import com.shi.lissandra.common.request.PageRequestDTO;
+import com.shi.lissandra.dal.domain.User;
+import com.shi.lissandra.dal.domain.WalletOrder;
+
 /**
  * All rights Reserved, Designed By www.maihaoche.com
  *
@@ -11,5 +16,52 @@ package com.shi.lissandra.service.core;
  * @Description:
  */
 public interface AdminService {
+
+    /**
+     * <p> 管理员-注册审核 </p>
+     * @param pageRequestDTO isApproval == 2 -是否被审批
+     * @return PageResult<User>
+     * @author Wuer (wuer@maihaoche.com)
+     * @date 2019/2/14 4:06 PM
+     * @since V1.0.0-SNAPSHOT
+     *
+     */
+    PageResult<User> findAdminAllRegisterCheck(PageRequestDTO pageRequestDTO);
+
+    /**
+     * <p> 审核注册 </p>
+     * @param isApproval 0-通过，1-不通过
+     * @return Integer
+     * @author Wuer (wuer@maihaoche.com)
+     * @date 2019/2/14 4:08 PM
+     * @since V1.0.0-SNAPSHOT
+     *
+     */
+    Integer isApprovalRegisterCheck(String isApproval, User user);
+
+    /**
+     * <p> 管理员-钱包流水 </p>
+     * @param pageRequestDTO walletOrderState == 2 -是否被审批
+     * @return PageResult<WalletOrder>
+     * @author Wuer (wuer@maihaoche.com)
+     * @date 2019/2/14 4:09 PM
+     * @since V1.0.0-SNAPSHOT
+     *
+     */
+    PageResult<WalletOrder> findAdminAllWalletOrder(PageRequestDTO pageRequestDTO);
+
+    /**
+     * <p> 审核流水 </p>
+     * @param walletOrderState 0-通过，1-不通过
+     * @return Integer
+     * @author Wuer (wuer@maihaoche.com)
+     * @date 2019/2/14 4:13 PM
+     * @since V1.0.0-SNAPSHOT
+     *
+     */
+    Integer updateAdminWalletOrderState(String walletOrderState, WalletOrder walletOrder);
+
+
+
 
 }

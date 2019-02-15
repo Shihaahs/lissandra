@@ -18,6 +18,18 @@ public class PageRequestDTO implements Serializable {
      */
     private String productName;
     /**
+     * 是否上架，0-未上架，1-已上架，2-未处理(默认)
+     */
+    private Integer isShelf;
+    /**
+     * 是否通过注册审核，0-已通过，1-未通过，2-未处理(默认)
+     */
+    private Integer isApproval;
+    /**
+     * 是否通过钱包流水审核，0-已通过，1-未通过，2-未处理(默认)
+     */
+    private Integer walletOrderState;
+    /**
      * 开始时间
      */
     private String startTime;

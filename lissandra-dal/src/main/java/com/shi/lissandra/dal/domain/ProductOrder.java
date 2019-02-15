@@ -35,8 +35,8 @@ public class ProductOrder extends BaseModel {
     /**
      * 订单编号
      */
-    @TableField("order_no")
-    private String orderNo;
+    @TableField("product_order_no")
+    private String productOrderNo;
     /**
      * 下单人id
      */

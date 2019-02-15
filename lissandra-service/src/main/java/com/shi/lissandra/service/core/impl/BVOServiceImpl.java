@@ -1,8 +1,26 @@
 package com.shi.lissandra.service.core.impl;
 
+import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.shi.lissandra.common.page.PageResult;
+import com.shi.lissandra.common.request.PageRequestDTO;
+
+import com.shi.lissandra.dal.domain.Wallet;
+import com.shi.lissandra.dal.domain.WalletOrder;
+import com.shi.lissandra.dal.manager.WalletManager;
+import com.shi.lissandra.dal.manager.WalletOrderManager;
 import com.shi.lissandra.service.core.BVOService;
 import com.shi.lissandra.service.core.MVOService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+
+
+import java.math.BigDecimal;
+
+import static com.shi.lissandra.service.page.PageQuery.conditionAdapter;
+import static com.shi.lissandra.service.page.PageQuery.initPage;
 
 /**
  * All rights Reserved, Designed By www.maihaoche.com
@@ -15,8 +33,64 @@ import org.springframework.stereotype.Service;
  * @Description:
  */
 
+@Slf4j
 @Service
 public class BVOServiceImpl implements BVOService {
 
+    @Autowired
+    private WalletManager walletManager;
+    @Autowired
+    private WalletOrderManager walletOrderManager;
 
+
+    @Override
+    public PageResult<WalletOrder> findBVOAllWalletOrderByUser(Long userId, PageRequestDTO pageRequestDTO) {
+        Assert.notNull(pageRequestDTO, "分页条件参数不能为空");
+        if (null == userId || 0L == userId) {
+            log.error("BVOServiceImpl-findBVOAllWalletOrderByUser -> 未找到userId，请确认登录用户信息");
+            return null;
+        }
+        Wrapper<WalletOrder> wrapper = conditionAdapter(pageRequestDTO);
+        wrapper.eq("user_id", userId);
+
+        Page<WalletOrder> walletOrderPage = walletOrderManager.selectPage(
+                initPage(pageRequestDTO), wrapper);
+
+        return new PageResult<>(pageRequestDTO.getPageSize(),
+                pageRequestDTO.getPageCurrent(),
+                (int) walletOrderPage.getTotal(),
+                walletOrderPage.getRecords());
+    }
+
+    @Override
+    public BigDecimal getBVOWalletBalanceByUser(Wallet wallet) {
+        Assert.notNull(wallet, "BVOServiceImpl-getBVOWalletBalanceByUser -> wallet对象为空");
+        if (null == wallet.getUserId() || 0L == wallet.getUserId()) {
+            log.error("BVOServiceImpl-getBVOWalletBalanceByUser -> wallet.getUserId为空");
+            return null;
+        }
+        return walletManager.selectById(wallet.getUserId()).getBalance();
+    }
+
+    @Override
+    public Integer rechargeBVOWalletOrder(WalletOrder walletOrder) {
+        Assert.notNull(walletOrder, "BVOServiceImpl-rechargeBVOWalletOrder -> wallet对象为空");
+        if (null == walletOrder.getUserId() || 0L == walletOrder.getUserId() ||
+                null == walletOrder.getRecharge() || new BigDecimal(0).equals(walletOrder.getRecharge())) {
+            log.error("BVOServiceImpl-rechargeBVOWalletOrder -> wallet.getUserId或者getRecharge为空");
+            return null;
+        }
+        return walletOrderManager.insert(walletOrder);
+    }
+
+    @Override
+    public Integer withdrawBVOWalletOrder(WalletOrder walletOrder) {
+        Assert.notNull(walletOrder, "BVOServiceImpl-rechargeBVOWalletOrder -> wallet对象为空");
+        if (null == walletOrder.getUserId() || 0L == walletOrder.getUserId() ||
+                null == walletOrder.getRecharge() || new BigDecimal(0).equals(walletOrder.getRecharge())) {
+            log.error("BVOServiceImpl-withdrawBVOWalletOrder -> wallet.getUserId或者getRecharge为空");
+            return null;
+        }
+        return walletOrderManager.insert(walletOrder);
+    }
 }

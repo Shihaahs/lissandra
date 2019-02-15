@@ -41,7 +41,7 @@ public class MVOServiceImpl implements MVOService {
 
     @Override
     public PageResult<ProductOrder> findMVOAllOrder(PageRequestDTO pageRequestDTO) {
-        Assert.notNull(pageRequestDTO, "分页条件参数不能为空");
+        Assert.notNull(pageRequestDTO, "MVOServiceImpl-findMVOAllOrder -> 分页条件参数为空");
 
         Page<ProductOrder> productOrderPage = productOrderManager.selectPage(
                 initPage(pageRequestDTO),
@@ -55,7 +55,7 @@ public class MVOServiceImpl implements MVOService {
 
     @Override
     public PageResult<Product> findMVOAllProduct(PageRequestDTO pageRequestDTO) {
-        Assert.notNull(pageRequestDTO, "分页条件参数不能为空");
+        Assert.notNull(pageRequestDTO, "MVOServiceImpl-findMVOAllProduct -> 分页条件参数为空");
 
         Page<Product> productPage = productManager.selectPage(
                 initPage(pageRequestDTO),
@@ -69,25 +69,25 @@ public class MVOServiceImpl implements MVOService {
 
     @Override
     public Integer addMVOProduct(Product product) {
-        Assert.notNull(product, "商品信息不为空");
+        Assert.notNull(product, "MVOServiceImpl-addMVOProduct -> 商品信息为空");
         return productManager.insert(product);
     }
 
     @Override
     public Integer deleteMVOProduct(Product product) {
-        Assert.notNull(product, "商品信息不为空");
+        Assert.notNull(product, "MVOServiceImpl-deleteMVOProduct -> 商品信息为空");
         return productManager.deleteById(product.getProductId());
     }
 
     @Override
     public Integer updateMVOProductInfo(Product product) {
-        Assert.notNull(product, "商品信息不为空");
+        Assert.notNull(product, "MVOServiceImpl-updateMVOProductInfo -> 商品信息为空");
         return productManager.updateById(product);
     }
 
     @Override
     public Integer updateMVOProductIsShelf(Product product) {
-        Assert.notNull(product, "商品信息不为空");
+        Assert.notNull(product, "MVOServiceImpl-updateMVOProductIsShelf -> 商品信息为空");
         if (null == product.getProductId() || 0L == product.getProductId()) {
             log.error("MVOServiceImpl-updateMVOProductIsShelf -> productId为空，修改操作取消");
             return 0;
