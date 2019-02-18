@@ -53,7 +53,7 @@ public class Product extends BaseModel {
     @TableField("product_manufacture_name")
     private String productManufactureName;
     /**
-     * 上架，0-已上架，1-未上架
+     * 上架，0-未上架，1-已上架
      */
     @TableField("is_shelf")
     private Integer isShelf;

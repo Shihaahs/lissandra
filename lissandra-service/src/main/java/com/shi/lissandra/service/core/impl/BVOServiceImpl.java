@@ -5,8 +5,11 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.shi.lissandra.common.page.PageResult;
 import com.shi.lissandra.common.request.PageRequestDTO;
 
+import com.shi.lissandra.dal.domain.Product;
+import com.shi.lissandra.dal.domain.ProductOrder;
 import com.shi.lissandra.dal.domain.Wallet;
 import com.shi.lissandra.dal.domain.WalletOrder;
+import com.shi.lissandra.dal.manager.ProductManager;
 import com.shi.lissandra.dal.manager.WalletManager;
 import com.shi.lissandra.dal.manager.WalletOrderManager;
 import com.shi.lissandra.service.core.BVOService;
@@ -38,20 +41,36 @@ import static com.shi.lissandra.service.page.PageQuery.initPage;
 public class BVOServiceImpl implements BVOService {
 
     @Autowired
+    private ProductManager productManager;
+    @Autowired
     private WalletManager walletManager;
     @Autowired
     private WalletOrderManager walletOrderManager;
 
 
     @Override
-    public PageResult<WalletOrder> findBVOAllWalletOrderByUser(Long userId, PageRequestDTO pageRequestDTO) {
+    public PageResult<Product> findBVOAllProductByPage(PageRequestDTO pageRequestDTO) {
+        Assert.notNull(pageRequestDTO, "BVOServiceImpl-findBVOAllProductByPage -> 分页条件参数为空");
+
+        Page<Product> productPage = productManager.selectPage(
+                initPage(pageRequestDTO),
+                conditionAdapter(pageRequestDTO));
+
+        return new PageResult<>(pageRequestDTO.getPageSize(),
+                pageRequestDTO.getPageCurrent(),
+                (int) productPage.getTotal(),
+                productPage.getRecords());
+    }
+
+    @Override
+    public PageResult<WalletOrder> findBVOAllWalletOrderByUser(PageRequestDTO pageRequestDTO) {
         Assert.notNull(pageRequestDTO, "分页条件参数不能为空");
-        if (null == userId || 0L == userId) {
+        if (null == pageRequestDTO.getUserId() || 0L == pageRequestDTO.getUserId()) {
             log.error("BVOServiceImpl-findBVOAllWalletOrderByUser -> 未找到userId，请确认登录用户信息");
             return null;
         }
         Wrapper<WalletOrder> wrapper = conditionAdapter(pageRequestDTO);
-        wrapper.eq("user_id", userId);
+        wrapper.eq("user_id", pageRequestDTO.getUserId());
 
         Page<WalletOrder> walletOrderPage = walletOrderManager.selectPage(
                 initPage(pageRequestDTO), wrapper);

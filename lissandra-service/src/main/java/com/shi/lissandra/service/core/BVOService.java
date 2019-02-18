@@ -2,6 +2,7 @@ package com.shi.lissandra.service.core;
 
 import com.shi.lissandra.common.page.PageResult;
 import com.shi.lissandra.common.request.PageRequestDTO;
+import com.shi.lissandra.dal.domain.Product;
 import com.shi.lissandra.dal.domain.User;
 import com.shi.lissandra.dal.domain.Wallet;
 import com.shi.lissandra.dal.domain.WalletOrder;
@@ -21,6 +22,17 @@ import java.math.BigDecimal;
 public interface BVOService {
 
     /**
+     * <p> 借卖方-商品列表 </p>
+     * @param pageRequestDTO 分页参数
+     * @return PageResult<WalletOrder>
+     * @author Wuer (wuer@maihaoche.com)
+     * @date 2019/2/14 11:39 AM
+     * @since V1.0.0-SNAPSHOT
+     *
+     */
+    PageResult<Product> findBVOAllProductByPage(PageRequestDTO pageRequestDTO);
+
+    /**
      * <p> 借卖方-钱包流水 </p>
      * @param pageRequestDTO 分页参数
      * @return PageResult<WalletOrder>  
@@ -29,7 +41,7 @@ public interface BVOService {
      * @since V1.0.0-SNAPSHOT
      *
      */
-    PageResult<WalletOrder> findBVOAllWalletOrderByUser(Long userId, PageRequestDTO pageRequestDTO);
+    PageResult<WalletOrder> findBVOAllWalletOrderByUser(PageRequestDTO pageRequestDTO);
 
     /**
      * <p> 获取当前用户余额 </p>

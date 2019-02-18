@@ -22,6 +22,7 @@ public enum GlobalErrorCode implements ErrorCode{
     LOGIN_FAILURE("1000","Login Failure!"),
     LOGOUT_FAILURE("1001","Logout Failure!"),
     REGISTER_FAILURE("1002","Register Failure!"),
+    REGISTER_FAILURE_PHONE_REPEAT("1003","Phone has been existed!"),
 
 
     SYSTEM_EXCEPTION("9999","System Exception!");

@@ -30,8 +30,8 @@ public class ProductOrder extends BaseModel {
     /**
      * 产品id集合
      */
-    @TableField("product_ids")
-    private String productIds;
+    @TableField("product_id")
+    private Long productId;
     /**
      * 订单编号
      */

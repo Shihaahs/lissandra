@@ -44,7 +44,7 @@ public class User extends BaseModel {
      */
     private Integer permission;
     /**
-     * 是否被审批，0-已被审批，1-未被审批
+     * 是否被审批，0-未被审批，1-已被审批，2-未处理(默认)
      */
     @TableField("is_approval")
     private Integer isApproval;

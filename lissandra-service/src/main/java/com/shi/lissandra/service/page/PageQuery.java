@@ -71,6 +71,18 @@ public class PageQuery {
             wrapper.like("user_name", pageRequestDTO.getUserName());
         }
 
+        if (null != pageRequestDTO.getIsApproval()) {
+            wrapper.eq("is_approval", pageRequestDTO.getIsApproval().toString());
+        }
+
+        if (null != pageRequestDTO.getIsShelf()) {
+            wrapper.eq("is_shelf", pageRequestDTO.getIsShelf().toString());
+        }
+
+        if (null != pageRequestDTO.getWalletOrderState()) {
+            wrapper.eq("wallet_order_state", pageRequestDTO.getWalletOrderState().toString());
+        }
+
         if (null != pageRequestDTO.getStartTime() && pageRequestDTO.getStartTime().length() != 0) {
             //这里只转换"yyyy-MM-dd"格式的string
             Date starTime = DateUtil.convertToDate(pageRequestDTO.getStartTime(), DateUtil.ZONE_PATTERN);

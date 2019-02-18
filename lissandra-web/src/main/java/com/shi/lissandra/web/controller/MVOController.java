@@ -2,9 +2,10 @@ package com.shi.lissandra.web.controller;
 
 import com.shi.lissandra.common.entity.APIResult;
 import com.shi.lissandra.common.enums.GlobalErrorCode;
+import com.shi.lissandra.common.page.PageResult;
 import com.shi.lissandra.common.request.PageRequestDTO;
 import com.shi.lissandra.dal.domain.Product;
-import com.shi.lissandra.dal.domain.User;
+import com.shi.lissandra.dal.domain.ProductOrder;
 import com.shi.lissandra.service.core.MVOService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import javax.servlet.http.HttpServletRequest;
 
 import static com.shi.lissandra.common.constant.LissandraURL.*;
 
@@ -38,7 +38,7 @@ public class MVOController {
 
     @ApiOperation(value = "品牌商-订单列表", notes = "根据条件分页参数查询")
     @RequestMapping(value = MVO_LIST_ORDER_BY_PAGE, method = RequestMethod.POST)
-    public APIResult getAllMVOOrderByPage(@RequestBody PageRequestDTO pageRequestDTO) {
+    public APIResult<PageResult<ProductOrder>> getAllMVOOrderByPage(@RequestBody PageRequestDTO pageRequestDTO) {
         try {
             return APIResult.ok(mvoService.findMVOAllOrder(pageRequestDTO));
         } catch (Exception e) {
@@ -50,7 +50,7 @@ public class MVOController {
 
     @ApiOperation(value = "品牌商-商品列表", notes = "根据条件分页参数查询")
     @RequestMapping(value = MVO_LIST_PRODUCT_BY_PAGE, method = RequestMethod.POST)
-    public APIResult getAllMVOProductByPage(@RequestBody PageRequestDTO pageRequestDTO) {
+    public APIResult<PageResult<Product>> getAllMVOProductByPage(@RequestBody PageRequestDTO pageRequestDTO) {
         try {
             return APIResult.ok(mvoService.findMVOAllProduct(pageRequestDTO));
         } catch (Exception e) {

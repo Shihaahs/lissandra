@@ -7,6 +7,7 @@ import com.shi.lissandra.common.page.PageResult;
 import com.shi.lissandra.common.request.PageRequestDTO;
 import com.shi.lissandra.dal.domain.Product;
 import com.shi.lissandra.dal.domain.ProductOrder;
+import com.shi.lissandra.dal.domain.WalletOrder;
 import com.shi.lissandra.dal.manager.ProductManager;
 import com.shi.lissandra.dal.manager.ProductOrderManager;
 import com.shi.lissandra.service.core.MVOService;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import static com.shi.lissandra.service.page.PageQuery.*;
+import static java.util.stream.Collectors.toList;
 
 import java.util.List;
 
@@ -43,9 +45,17 @@ public class MVOServiceImpl implements MVOService {
     public PageResult<ProductOrder> findMVOAllOrder(PageRequestDTO pageRequestDTO) {
         Assert.notNull(pageRequestDTO, "MVOServiceImpl-findMVOAllOrder -> 分页条件参数为空");
 
+        //这里多对多的逻辑做了省略
+        List<Long> productList = productManager.selectList(
+                new EntityWrapper<Product>()
+                        .eq("product_manufacture_id", pageRequestDTO.getUserId()))
+                .stream().map(Product::getProductId).collect(toList());
+        //品牌商只能看到自己的订单
+        Wrapper<ProductOrder> wrapper = conditionAdapter(pageRequestDTO);
+        wrapper.in("product_id", productList);
         Page<ProductOrder> productOrderPage = productOrderManager.selectPage(
                 initPage(pageRequestDTO),
-                conditionAdapter(pageRequestDTO));
+                wrapper);
 
         return new PageResult<>(pageRequestDTO.getPageSize(),
                 pageRequestDTO.getPageCurrent(),
@@ -57,9 +67,12 @@ public class MVOServiceImpl implements MVOService {
     public PageResult<Product> findMVOAllProduct(PageRequestDTO pageRequestDTO) {
         Assert.notNull(pageRequestDTO, "MVOServiceImpl-findMVOAllProduct -> 分页条件参数为空");
 
+        //品牌商只能看到自己的货物
+        Wrapper<Product> wrapper = conditionAdapter(pageRequestDTO);
+        wrapper.eq("product_manufacture_id", pageRequestDTO.getUserId());
         Page<Product> productPage = productManager.selectPage(
                 initPage(pageRequestDTO),
-                conditionAdapter(pageRequestDTO));
+                wrapper);
 
         return new PageResult<>(pageRequestDTO.getPageSize(),
                 pageRequestDTO.getPageCurrent(),

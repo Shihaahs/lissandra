@@ -45,30 +45,30 @@ public class LoginRegisterController {
     @RequestMapping(value = LISSANDRA_LOGIN, method = RequestMethod.POST)
     public APIResult login(@RequestBody User user, HttpServletRequest request) {
         user = loginRegisterService.checkLogin(user);
-        if (null != user){
-            request.getSession().setAttribute("user",user);
+        if (null != user && 0 == user.getIsApproval()) {
+            request.getSession().setAttribute("user", user);
             log.info("login -> " + user.getUserName() + "用户已登录 ");
             return APIResult.ok(SUCCESS.getMessage());
         }
-        return APIResult.error(LOGIN_FAILURE.getCode(),LOGIN_FAILURE.getMessage());
+        return APIResult.error(LOGIN_FAILURE.getCode(), LOGIN_FAILURE.getMessage());
     }
 
     @ApiOperation(value = "登出", notes = "登出")
-    @RequestMapping(value = LISSANDRA_LOGOUT,method = RequestMethod.POST)
-    public APIResult logout(HttpServletRequest request){
+    @RequestMapping(value = LISSANDRA_LOGOUT, method = RequestMethod.POST)
+    public APIResult logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.removeAttribute("user");
         if (null == session.getAttribute("user")) {
             log.info("logout -> 用户已注销 ");
             return APIResult.ok();
         }
-        return APIResult.error(LOGOUT_FAILURE.getCode(),LOGOUT_FAILURE.getMessage());
+        return APIResult.error(LOGOUT_FAILURE.getCode(), LOGOUT_FAILURE.getMessage());
     }
 
 
     @ApiOperation(value = "注册", notes = "注册")
-    @RequestMapping(value = LISSANDRA_REGISTRE,method = RequestMethod.POST)
-    public APIResult register(@RequestBody User user){
+    @RequestMapping(value = LISSANDRA_REGISTRE, method = RequestMethod.POST)
+    public APIResult register(@RequestBody User user) {
         if (null == user.getPhone() || user.getPhone().isEmpty()) {
             log.info("register -> 用户注册失败，未检测到手机号 ");
             return APIResult.error(REGISTER_FAILURE.getCode(), REGISTER_FAILURE.getMessage());
@@ -76,8 +76,15 @@ public class LoginRegisterController {
         //后期需要对手机号进行参数校验
 
         if (loginRegisterService.checkRegister(user.getPhone())) {
-            return APIResult.ok(loginRegisterService.registerUser(user));
+            try {
+                return APIResult.ok(loginRegisterService.registerUser(user));
+            } catch (Exception e) {
+                return APIResult.error(REGISTER_FAILURE.getCode(), REGISTER_FAILURE.getMessage());
+            }
+
+        } else {
+            log.info("register -> 用户注册失败，手机号" + user.getPhone() + "已存在！");
+            return APIResult.error(REGISTER_FAILURE_PHONE_REPEAT.getCode(), REGISTER_FAILURE_PHONE_REPEAT.getMessage());
         }
-        return APIResult.error(REGISTER_FAILURE.getCode(), REGISTER_FAILURE.getMessage());
     }
 }

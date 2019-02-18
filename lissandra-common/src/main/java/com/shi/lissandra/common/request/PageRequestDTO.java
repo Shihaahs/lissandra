@@ -14,6 +14,10 @@ public class PageRequestDTO implements Serializable {
      */
     private String userName;
     /**
+     * 店铺id查询
+     */
+    private Long userId;
+    /**
      * 商品名称查询
      */
     private String productName;
