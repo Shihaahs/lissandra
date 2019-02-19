@@ -25,8 +25,8 @@ public class WalletOrder extends BaseModel {
     /**
      * 钱包流水id，主键，自增长
      */
-    @TableId(value = "wallet_order", type = IdType.AUTO)
-    private Long walletOrder;
+    @TableId(value = "wallet_order_id", type = IdType.AUTO)
+    private Long walletOrderId;
     /**
      * 钱包id
      */

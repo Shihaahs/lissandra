@@ -5,7 +5,6 @@ import com.shi.lissandra.common.enums.GlobalErrorCode;
 import com.shi.lissandra.common.page.PageResult;
 import com.shi.lissandra.common.request.PageRequestDTO;
 import com.shi.lissandra.dal.domain.Product;
-import com.shi.lissandra.dal.domain.ProductOrder;
 import com.shi.lissandra.dal.domain.Wallet;
 import com.shi.lissandra.dal.domain.WalletOrder;
 import com.shi.lissandra.service.core.BVOService;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.math.BigDecimal;
 
 import static com.shi.lissandra.common.constant.LissandraURL.*;
+import static com.shi.lissandra.common.enums.GlobalErrorCode.*;
 
 /**
  * All rights Reserved, Designed By www.maihaoche.com
@@ -47,7 +47,7 @@ public class BVOController {
         } catch (Exception e) {
             log.error("BVOController-getAllBVOProductByPage -> 出现异常:" + e.getMessage());
         }
-        return APIResult.error(GlobalErrorCode.FAILURE.getCode(),GlobalErrorCode.FAILURE.getMessage());
+        return APIResult.error(FAILURE.getCode(), FAILURE.getMessage());
     }
 
 
@@ -59,7 +59,7 @@ public class BVOController {
         } catch (Exception e) {
             log.error("BVOController-getAllBVOWalletOrderByUser -> 出现异常:" + e.getMessage());
         }
-        return APIResult.error(GlobalErrorCode.FAILURE.getCode(),GlobalErrorCode.FAILURE.getMessage());
+        return APIResult.error(FAILURE.getCode(), FAILURE.getMessage());
     }
 
     @ApiOperation(value = "借卖方-获取钱包余额", notes = "根据当前登录用户id查询")
@@ -70,7 +70,7 @@ public class BVOController {
         } catch (Exception e) {
             log.error("BVOController-getBVOWalletBalanceByUser -> 出现异常:" + e.getMessage());
         }
-        return APIResult.error(GlobalErrorCode.FAILURE.getCode(),GlobalErrorCode.FAILURE.getMessage());
+        return APIResult.error(FAILURE.getCode(), FAILURE.getMessage());
     }
 
     @ApiOperation(value = "借卖方-钱包充值", notes = "根据当前登录用户id进行操作")
@@ -81,19 +81,24 @@ public class BVOController {
         } catch (Exception e) {
             log.error("BVOController-rechargeBVOWalletOrder -> 出现异常:" + e.getMessage());
         }
-        return APIResult.error(GlobalErrorCode.FAILURE.getCode(),GlobalErrorCode.FAILURE.getMessage());
+        return APIResult.error(FAILURE.getCode(), FAILURE.getMessage());
     }
 
     @ApiOperation(value = "借卖方-钱包提现", notes = "根据当前登录用户id进行操作")
     @RequestMapping(value = BVO_WALLET_ORDER_WITHDRAW, method = RequestMethod.POST)
     public APIResult withdrawBVOWalletOrder(@RequestBody WalletOrder walletOrder) {
         try {
-            return APIResult.ok(bvoService.withdrawBVOWalletOrder(walletOrder));
+            int row = bvoService.withdrawBVOWalletOrder(walletOrder);
+            if (99 == row) {
+                return APIResult.error(WITHDRAW_ERROR.getCode(), WITHDRAW_ERROR.getMessage());
+            }
+            if (1 == row) {
+                return APIResult.ok(SUCCESS.getMessage());
+            }
         } catch (Exception e) {
             log.error("BVOController-withdrawBVOWalletOrder -> 出现异常:" + e.getMessage());
         }
-        return APIResult.error(GlobalErrorCode.FAILURE.getCode(),GlobalErrorCode.FAILURE.getMessage());
+        return APIResult.error(FAILURE.getCode(), FAILURE.getMessage());
     }
-
 
 }

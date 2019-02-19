@@ -1,5 +1,6 @@
 package com.shi.lissandra.service.core.impl;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.shi.lissandra.common.page.PageResult;
@@ -91,7 +92,7 @@ public class AdminServiceImpl implements AdminService {
             return null;
         }
         Wrapper<WalletOrder> wrapper = conditionAdapter(pageRequestDTO);
-        if (2 == pageRequestDTO.getIsApproval()) {
+        if (2 == pageRequestDTO.getWalletOrderState()) {
             wrapper.eq("wallet_order_state", 2);
         } else {
             wrapper.in("wallet_order_state", new Integer[]{0, 1});
@@ -109,11 +110,12 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Integer updateAdminWalletOrderState(String walletOrderState, WalletOrder walletOrder) {
         if (null == walletOrderState || walletOrderState.isEmpty()
-                || null == walletOrder.getWalletId() || 0L == walletOrder.getWalletId()) {
-            log.error("AdminServiceImpl-updateAdminWalletOrderState -> walletOrderState或walletOrder.getWalletId()为空");
+                || null == walletOrder.getWalletOrderId() || 0L == walletOrder.getWalletOrderId()) {
+            log.error("AdminServiceImpl-updateAdminWalletOrderState -> walletOrderState或walletOrder.getWalletOrderId()为空");
             return null;
         }
         if ("0".equals(walletOrderState)) {
+            walletOrder = walletOrderManager.selectOne(new EntityWrapper<WalletOrder>().eq("wallet_order_id", walletOrder.getWalletOrderId()));
             //钱包流水审批通过
             walletOrder.setWalletOrderState(0);
             //相应的用户钱包余额变动
@@ -125,14 +127,32 @@ public class AdminServiceImpl implements AdminService {
                 wallet.setBalance(newBalance);
                 int row = walletManager.updateById(wallet);
                 if (row > 0) {
-                    log.info("Admin已通过钱包流水号: " + walletOrder.getWalletOrderNo()
-                            + ";钱包用户: " + walletOrder.getUserName()
-                            + ";原有余额: " + oldBalance
-                            + ";充值金额: " + walletOrder.getRecharge()
-                            + ";现在余额: " + wallet.getBalance());
+                    log.info("Admin已通过钱包流水号:" + walletOrder.getWalletOrderNo()
+                            + "; 钱包用户:" + walletOrder.getUserName()
+                            + "; 原有余额:" + oldBalance
+                            + "; 充值金额:" + walletOrder.getRecharge()
+                            + "; 现在余额:" + wallet.getBalance());
                 } else {
                     log.error("Admin已通过钱包流水号: " + walletOrder.getWalletOrderNo()
                     + "---充值金额调度失败");
+                }
+            }
+            if (walletOrder.getWithdraw().compareTo(new BigDecimal(0)) > 0) {
+                //这是一个提现审批
+                Wallet wallet = walletManager.selectById(walletOrder.getWalletId());
+                BigDecimal oldBalance = wallet.getBalance();
+                BigDecimal newBalance = wallet.getBalance().subtract(walletOrder.getWithdraw());
+                wallet.setBalance(newBalance);
+                int row = walletManager.updateById(wallet);
+                if (row > 0) {
+                    log.info("Admin已通过钱包流水号:" + walletOrder.getWalletOrderNo()
+                            + "; 钱包用户:" + walletOrder.getUserName()
+                            + "; 原有余额:" + oldBalance
+                            + "; 提现金额:" + walletOrder.getWithdraw()
+                            + "; 现在余额:" + wallet.getBalance());
+                } else {
+                    log.error("Admin已通过钱包流水号: " + walletOrder.getWalletOrderNo()
+                            + "---充值金额调度失败");
                 }
             }
 

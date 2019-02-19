@@ -24,6 +24,8 @@ public enum GlobalErrorCode implements ErrorCode{
     REGISTER_FAILURE("1002","Register Failure!"),
     REGISTER_FAILURE_PHONE_REPEAT("1003","Phone has been existed!"),
 
+    WITHDRAW_ERROR("5000", "Account balance is not enough!"),
+
 
     SYSTEM_EXCEPTION("9999","System Exception!");
 
