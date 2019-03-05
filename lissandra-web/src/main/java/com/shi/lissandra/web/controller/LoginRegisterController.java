@@ -4,6 +4,7 @@ import com.shi.lissandra.common.entity.APIResult;
 import com.shi.lissandra.dal.domain.User;
 import com.shi.lissandra.dal.manager.UserManager;
 import com.shi.lissandra.service.core.LoginRegisterService;
+import com.shi.lissandra.web.security.token.TokenHelper;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static com.shi.lissandra.common.constant.LissandraURL.LISSANDRA_LOGIN;
 import static com.shi.lissandra.common.constant.LissandraURL.LISSANDRA_LOGOUT;
@@ -36,6 +42,8 @@ import static com.shi.lissandra.common.enums.GlobalErrorCode.*;
 public class LoginRegisterController {
 
     @Autowired
+    private TokenHelper tokenHelper;
+    @Autowired
     private LoginRegisterService loginRegisterService;
     @Autowired
     private UserManager userManager;
@@ -43,10 +51,14 @@ public class LoginRegisterController {
 
     @ApiOperation(value = "登录", notes = "登录")
     @RequestMapping(value = LISSANDRA_LOGIN, method = RequestMethod.POST)
-    public APIResult login(@RequestBody User user, HttpServletRequest request) {
+    public APIResult login(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
         user = loginRegisterService.checkLogin(user);
         if (null != user && 0 == user.getIsApproval()) {
             request.getSession().setAttribute("user", user);
+            Cookie cookie = new Cookie("x-auth-token",tokenHelper.getToken(user));
+            //可在同一应用服务器内共享cookie
+            cookie.setPath("/");
+            response.addCookie(cookie);
             log.info("login -> " + user.getUserName() + "用户已登录 ");
             return APIResult.ok(SUCCESS.getMessage());
         }
@@ -58,6 +70,11 @@ public class LoginRegisterController {
     public APIResult logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.removeAttribute("user");
+        for (Cookie cookie : request.getCookies()) {
+            if (cookie.getName().equals("x-auth-token")) {
+                cookie.setValue(null);
+            }
+        }
         if (null == session.getAttribute("user")) {
             log.info("logout -> 用户已注销 ");
             return APIResult.ok();

@@ -7,6 +7,9 @@ spring:
   application:
     name: lissandra
 
+  session:
+    store-type: none
+
   # MySQL
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/db_lissandra?useUnicode=true&characterEncoding=utf-8
