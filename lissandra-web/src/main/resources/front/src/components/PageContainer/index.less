@@ -1,0 +1,31 @@
+.PageHeader {
+  font-size: 1.25em;
+  font-weight: bold;
+  padding: 1em;
+  border-bottom: #eee solid 1px;
+  color: #555;
+  background-color: #fff;
+}
+
+.PageContainer {
+  padding: 2em;
+  background-color: #fff;
+  border-radius: 0.25em;
+  width: 100%;
+  box-shadow: 0 0 1px #ccc;
+}
+
+.PageContainer.animation {
+  animation: zoomIn 250ms both;
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.85, 0.85, 0.85);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
