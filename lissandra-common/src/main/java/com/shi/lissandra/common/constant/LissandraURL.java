@@ -30,5 +30,9 @@ public class LissandraURL {
 
 
 
+    public static final String PUBLIC_FIND_USER = "/api/public/find/user.json";
+
+
+
 
 }

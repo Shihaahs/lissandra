@@ -23,3 +23,13 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# ignore dirs
+target/
+node_modules/

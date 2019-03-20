@@ -69,7 +69,7 @@ public class MVOServiceImpl implements MVOService {
 
         //品牌商只能看到自己的货物
         Wrapper<Product> wrapper = conditionAdapter(pageRequestDTO);
-        wrapper.eq("product_manufacture_id", pageRequestDTO.getUserId());
+//        wrapper.eq("product_manufacture_id", pageRequestDTO.getUserId());
         Page<Product> productPage = productManager.selectPage(
                 initPage(pageRequestDTO),
                 wrapper);
@@ -112,8 +112,7 @@ public class MVOServiceImpl implements MVOService {
 
         if (0 == product.getIsShelf()) {
             product.setIsShelf(1);
-        }
-        if (1 == product.getIsShelf()) {
+        } else if (1 == product.getIsShelf()) {
             product.setIsShelf(0);
         }
         return productManager.updateById(product);

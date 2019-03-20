@@ -1,5 +1,6 @@
 package com.shi.lissandra.web.controller;
 
+import ch.qos.logback.core.pattern.ConverterUtil;
 import com.shi.lissandra.common.entity.APIResult;
 import com.shi.lissandra.dal.domain.User;
 import com.shi.lissandra.dal.manager.UserManager;
@@ -7,6 +8,7 @@ import com.shi.lissandra.service.core.LoginRegisterService;
 import com.shi.lissandra.web.security.token.TokenHelper;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.beanutils.ConvertUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +23,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.shi.lissandra.common.constant.LissandraURL.LISSANDRA_LOGIN;
-import static com.shi.lissandra.common.constant.LissandraURL.LISSANDRA_LOGOUT;
-import static com.shi.lissandra.common.constant.LissandraURL.LISSANDRA_REGISTRE;
+import static com.shi.lissandra.common.constant.LissandraURL.*;
 import static com.shi.lissandra.common.enums.GlobalErrorCode.*;
 
 /**
@@ -103,5 +103,21 @@ public class LoginRegisterController {
             log.info("register -> 用户注册失败，手机号" + user.getPhone() + "已存在！");
             return APIResult.error(REGISTER_FAILURE_PHONE_REPEAT.getCode(), REGISTER_FAILURE_PHONE_REPEAT.getMessage());
         }
+    }
+
+
+    @ApiOperation(value = "获取登录人", notes = "获取登录人")
+    @RequestMapping(value = PUBLIC_FIND_USER, method = RequestMethod.POST)
+    public APIResult<User> getCurrentLoginUser(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        //User user = (User) ConvertUtils.convert(session.getAttribute("user"), User.class);
+        User user = new User();
+        user.setUserId(2L);
+        user.setUserName("石傻傻");
+        user.setPhone("123");
+        if (null != user) {
+            return APIResult.ok(user);
+        }
+        return APIResult.error(LOGOUT_FAILURE.getCode(), LOGOUT_FAILURE.getMessage());
     }
 }
