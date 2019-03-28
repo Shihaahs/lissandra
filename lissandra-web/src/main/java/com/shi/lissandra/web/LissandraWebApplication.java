@@ -15,6 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
+
 @EnableTransactionManagement
 @ComponentScan(basePackages = { "com.shi.lissandra.dal", "com.shi.lissandra.service","com.shi.lissandra.common","com.shi.lissandra.web"})
 @EnableSwagger2Doc
