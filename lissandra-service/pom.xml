@@ -23,6 +23,12 @@
             <artifactId>lissandra-dal</artifactId>
             <version>${project.version}</version>
         </dependency>
+<!--        //循环依赖问题
+        <dependency>
+            <groupId>com.shi</groupId>
+            <artifactId>lissandra-web</artifactId>
+            <version>${project.version}</version>
+        </dependency>-->
         <!-- ===== 一方包 END ===== -->
     </dependencies>
 

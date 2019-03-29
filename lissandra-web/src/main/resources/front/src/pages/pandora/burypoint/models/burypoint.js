@@ -40,9 +40,10 @@ export default {
             }
         },
         addition: {
-            appId: '',
+            productName: '',
             pageNo: '',
             pageName: '',
+
         }
     },
     effects: {

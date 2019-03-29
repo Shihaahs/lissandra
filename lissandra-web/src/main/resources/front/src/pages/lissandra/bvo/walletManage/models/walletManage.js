@@ -1,4 +1,4 @@
-import service from '../services/productManage'
+import service from '../services/walletManage'
 import {delay, formatISODate} from '../../../../../utils/TyTools'
 import {message as msg} from 'antd'
 import TyHistory from '../../../../../utils/TyHistory'
@@ -162,13 +162,12 @@ export default {
                 }
             })
         },
-        * getTableList({
-               payload: {pageCurrent = 1, pageSize = 10, addition = {}}}, {call, put}) {
+        * getTableList({payload: {pageCurrent = 1, pageSize = 10, addition = {}}}, {call, put}) {
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
             addition.userId = currentUser.userId;
             const {success, data, message} = yield call(service.list, Object.assign({
                 pageCurrent, pageSize
-            }, addition));
+            }, addition))
             if (success && success.toString() === 'true') {
                 yield put({
                     type: 'showTable',

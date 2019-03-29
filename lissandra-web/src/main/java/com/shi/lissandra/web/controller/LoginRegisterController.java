@@ -1,6 +1,5 @@
 package com.shi.lissandra.web.controller;
 
-import ch.qos.logback.core.pattern.ConverterUtil;
 import com.shi.lissandra.common.entity.APIResult;
 import com.shi.lissandra.dal.domain.User;
 import com.shi.lissandra.dal.manager.UserManager;
@@ -8,7 +7,6 @@ import com.shi.lissandra.service.core.LoginRegisterService;
 import com.shi.lissandra.web.security.token.TokenHelper;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.beanutils.ConvertUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +17,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import java.util.Arrays;
-import java.util.List;
 
 import static com.shi.lissandra.common.constant.LissandraURL.*;
 import static com.shi.lissandra.common.enums.GlobalErrorCode.*;
@@ -112,7 +107,7 @@ public class LoginRegisterController {
         HttpSession session = request.getSession();
         //User user = (User) ConvertUtils.convert(session.getAttribute("user"), User.class);
         User user = new User();
-        user.setUserId(2L);
+        user.setUserId(3L);
         user.setUserName("石傻傻");
         user.setPhone("123");
         if (null != user) {

@@ -1,7 +1,7 @@
 ### IntelliJ IDEA ###
 /.idea/
 
-/target/
+**/target/
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###

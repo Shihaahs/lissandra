@@ -90,8 +90,7 @@ export default class GlobalHeader extends PureComponent {
                 userId : json.data.userId,
                 userName : json.data.userName
             };
-            TyHistory.set(user);
-            console.log(TyHistory.get('user'));
+            localStorage.setItem("currentUser", JSON.stringify(user));
         });
   }
 }

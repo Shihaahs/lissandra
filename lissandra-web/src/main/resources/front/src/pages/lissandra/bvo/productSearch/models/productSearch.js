@@ -1,4 +1,4 @@
-import service from '../services/productManage'
+import service from '../services/productSearch'
 import {delay, formatISODate} from '../../../../../utils/TyTools'
 import {message as msg} from 'antd'
 import TyHistory from '../../../../../utils/TyHistory'
@@ -28,147 +28,27 @@ export default {
                 typelist: []
             }
         },
-        updateModal: {
-            visible: false,
-            confirmLoading: false,
-            data: {
-                typelist: []
-            }
-        },
         addition: {
             productName: '',
             userId: '',
+            productManufactureName: '',
         }
     },
     effects: {
-        * add(
-            {
-                payload: {
-                    isShelf: isShelf ,
-                    productDescription: productDescription,
-                    productId: productId,
-                    productManufactureId: productManufactureId,
-                    productManufactureName: productManufactureName,
-                    productName: productName,
-                    productPrice: productPrice,
-                }
-            },
-            {call, put, select}
-        ) {
+        * add({}, {call, put, select}) {
             yield put({
                 type: 'startAddModalConfirmLoading'
-            })
-            const {success, data, message} = yield call(service.add, {
-                isShelf,
-                productDescription,
-                productId,
-                // productImage,
-                productManufactureId,
-                productManufactureName,
-                productName,
-                productPrice
-            })
-            if (success && success.toString() === 'true') {
-                msg.success('添加成功')
-                yield put({
-                    type: 'getTableList',
-                    payload: {
-                        pageCurrent: yield select(state => state.productManage.page.current),
-                        pageSize: yield select(state => state.productManage.page.size)
-                    }
-                })
-                yield put({
-                    type: 'hideAddModal'
-                })
-            } else {
-                msg.error('添加失败，请重试' + (message ? '：' + message : ''))
-                yield put({
-                    type: 'stopAddModalConfirmLoading'
-                })
-            }
-        },
-        * update(
-            {
-                payload: {
-                    isShelf: isShelf ,
-                    productDescription: productDescription,
-                    productId: productId,
-                    productName: productName,
-                    productPrice: productPrice,
-                }
-            },
-            {call, put, select}
-        ) {
-            yield put({
-                type: 'startUpdateModalConfirmLoading'
-            })
-            const {success, data, message} = yield call(service.update, {
-                isShelf: isShelf || '',
-                productDescription: productDescription || '',
-                productId: productId || '',
-                productName: productName || '',
-                productPrice: productPrice || '',
             });
-            if (success && success.toString() === 'true') {
-                msg.success('修改成功');
-                yield put({
-                    type: 'getTableList',
-                    payload: {
-                        pageCurrent: yield select(state => state.productManage.page.current),
-                        pageSize: yield select(state => state.productManage.page.size)
-                    }
-                });
-                yield put({
-                    type: 'hideUpdateModal'
-                });
-            } else {
-                msg.error('修改失败，请重试' + (message ? '：' + message : ''));
-                yield put({
-                    type: 'stopUpdateModalConfirmLoading'
-                });
-            }
+            msg.success('推送成功');
+            yield put({
+                type: 'hideAddModal'
+            });
+        },
+        * getTableList({payload: {pageCurrent = 1, pageSize = 10, addition = {}}}, {call, put}) {
 
-        },
-        * isShelf({payload: {
-            productId: productId,
-            isShelf: isShelf
-        }}, {call, put, select}) {
-            const {success, data, message} = yield call(service.shelf, {productId,isShelf});
-            if (success && success.toString() === 'true') {
-                msg.success('上架成功')
-            } else {
-                msg.error('上架失败' + (message ? '：' + message : ''))
-            }
-            yield put({
-                type: 'getTableList',
-                payload: {
-                    pageCurrent: yield select(state => state.productManage.page.current),
-                    pageSize: yield select(state => state.productManage.page.size)
-                }
-            })
-        },
-        * deleteById({payload: {id: productId}}, {call, put, select}) {
-            const {success, data, message} = yield call(service.delete, {productId});
-            if (success && success.toString() === 'true') {
-                msg.success('删除成功')
-            } else {
-                msg.error('删除失败' + (message ? '：' + message : ''))
-            }
-            yield put({
-                type: 'getTableList',
-                payload: {
-                    pageCurrent: yield select(state => state.productManage.page.current),
-                    pageSize: yield select(state => state.productManage.page.size)
-                }
-            })
-        },
-        * getTableList({
-               payload: {pageCurrent = 1, pageSize = 10, addition = {}}}, {call, put}) {
-            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-            addition.userId = currentUser.userId;
             const {success, data, message} = yield call(service.list, Object.assign({
                 pageCurrent, pageSize
-            }, addition));
+            }, addition))
             if (success && success.toString() === 'true') {
                 yield put({
                     type: 'showTable',

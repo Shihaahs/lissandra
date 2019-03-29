@@ -39,6 +39,8 @@ public class MVOServiceImpl implements MVOService {
     @Autowired
     private ProductManager productManager;
     @Autowired
+    private ProductOrderManager orderManager;
+    @Autowired
     private ProductOrderManager productOrderManager;
 
     @Override
@@ -46,13 +48,13 @@ public class MVOServiceImpl implements MVOService {
         Assert.notNull(pageRequestDTO, "MVOServiceImpl-findMVOAllOrder -> 分页条件参数为空");
 
         //这里多对多的逻辑做了省略
-        List<Long> productList = productManager.selectList(
-                new EntityWrapper<Product>()
-                        .eq("product_manufacture_id", pageRequestDTO.getUserId()))
-                .stream().map(Product::getProductId).collect(toList());
+        List<Long> orderIds = orderManager.selectList(
+                new EntityWrapper<ProductOrder>()
+                        .eq("user_id", pageRequestDTO.getUserId()))
+                .stream().map(ProductOrder::getProductOrderId).collect(toList());
         //品牌商只能看到自己的订单
         Wrapper<ProductOrder> wrapper = conditionAdapter(pageRequestDTO);
-        wrapper.in("product_id", productList);
+        wrapper.in("order_id", orderIds);
         Page<ProductOrder> productOrderPage = productOrderManager.selectPage(
                 initPage(pageRequestDTO),
                 wrapper);
@@ -69,7 +71,7 @@ public class MVOServiceImpl implements MVOService {
 
         //品牌商只能看到自己的货物
         Wrapper<Product> wrapper = conditionAdapter(pageRequestDTO);
-//        wrapper.eq("product_manufacture_id", pageRequestDTO.getUserId());
+        wrapper.eq("product_manufacture_id", pageRequestDTO.getUserId());
         Page<Product> productPage = productManager.selectPage(
                 initPage(pageRequestDTO),
                 wrapper);

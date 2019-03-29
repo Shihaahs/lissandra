@@ -64,13 +64,15 @@ public class PageQuery {
         //按照时间进行排序显示
         wrapper.orderDesc(Collections.singleton("gmt_create"));
 
-        if (null != pageRequestDTO.getProductName() && pageRequestDTO.getProductName().isEmpty()) {
+        if (null != pageRequestDTO.getProductName() && !pageRequestDTO.getProductName().isEmpty()) {
             wrapper.like("product_name", pageRequestDTO.getProductName());
         }
-        if (null != pageRequestDTO.getUserName() && pageRequestDTO.getUserName().isEmpty()) {
+        if (null != pageRequestDTO.getUserName() && !pageRequestDTO.getUserName().isEmpty()) {
             wrapper.like("user_name", pageRequestDTO.getUserName());
         }
-
+        if (null != pageRequestDTO.getProductManufactureName() && !pageRequestDTO.getProductManufactureName().isEmpty()) {
+            wrapper.like("product_manufacture_name", pageRequestDTO.getProductManufactureName());
+        }
         if (null != pageRequestDTO.getIsApproval()) {
             wrapper.eq("is_approval", pageRequestDTO.getIsApproval().toString());
         }

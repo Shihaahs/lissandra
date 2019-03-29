@@ -30,6 +30,51 @@ let routes = [
         "_title_default": "电子商务借卖交易平台"
       },
       {
+        "path": "/lissandra/admin/rechargeAndWithdrawCheck",
+        "exact": true,
+        "component": require('../lissandra/admin/rechargeAndWithdrawCheck/index.js').default,
+        "title": "电子商务借卖交易平台 | 商品管理",
+        "Routes": [require('../../../node_modules/umi-plugin-react/lib/plugins/title/TitleWrapper.js').default],
+        "_title": "电子商务借卖交易平台 | 商品管理",
+        "_title_default": "电子商务借卖交易平台"
+      },
+      {
+        "path": "/lissandra/admin/registerCheck",
+        "exact": true,
+        "component": require('../lissandra/admin/registerCheck/index.js').default,
+        "title": "电子商务借卖交易平台 | 商品管理",
+        "Routes": [require('../../../node_modules/umi-plugin-react/lib/plugins/title/TitleWrapper.js').default],
+        "_title": "电子商务借卖交易平台 | 商品管理",
+        "_title_default": "电子商务借卖交易平台"
+      },
+      {
+        "path": "/lissandra/bvo/productSearch",
+        "exact": true,
+        "component": require('../lissandra/bvo/productSearch/index.js').default,
+        "title": "电子商务借卖交易平台 | 商品浏览",
+        "Routes": [require('../../../node_modules/umi-plugin-react/lib/plugins/title/TitleWrapper.js').default],
+        "_title": "电子商务借卖交易平台 | 商品浏览",
+        "_title_default": "电子商务借卖交易平台"
+      },
+      {
+        "path": "/lissandra/bvo/walletManage",
+        "exact": true,
+        "component": require('../lissandra/bvo/walletManage/index.js').default,
+        "title": "电子商务借卖交易平台 | 钱包管理",
+        "Routes": [require('../../../node_modules/umi-plugin-react/lib/plugins/title/TitleWrapper.js').default],
+        "_title": "电子商务借卖交易平台 | 钱包管理",
+        "_title_default": "电子商务借卖交易平台"
+      },
+      {
+        "path": "/lissandra/mvo/orderManage",
+        "exact": true,
+        "component": require('../lissandra/mvo/orderManage/index.js').default,
+        "title": "电子商务借卖交易平台 | 订单管理",
+        "Routes": [require('../../../node_modules/umi-plugin-react/lib/plugins/title/TitleWrapper.js').default],
+        "_title": "电子商务借卖交易平台 | 订单管理",
+        "_title_default": "电子商务借卖交易平台"
+      },
+      {
         "path": "/lissandra/mvo/productManage",
         "exact": true,
         "component": require('../lissandra/mvo/productManage/index.js').default,
