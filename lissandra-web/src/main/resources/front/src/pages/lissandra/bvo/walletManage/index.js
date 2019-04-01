@@ -23,8 +23,20 @@ class WalletManage extends PureComponent {
             dataIndex: 'walletOrderNo',
             render: (text, record) => text || '-'
         }, {
-            title: '充值/提现',
-            dataIndex: 'userName',
+            title: '操作方式',
+            dataIndex: 'walletOrderWay',
+            render: (text, record) => {
+                if (record.walletOrderWay === 1) {
+                    return '充值';
+                } else if (record.walletOrderWay === 2) {
+                    return '提现';
+                } else {
+                    return "-"
+                }
+            }
+        }, {
+            title: '操作金额(￥)',
+            dataIndex: 'walletOrderMoney',
             render: (text, record) => text || '-'
         }, {
             title: '发起时间',
@@ -33,7 +45,17 @@ class WalletManage extends PureComponent {
         },{
             title: '审核情况',
             dataIndex: 'walletOrderState',
-            render: (text, record) => text || '-'
+            render: (text, record) => {
+                if (record.walletOrderState === 0) {
+                    return <span>待审核</span>;
+                } else if (record.walletOrderState === 1) {
+                    return <span style={{color: '#117F22'}}>已通过</span>;
+                } else if (record.walletOrderState === 2) {
+                    return <span style={{color: '#E3071A'}}>未通过</span>;
+                } else {
+                    return "-"
+                }
+            }
         }]
     }
 
@@ -51,7 +73,10 @@ class WalletManage extends PureComponent {
                 <PageContainer
                     content={
                         <Fragment>
-
+                            <SearchForm
+                                transferFormRef={this.transferSearchFormRef.bind(this)}
+                                setBalance={this.props.setBalance}
+                            />
                         <Button type="primary" style={{float: 'right', marginBottom: '10px'}} onClick={this.onAddModalClicked.bind(this)}>
                             <Icon type="folder-add"/>充值/提现
                         </Button>
@@ -150,50 +175,7 @@ class WalletManage extends PureComponent {
         })
     }
 
-    // 获得修改搜索 form 的 ref
-    transferUpdateFormRef(form) {
-        this.updateForm = form
-    }
 
-    // 弹出 修改对话框
-    onUpdateModalClicked(record) {
-        if (this.updateForm) {
-            this.updateForm.resetFields()
-            this.updateForm.setFieldsValue(record)
-            console.log(record)
-        } else {
-            setTimeout(() =>{
-                this.updateForm.resetFields()
-                this.updateForm.setFieldsValue(record)
-                console.log(record)
-            }, 0)
-        }
-
-        this.props.dispatch({
-            type: 'walletManage/showUpdateModal'
-        })
-
-    }
-
-    // 修改对话框 - 确认
-    onUpdateModalOk() {
-        this.updateForm.validateFieldsAndScroll((err, values) => {
-            console.log(values);
-            if (!err) {
-                this.props.dispatch({
-                    type: 'walletManage/update',
-                    payload: values
-                })
-            }
-        })
-    }
-
-    // 修改对话框 - 取消
-    onUpdateModalCancel() {
-        this.props.dispatch({
-            type: 'walletManage/hideUpdateModal'
-        })
-    }
     // 分页量变化
     onTablePageSizeChange(pageCurrent, pageSize) {
         this.loadTableDataSource({
@@ -259,6 +241,7 @@ const mapStateToProps = ({walletManage}) => ({
     addModalVisible: walletManage.addModal.visible,
     addModalConfirmLoading: walletManage.addModal.confirmLoading,
     addModalDataTypeList: walletManage.addModal.data.typelist,
-    addition: walletManage.addition
+    addition: walletManage.addition,
+    setBalance: walletManage.search.balance,
 });
 export default connect(mapStateToProps)(WalletManage)

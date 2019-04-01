@@ -1,5 +1,5 @@
 /**
- * title: '电子商务借卖交易平台 | 商品管理'
+ * title: '电子商务借卖交易平台 | 注册审核'
  */
 import React, {Fragment, PureComponent} from 'react'
 import {connect} from 'dva'
@@ -18,54 +18,74 @@ class RegisterCheck extends PureComponent {
             title: '序号',
             dataIndex: 'index',
             render: (text, record) => text || '-'
-        },/* {
-            title: '商品图片',
-            dataIndex: 'appName',
-            render: (text, record) => text || '-'
-        },*/ {
-            title: '商品名称',
-            dataIndex: 'productName',
+        }, {
+            title: '注册名称',
+            dataIndex: 'userName',
             render: (text, record) => text || '-'
         }, {
-            title: '商品价格',
-            dataIndex: 'productPrice',
+            title: '注册密码',
+            dataIndex: 'password',
             render: (text, record) => text || '-'
         }, {
-            title: '商品描述',
-            dataIndex: 'productDescription',
+            title: '注册手机',
+            dataIndex: 'phone',
+            render: (text, record) => text || '-'
+        }, {
+            title: '注册角色',
+            dataIndex: 'permission',
+            render: (text, record) =>  {
+                if (record.permission === 0) {
+                    return '管理员';
+                } else if (record.permission === 1) {
+                    return '品牌商';
+                } else if (record.permission === 2) {
+                    return '借卖方';
+                } else {
+                    return "-"
+                }
+            }
+        }, {
+            title: '注册时间',
+            dataIndex: 'gmtCreate',
             render: (text, record) => text || '-'
         }, {
             title: '操作',
-            render: (text, record) => (
-                <span>
-            <Popconfirm
-                placement="bottomRight"
-                title='确认上架'
-                okText='确认'
-                cancelText='取消'
-                icon={<Icon type="question-circle-o" style={{color: 'red'}}/>}
-                onCancel={null}
-                onConfirm={this.isShelf.bind(this, record.productId, record.isShelf)}
-            >
+            render: (text, record) => {
+                if (record.isApproval === 0) {
+                    return <span style={{color: '#117F22'}}>已审批通过</span>;
+                } else if (record.isApproval === 1) {
+                    return <span style={{color: '#E3071A'}}>审批不通过</span>;
+                } else if (record.isApproval === 2) {
+                    return <span>
+                              <Popconfirm
+                                  placement="bottomRight"
+                                  title='确认通过'
+                                  okText='确认'
+                                  cancelText='取消'
+                                  icon={<Icon type="question-circle-o" style={{color: 'red'}}/>}
+                                  onCancel={null}
+                                  onConfirm={this.Approval.bind(this, record.userId)}
+                              >
 
-              <a>上架</a>
-            </Popconfirm>
-            <Divider type="vertical"/>
-            <a onClick={this.onUpdateModalClicked.bind(this, record)}>编辑</a>
-            <Divider type="vertical"/>
-            <Popconfirm
-                placement="bottomRight"
-                title='确认删除'
-                okText='确认'
-                cancelText='取消'
-                icon={<Icon type="question-circle-o" style={{color: 'red'}}/>}
-                onCancel={null}
-                onConfirm={this.deleteById.bind(this, record.productId)}
-            >
-              <a>删除</a>
-            </Popconfirm>
-          </span>
-            )
+                                <a>通过</a>
+                              </Popconfirm>
+                              <Divider type="vertical"/>
+                              <Popconfirm
+                                  placement="bottomRight"
+                                  title='确认不通过'
+                                  okText='确认'
+                                  cancelText='取消'
+                                  icon={<Icon type="question-circle-o" style={{color: 'red'}}/>}
+                                  onCancel={null}
+                                  onConfirm={this.NotApproval.bind(this, record.userId)}
+                              >
+                                <a>不通过</a>
+                              </Popconfirm>
+                            </span>;
+                } else {
+                    return '-';
+                }
+            }
         }]
     }
 
@@ -75,9 +95,9 @@ class RegisterCheck extends PureComponent {
                 <div>
                     <Breadcrumb>
                         <Breadcrumb.Item>电子商务借卖交易平台</Breadcrumb.Item>
-                        <Breadcrumb.Item>商品管理</Breadcrumb.Item>
+                        <Breadcrumb.Item>注册审核</Breadcrumb.Item>
                     </Breadcrumb>
-                    <h1>商品管理</h1>
+                    <h1>注册审核</h1>
                 </div>
                 {!this.props.loadingVisible && !this.props.loadingErrorText &&
                 <PageContainer
@@ -85,20 +105,15 @@ class RegisterCheck extends PureComponent {
                         <Fragment>
                     <SearchForm
                         transferFormRef={this.transferSearchFormRef.bind(this)}
-                        searchAppList={this.props.searchAppList}
                     />
                             <BrLine height={1}/>
                         <Button type="primary" onClick={this.onSearchSubmit.bind(this)}>查询</Button>&nbsp;
                         <Button onClick={this.onSearchReset.bind(this)}>重置</Button>&nbsp;
-                        <Button type="primary" style={{float: 'right'}} onClick={this.onAddModalClicked.bind(this)}>
-                            <Icon type="folder-add"/>录入商品
-                        </Button>
-
                         <BrLine/>
                         <Table
                             columns={this.tableColumns}
                             dataSource={this.props.tableDataSource}
-                            rowKey={record => record.productId}
+                            rowKey={record => record.userId}
                             pagination={{
                                 defaultCurrent: this.props.pageCurrent,
                                 current: this.props.pageCurrent,
@@ -114,33 +129,6 @@ class RegisterCheck extends PureComponent {
                         />
                     </Fragment>}
                 />}
-                <Modal
-                    title="录入商品"
-                    visible={this.props.addModalVisible}
-                    okText="录入"
-                    onOk={this.onAddModalOk.bind(this)}
-                    cancelText="取消"
-                    onCancel={this.onAddModalCancel.bind(this)}
-                    confirmLoading={this.props.addModalConfirmLoading}
-                >
-                    <AddForm
-                        transferFormRef={this.transferFormRef.bind(this)}
-                    />
-                </Modal>
-
-                <Modal
-                    title="编辑商品"
-                    visible={this.props.updateModalVisible}
-                    okText="编辑"
-                    onOk={this.onUpdateModalOk.bind(this)}
-                    cancelText="取消"
-                    onCancel={this.onUpdateModalCancel.bind(this)}
-                    confirmLoading={this.props.updateModalConfirmLoading}
-                >
-                    <AddForm
-                        transferFormRef={this.transferUpdateFormRef.bind(this)}
-                    />
-                </Modal>
             </div>
         )
     }
@@ -173,79 +161,6 @@ class RegisterCheck extends PureComponent {
         this.form = form
     }
 
-    // 新增对话框
-    onAddModalClicked() {
-        this.props.dispatch({
-            type: 'registerCheck/showAddModal'
-        })
-        if (this.form) {
-            this.form.resetFields()
-        }
-    }
-
-    // 新增对话框 - 确认
-    onAddModalOk() {
-        this.form.validateFieldsAndScroll((err, values) => {
-            if (!err) {
-                this.props.dispatch({
-                    type: 'registerCheck/add',
-                    payload: values
-                })
-            }
-        })
-    }
-
-    // 新增对话框 - 取消
-    onAddModalCancel() {
-        this.props.dispatch({
-            type: 'registerCheck/hideAddModal'
-        })
-    }
-
-    // 获得修改搜索 form 的 ref
-    transferUpdateFormRef(form) {
-        this.updateForm = form
-    }
-
-    // 弹出 修改对话框
-    onUpdateModalClicked(record) {
-        if (this.updateForm) {
-            this.updateForm.resetFields()
-            this.updateForm.setFieldsValue(record)
-            console.log(record)
-        } else {
-            setTimeout(() =>{
-                this.updateForm.resetFields()
-                this.updateForm.setFieldsValue(record)
-                console.log(record)
-            }, 0)
-        }
-
-        this.props.dispatch({
-            type: 'registerCheck/showUpdateModal'
-        })
-
-    }
-
-    // 修改对话框 - 确认
-    onUpdateModalOk() {
-        this.updateForm.validateFieldsAndScroll((err, values) => {
-            console.log(values);
-            if (!err) {
-                this.props.dispatch({
-                    type: 'registerCheck/update',
-                    payload: values
-                })
-            }
-        })
-    }
-
-    // 修改对话框 - 取消
-    onUpdateModalCancel() {
-        this.props.dispatch({
-            type: 'registerCheck/hideUpdateModal'
-        })
-    }
     // 分页量变化
     onTablePageSizeChange(pageCurrent, pageSize) {
         this.loadTableDataSource({
@@ -256,29 +171,31 @@ class RegisterCheck extends PureComponent {
 
     // 分页跳转
     onTablePageNumChange(pageCurrent, pageSize) {
-        console.log("pageCurrent" + pageCurrent)
         this.loadTableDataSource({
             pageCurrent, pageSize
         })
     }
 
-    // 删除
-    deleteById(id) {
+    // 审核通过
+    Approval(userId) {
+        const isApproval = 0;
         this.props.dispatch({
-            type: 'registerCheck/deleteById',
+            type: 'registerCheck/approval',
             payload: {
-                id
+                userId,
+                isApproval
             }
         })
     }
 
-    // 上架
-    isShelf(productId, isShelf) {
+    // 审核不通过
+    NotApproval(userId) {
+        const isApproval = 1;
         this.props.dispatch({
-            type: 'registerCheck/isShelf',
+            type: 'registerCheck/approval',
             payload: {
-                productId,
-                isShelf
+                userId,
+                isApproval
             }
         })
     }
@@ -328,11 +245,6 @@ const mapStateToProps = ({registerCheck}) => ({
     pageSize: registerCheck.page.size,
     pageTotal: registerCheck.page.total,
     pageCount: registerCheck.page.count,
-    addModalVisible: registerCheck.addModal.visible,
-    updateModalVisible: registerCheck.updateModal.visible,
-    updateModalConfirmLoading: registerCheck.updateModal.confirmLoading,
-    addModalConfirmLoading: registerCheck.addModal.confirmLoading,
-    addModalDataTypeList: registerCheck.addModal.data.typelist,
     addition: registerCheck.addition
 });
 export default connect(mapStateToProps)(RegisterCheck)

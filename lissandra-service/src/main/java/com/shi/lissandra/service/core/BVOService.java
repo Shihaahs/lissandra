@@ -52,7 +52,7 @@ public interface BVOService {
      * @since V1.0.0-SNAPSHOT
      *
      */
-    BigDecimal getBVOWalletBalanceByUser(Wallet wallet);
+    Wallet getBVOWalletBalanceByUser(Wallet wallet);
 
     /**
      * <p> 借卖方-钱包充值 </p>

@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react'
-import {Form, Input, Select} from 'antd'
+import {InputNumber,Form, Input, Select} from 'antd'
 
 const Option = Select.Option
 const FormItem = Form.Item
@@ -25,25 +25,26 @@ class AddForm extends PureComponent {
             <Form>
                 <FormItem
                     {...this.formItemLayout}
-                    label="商品名称"
+                    label="操作方式"
                 >
-                    {getFieldDecorator('productName')(
-                        <Input placeholder="请输入商品名称"/>)}
+                    {getFieldDecorator('walletOrderWay')(<Select
+                        showSearch
+                        style={{width: '100%'}}
+                        placeholder="请选择操作方式"
+                    >
+                            <Option key='1' value='1'>充值</Option>
+                            <Option key='2' value='2'>提现</Option>
+                    </Select>)}
                 </FormItem>
                 <FormItem
                     {...this.formItemLayout}
-                    label="商品价格"
+                    label="操作金额"
                 >
-                    {getFieldDecorator('productPrice')(<Input placeholder="请输入商品价格"/>)}
-                </FormItem>
-                <FormItem
-                    {...this.formItemLayout}
-                    label="商品描述"
-                >
-                    {getFieldDecorator('productDescription')(<textarea style={{width:316}} placeholder="请输入商品描述" />)}
+                    {getFieldDecorator('walletOrderMoney')(<InputNumber min={0} max={10000}
+                    defaultValue={0} placeholder="请输入操作金额, 单笔上限为10000元" style={{width:314}} />)}
                 </FormItem>
                 <FormItem style={{display:'none'}}>
-                    {getFieldDecorator('productId')(<Input />)}
+                    {getFieldDecorator('walletId')(<Input />)}
                 </FormItem>
             </Form>
         )

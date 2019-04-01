@@ -18,7 +18,7 @@ class ProductManage extends PureComponent {
             title: '序号',
             dataIndex: 'index',
             render: (text, record) => text || '-'
-        },/* {
+        }, /* {
             title: '商品图片',
             dataIndex: 'appName',
             render: (text, record) => text || '-'
@@ -31,41 +31,50 @@ class ProductManage extends PureComponent {
             dataIndex: 'productPrice',
             render: (text, record) => text || '-'
         }, {
+            title: '商品状态',
+            dataIndex: 'isShelf',
+            render: (text, record) => {
+                if (record.isShelf === 0) {
+                    return <span style={{color: '#E3071A'}}>未上架</span>;
+                } else if (record.isShelf === 1) {
+                    return <span style={{color: '#117F22'}}>已上架</span>;
+                } else {
+                    return "-"
+                }
+            }
+        }, {
             title: '商品描述',
             dataIndex: 'productDescription',
             render: (text, record) => text || '-'
         }, {
             title: '操作',
-            render: (text, record) => (
-                <span>
-            <Popconfirm
-                placement="bottomRight"
-                title='确认上架'
-                okText='确认'
-                cancelText='取消'
-                icon={<Icon type="question-circle-o" style={{color: 'red'}}/>}
-                onCancel={null}
-                onConfirm={this.isShelf.bind(this, record.productId, record.isShelf)}
-            >
-
-              <a>上架</a>
-            </Popconfirm>
-            <Divider type="vertical"/>
-            <a onClick={this.onUpdateModalClicked.bind(this, record)}>编辑</a>
-            <Divider type="vertical"/>
-            <Popconfirm
-                placement="bottomRight"
-                title='确认删除'
-                okText='确认'
-                cancelText='取消'
-                icon={<Icon type="question-circle-o" style={{color: 'red'}}/>}
-                onCancel={null}
-                onConfirm={this.deleteById.bind(this, record.productId)}
-            >
-              <a>删除</a>
-            </Popconfirm>
-          </span>
-            )
+            render: (text, record) =>
+                (<span>
+                        <Popconfirm
+                            placement="bottomRight"
+                            title='确认上架'
+                            okText='确认'
+                            cancelText='取消'
+                            icon={<Icon type="question-circle-o" style={{color: 'red'}}/>}
+                            onCancel={null}
+                            onConfirm={this.isShelf.bind(this, record.productId, record.isShelf)}
+                        >{record.isShelf === 0 && <a>上架</a>}
+                         {record.isShelf === 1 && <a>下架</a>}
+                        </Popconfirm>
+                        <Divider type="vertical"/>
+                        <a onClick={this.onUpdateModalClicked.bind(this, record)}>编辑</a>
+                        <Divider type="vertical"/>
+                        <Popconfirm
+                            placement="bottomRight"
+                            title='确认删除'
+                            okText='确认'
+                            cancelText='取消'
+                            icon={<Icon type="question-circle-o" style={{color: 'red'}}/>}
+                            onCancel={null}
+                            onConfirm={this.deleteById.bind(this, record.productId)}
+                        ><a>删除</a>
+                        </Popconfirm>
+                    </span>)
         }]
     }
 
@@ -83,36 +92,37 @@ class ProductManage extends PureComponent {
                 <PageContainer
                     content={
                         <Fragment>
-                    <SearchForm
-                        transferFormRef={this.transferSearchFormRef.bind(this)}
-                        searchAppList={this.props.searchAppList}
-                    />
+                            <SearchForm
+                                transferFormRef={this.transferSearchFormRef.bind(this)}
+                                searchAppList={this.props.searchAppList}
+                            />
                             <BrLine height={1}/>
-                        <Button type="primary" onClick={this.onSearchSubmit.bind(this)}>查询</Button>&nbsp;
-                        <Button onClick={this.onSearchReset.bind(this)}>重置</Button>&nbsp;
-                        <Button type="primary" style={{float: 'right'}} onClick={this.onAddModalClicked.bind(this)}>
-                            <Icon type="folder-add"/>录入商品
-                        </Button>
+                            <Button type="primary" onClick={this.onSearchSubmit.bind(this)}>查询</Button>&nbsp;
+                            <Button onClick={this.onSearchReset.bind(this)}>重置</Button>&nbsp;
+                            <Button type="primary" style={{float: 'right'}}
+                                    onClick={this.onAddModalClicked.bind(this)}>
+                                <Icon type="folder-add"/>录入商品
+                            </Button>
 
-                        <BrLine/>
-                        <Table
-                            columns={this.tableColumns}
-                            dataSource={this.props.tableDataSource}
-                            rowKey={record => record.productId}
-                            pagination={{
-                                defaultCurrent: this.props.pageCurrent,
-                                current: this.props.pageCurrent,
-                                defaultPageSize: this.props.pageSize,
-                                pageSize: this.props.pageSize,
-                                total: this.props.pageTotal,
-                                showTotal: (total, range) => `共 ${total} 条 | 第 ${range[0]} 条 - 第 ${range[1]} 条`,
-                                showSizeChanger: true,
-                                showQuickJumper: true,
-                                onShowSizeChange: this.onTablePageSizeChange.bind(this),
-                                onChange: this.onTablePageNumChange.bind(this)
-                            }}
-                        />
-                    </Fragment>}
+                            <BrLine/>
+                            <Table
+                                columns={this.tableColumns}
+                                dataSource={this.props.tableDataSource}
+                                rowKey={record => record.productId}
+                                pagination={{
+                                    defaultCurrent: this.props.pageCurrent,
+                                    current: this.props.pageCurrent,
+                                    defaultPageSize: this.props.pageSize,
+                                    pageSize: this.props.pageSize,
+                                    total: this.props.pageTotal,
+                                    showTotal: (total, range) => `共 ${total} 条 | 第 ${range[0]} 条 - 第 ${range[1]} 条`,
+                                    showSizeChanger: true,
+                                    showQuickJumper: true,
+                                    onShowSizeChange: this.onTablePageSizeChange.bind(this),
+                                    onChange: this.onTablePageNumChange.bind(this)
+                                }}
+                            />
+                        </Fragment>}
                 />}
                 <Modal
                     title="录入商品"
@@ -214,7 +224,7 @@ class ProductManage extends PureComponent {
             this.updateForm.setFieldsValue(record)
             console.log(record)
         } else {
-            setTimeout(() =>{
+            setTimeout(() => {
                 this.updateForm.resetFields()
                 this.updateForm.setFieldsValue(record)
                 console.log(record)
@@ -246,6 +256,7 @@ class ProductManage extends PureComponent {
             type: 'productManage/hideUpdateModal'
         })
     }
+
     // 分页量变化
     onTablePageSizeChange(pageCurrent, pageSize) {
         this.loadTableDataSource({
@@ -319,20 +330,25 @@ class ProductManage extends PureComponent {
     }
 }
 
-const mapStateToProps = ({productManage}) => ({
-    loadingVisible: productManage.loading.visible,
-    loadingExiting: productManage.loading.exiting,
-    loadingErrorText: productManage.loading.errorText,
-    tableDataSource: productManage.table.dataSource,
-    pageCurrent: productManage.page.current,
-    pageSize: productManage.page.size,
-    pageTotal: productManage.page.total,
-    pageCount: productManage.page.count,
-    addModalVisible: productManage.addModal.visible,
-    updateModalVisible: productManage.updateModal.visible,
-    updateModalConfirmLoading: productManage.updateModal.confirmLoading,
-    addModalConfirmLoading: productManage.addModal.confirmLoading,
-    addModalDataTypeList: productManage.addModal.data.typelist,
-    addition: productManage.addition
-});
-export default connect(mapStateToProps)(ProductManage)
+const
+    mapStateToProps = ({productManage}) => ({
+        loadingVisible: productManage.loading.visible,
+        loadingExiting: productManage.loading.exiting,
+        loadingErrorText: productManage.loading.errorText,
+        tableDataSource: productManage.table.dataSource,
+        pageCurrent: productManage.page.current,
+        pageSize: productManage.page.size,
+        pageTotal: productManage.page.total,
+        pageCount: productManage.page.count,
+        addModalVisible: productManage.addModal.visible,
+        updateModalVisible: productManage.updateModal.visible,
+        updateModalConfirmLoading: productManage.updateModal.confirmLoading,
+        addModalConfirmLoading: productManage.addModal.confirmLoading,
+        addModalDataTypeList: productManage.addModal.data.typelist,
+        addition: productManage.addition
+    });
+export default connect(mapStateToProps)
+
+(
+    ProductManage
+)

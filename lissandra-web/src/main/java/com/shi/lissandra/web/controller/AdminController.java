@@ -58,9 +58,9 @@ public class AdminController {
 
     @ApiOperation(value = "管理员-注册审核操作", notes = "根据传入的操作值")
     @RequestMapping(value = ADMIN_IS_APPROVAL_REGISTER, method = RequestMethod.POST)
-    public APIResult isApprovalRegisterCheck(@RequestBody User user, @RequestParam String isApproval) {
+    public APIResult isApprovalRegisterCheck(@RequestBody User user) {
         try {
-            return APIResult.ok(adminService.isApprovalRegisterCheck(isApproval, user));
+            return APIResult.ok(adminService.isApprovalRegisterCheck(user));
         } catch (Exception e) {
             log.error("AdminController-isApprovalRegisterCheck -> 出现异常:" + e.getMessage());
         }
@@ -70,9 +70,9 @@ public class AdminController {
 
     @ApiOperation(value = "管理员-钱包审核操作", notes = "根据传入的操作值")
     @RequestMapping(value = ADMIN_UPDATE_WALLET_ORDER_STATE, method = RequestMethod.POST)
-    public APIResult updateAdminWalletOrderState(@RequestBody WalletOrder walletOrder, @RequestParam String walletOrderState) {
+    public APIResult updateAdminWalletOrderState(@RequestBody WalletOrder walletOrder) {
         try {
-            return APIResult.ok(adminService.updateAdminWalletOrderState(walletOrderState, walletOrder));
+            return APIResult.ok(adminService.updateAdminWalletOrderState(walletOrder));
         } catch (Exception e) {
             log.error("AdminController-updateAdminWalletOrderState -> 出现异常:" + e.getMessage());
         }

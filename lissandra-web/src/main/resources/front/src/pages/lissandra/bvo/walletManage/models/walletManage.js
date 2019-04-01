@@ -35,6 +35,9 @@ export default {
                 typelist: []
             }
         },
+        search: {
+            balance: '',
+        },
         addition: {
             productName: '',
             userId: '',
@@ -44,96 +47,100 @@ export default {
         * add(
             {
                 payload: {
-                    isShelf: isShelf ,
-                    productDescription: productDescription,
-                    productId: productId,
-                    productManufactureId: productManufactureId,
-                    productManufactureName: productManufactureName,
-                    productName: productName,
-                    productPrice: productPrice,
+                    walletId: walletId,
+                    walletOrderId: walletOrderId,
+                    walletOrderNo: walletOrderNo,
+                    walletOrderState: walletOrderState,
+                    walletOrderWay: walletOrderWay,
+                    walletOrderMoney: walletOrderMoney,
+                    recharge: recharge,
+                    withdraw: withdraw,
+                    gmtModified: gmtModified,
+                    userId: userId,
+                    userName: userName
                 }
             },
             {call, put, select}
         ) {
             yield put({
                 type: 'startAddModalConfirmLoading'
-            })
-            const {success, data, message} = yield call(service.add, {
-                isShelf,
-                productDescription,
-                productId,
-                // productImage,
-                productManufactureId,
-                productManufactureName,
-                productName,
-                productPrice
-            })
-            if (success && success.toString() === 'true') {
-                msg.success('添加成功')
-                yield put({
-                    type: 'getTableList',
-                    payload: {
-                        pageCurrent: yield select(state => state.productManage.page.current),
-                        pageSize: yield select(state => state.productManage.page.size)
-                    }
-                })
-                yield put({
-                    type: 'hideAddModal'
-                })
-            } else {
-                msg.error('添加失败，请重试' + (message ? '：' + message : ''))
-                yield put({
-                    type: 'stopAddModalConfirmLoading'
-                })
-            }
-        },
-        * update(
-            {
-                payload: {
-                    isShelf: isShelf ,
-                    productDescription: productDescription,
-                    productId: productId,
-                    productName: productName,
-                    productPrice: productPrice,
-                }
-            },
-            {call, put, select}
-        ) {
-            yield put({
-                type: 'startUpdateModalConfirmLoading'
-            })
-            const {success, data, message} = yield call(service.update, {
-                isShelf: isShelf || '',
-                productDescription: productDescription || '',
-                productId: productId || '',
-                productName: productName || '',
-                productPrice: productPrice || '',
             });
-            if (success && success.toString() === 'true') {
-                msg.success('修改成功');
-                yield put({
-                    type: 'getTableList',
-                    payload: {
-                        pageCurrent: yield select(state => state.productManage.page.current),
-                        pageSize: yield select(state => state.productManage.page.size)
-                    }
+            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+            if (walletOrderWay === '1') {   //充值
+                const {success, data, message} = yield call(service.recharge, {
+                    walletOrderId,
+                    walletId,
+                    walletOrderNo,
+                    walletOrderState,
+                    walletOrderWay,
+                    walletOrderMoney,
+                    recharge: walletOrderMoney,
+                    gmtModified,
+                    userName: currentUser.userName,
+                    userId: currentUser.userId,
                 });
-                yield put({
-                    type: 'hideUpdateModal'
-                });
-            } else {
-                msg.error('修改失败，请重试' + (message ? '：' + message : ''));
-                yield put({
-                    type: 'stopUpdateModalConfirmLoading'
-                });
+                if (success && success.toString() === 'true') {
+                    msg.success('充值操作提交成功，等待管理员审核');
+                    yield put({
+                        type: 'getTableList',
+                        payload: {
+                            pageCurrent: yield select(state => state.walletManage.page.current),
+                            pageSize: yield select(state => state.walletManage.page.size)
+                        }
+                    })
+                    yield put({
+                        type: 'hideAddModal'
+                    })
+                } else {
+                    msg.error('充值操作提交失败，请重试' + (message ? '：' + message : ''));
+                    yield put({
+                        type: 'stopAddModalConfirmLoading'
+                    })
+                }
             }
-
+            if (walletOrderWay === '2') {      //提现
+                const {success, data, message} = yield call(service.withdraw, {
+                    walletOrderId,
+                    walletId,
+                    walletOrderNo,
+                    walletOrderState,
+                    walletOrderWay,
+                    walletOrderMoney,
+                    withdraw: walletOrderMoney,
+                    gmtModified,
+                    userName: currentUser.userName,
+                    userId: currentUser.userId,
+                });
+                if (success && success.toString() === 'true') {
+                    msg.success('提现操作提交成功，等待管理员审核');
+                    yield put({
+                        type: 'getTableList',
+                        payload: {
+                            pageCurrent: yield select(state => state.walletManage.page.current),
+                            pageSize: yield select(state => state.walletManage.page.size)
+                        }
+                    });
+                    yield put({
+                        type: 'hideAddModal'
+                    })
+                } else {
+                    msg.error('提现失败操作提交，请重试' + (message ? '：' + message : ''));
+                    yield put({
+                        type: 'stopAddModalConfirmLoading'
+                    })
+                }
+            }
         },
-        * isShelf({payload: {
-            productId: productId,
-            isShelf: isShelf
+        * balance({payload: {
+            walletId: walletId,
+            userId: userId,
+            balance: balance,
         }}, {call, put, select}) {
-            const {success, data, message} = yield call(service.shelf, {productId,isShelf});
+            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+            const {success, data, message} = yield call(service.balance(), {
+                walletId,
+                userId: currentUser.userId,
+            });
             if (success && success.toString() === 'true') {
                 msg.success('上架成功')
             } else {
@@ -142,23 +149,8 @@ export default {
             yield put({
                 type: 'getTableList',
                 payload: {
-                    pageCurrent: yield select(state => state.productManage.page.current),
-                    pageSize: yield select(state => state.productManage.page.size)
-                }
-            })
-        },
-        * deleteById({payload: {id: productId}}, {call, put, select}) {
-            const {success, data, message} = yield call(service.delete, {productId});
-            if (success && success.toString() === 'true') {
-                msg.success('删除成功')
-            } else {
-                msg.error('删除失败' + (message ? '：' + message : ''))
-            }
-            yield put({
-                type: 'getTableList',
-                payload: {
-                    pageCurrent: yield select(state => state.productManage.page.current),
-                    pageSize: yield select(state => state.productManage.page.size)
+                    pageCurrent: yield select(state => state.walletManage.page.current),
+                    pageSize: yield select(state => state.walletManage.page.size)
                 }
             })
         },
@@ -215,6 +207,24 @@ export default {
                         }
                     }
                 })
+            }
+            {
+                const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+                const {success, data, message} = yield call(service.balance, {
+                    userId: currentUser.userId,
+                });
+                if (success && success.toString() === 'true') {
+                    yield put({
+                        type: 'setBalance',
+                        payload: {
+                            search: {
+                                balance: data.balance
+                            }
+                        }
+                    })
+                } else {
+                    msg.warn("账户余额获取失败，请联系管理员!")
+                }
             }
             yield put({
                 type: 'changeTableSelectedRows',
@@ -370,6 +380,15 @@ export default {
                     confirmLoading: false,
                 }
 
+            }
+        },
+        setBalance(state, {payload: {search: {balance}}}) {
+            return {
+                ...state,
+                search: {
+                    ...state.search,
+                    balance: balance,
+                }
             }
         },
         showSearchLists(state, {payload: {typelist, deptlist, borrowerlist}}) {

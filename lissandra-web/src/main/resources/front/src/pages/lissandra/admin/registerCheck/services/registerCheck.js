@@ -1,82 +1,36 @@
 import TyAPI from '../../../../../utils/TyAPI'
 
 export default {
-    add({
-            isShelf,
-            productDescription,
-            productId,
-            productImage,
-            productManufactureId,
-            productManufactureName,
-            productName,
-            productPrice
-        } = {}) {
-        return TyAPI.post('lissandra/mvo/productManage/add', {
-            isShelf: isShelf || '',
-            productDescription: productDescription || '',
-            productId: productId || '',
-            productManufactureId: productManufactureId || '',
-            productManufactureName: productManufactureName || '',
-            productName: productName || '',
-            productPrice: productPrice || '',
-        })
-    },
-    delete({
-               productId    // int, 主键 ID
-           }) {
-        return TyAPI.post('lissandra/mvo/productManage/delete', {
-            productId
-        })
-    },
-    update({
-               isShelf,
-               productDescription,
-               productId,
-               productImage,
-               productName,
-               productPrice
+    approval({
+               userId,
+               isApproval
            } = {}) {
-        return TyAPI.post('lissandra/mvo/productManage/update', {
-            isShelf: isShelf || '',
-            productDescription: productDescription || '',
-            productId: productId || '',
-            productName: productName || '',
-            productPrice: productPrice || '',
-        })
-    },
-    shelf({
-              productId,
-              isShelf
-           } = {}) {
-        return TyAPI.post('lissandra/mvo/productManage/shelf', {
-            productId: productId,
-            isShelf: isShelf,
+        return TyAPI.post('lissandra/admin/registerCheck/approval', {
+            userId: userId,
+            isApproval: isApproval,
         })
     },
     list({
-             isShelf,
-             productDescription,
-             productId,
-             productImage,
-             productManufactureId,
-             productManufactureName,
-             productName,
-             productPrice,
              userId,
+             userName,
+             password,
+             phone,
+             permission,
+             isApproval,
+             gmtCreate,
              pageCurrent,        // int,    当前页, 从 1 开始
              pageSize,           // int,    页容量
          } = {}) {
-        return TyAPI.post('lissandra/mvo/productManage/list', {
-            isShelf: isShelf || '',
-            productDescription: productDescription || '',
-            productId: productId || '',
-            productManufactureId: productManufactureId || '',
-            productManufactureName: productManufactureName || '',
-            productName: productName || '',
-            productPrice: productPrice || '',
+        return TyAPI.post('lissandra/admin/registerCheck/check', {
+            userId: userId || '',
+            userName: userName || '',
+            password: password || '',
+            phone: phone || '',
+            permission: permission || '',
+            isApproval: isApproval || '',
+            gmtCreate: gmtCreate || '',
             pageCurrent: pageCurrent || '',
             pageSize: pageSize || '',
-            userId: userId || '',
         })
     }
 }

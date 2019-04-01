@@ -26,7 +26,8 @@ class AddForm extends PureComponent {
                 <FormItem
                     {...this.formItemLayout}
                     label="应用名称"
-                >       {getFieldDecorator('appId')(<Select
+                >
+                    {getFieldDecorator('appId')(<Select
                     showSearch
                     style={{width: '100%'}}
                     placeholder="请选择应用"

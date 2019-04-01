@@ -1,24 +1,53 @@
 import TyAPI from '../../../../../utils/TyAPI'
 
 export default {
-    add({
-            isShelf,
-            productDescription,
-            productId,
-            productImage,
-            productManufactureId,
-            productManufactureName,
-            productName,
-            productPrice
+
+    recharge({
+            walletOrderId,
+            walletId,
+            walletOrderNo,
+            walletOrderState,
+            walletOrderWay,
+            walletOrderMoney,
+            recharge,
+            gmtModified,
+            userName,
+            userId,
         } = {}) {
-        return TyAPI.post('lissandra/mvo/productManage/add', {
-            isShelf: isShelf || '',
-            productDescription: productDescription || '',
-            productId: productId || '',
-            productManufactureId: productManufactureId || '',
-            productManufactureName: productManufactureName || '',
-            productName: productName || '',
-            productPrice: productPrice || '',
+        return TyAPI.post('lissandra/bvo/walletManage/recharge', {
+            walletOrderId: walletOrderId || '',
+            walletOrderNo: walletOrderNo || '',
+            walletOrderState: walletOrderState || '',
+            walletOrderWay: walletOrderWay || '',
+            walletOrderMoney: walletOrderMoney || '',
+            recharge: recharge || '',
+            gmtModified: gmtModified || '',
+            userId: userId || '',
+            userName: userName || '',
+        })
+    },
+    withdraw({
+                  walletOrderId,
+                  walletId,
+                  walletOrderNo,
+                  walletOrderState,
+                  walletOrderWay,
+                 walletOrderMoney,
+                  withdraw,
+                  gmtModified,
+                  userName,
+                  userId,
+              } = {}) {
+        return TyAPI.post('lissandra/bvo/walletManage/withdraw', {
+            walletOrderId: walletOrderId || '',
+            walletOrderNo: walletOrderNo || '',
+            walletOrderState: walletOrderState || '',
+            walletOrderWay: walletOrderWay || '',
+            walletOrderMoney: walletOrderMoney || '',
+            withdraw: withdraw || '',
+            gmtModified: gmtModified || '',
+            userId: userId || '',
+            userName: userName || '',
         })
     },
     list({
@@ -26,6 +55,7 @@ export default {
              walletId,
              walletOrderNo,
              walletOrderState,
+             walletOrderWay,
              recharge,
              withdraw,
              gmtModified,
@@ -38,6 +68,7 @@ export default {
             walletOrderId: walletOrderId || '',
             walletOrderNo: walletOrderNo || '',
             walletOrderState: walletOrderState || '',
+            walletOrderWay: walletOrderWay || '',
             recharge: recharge || '',
             withdraw: withdraw || '',
             gmtModified: gmtModified || '',
@@ -45,6 +76,17 @@ export default {
             pageSize: pageSize || '',
             userId: userId || '',
             userName: userName || '',
+        })
+    },
+    balance({
+                userId,
+                walletId,
+                balance
+                } = {}) {
+        return TyAPI.post('lissandra/bvo/walletManage/balance', {
+            userId: userId || '',
+            walletId: walletId || '',
+            balance: balance || '',
         })
     }
 }

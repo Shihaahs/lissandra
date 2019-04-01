@@ -13,7 +13,7 @@ class SearchForm extends PureComponent {
     const {getFieldDecorator} = this.props.form
     return (
         <Form layout="inline">
-            <FormItem>{getFieldDecorator('productName')(<Input placeholder="商品名称" style={{
+            <FormItem>{getFieldDecorator('userName')(<Input placeholder="发起人" style={{
                 width: 300,
                 marginRight: 10
             }}/>)}</FormItem>

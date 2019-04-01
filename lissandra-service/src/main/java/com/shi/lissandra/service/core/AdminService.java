@@ -30,14 +30,13 @@ public interface AdminService {
 
     /**
      * <p> 审核注册 </p>
-     * @param isApproval 0-通过，1-不通过
      * @return Integer
      * @author Wuer (wuer@maihaoche.com)
      * @date 2019/2/14 4:08 PM
      * @since V1.0.0-SNAPSHOT
      *
      */
-    Integer isApprovalRegisterCheck(String isApproval, User user);
+    Integer isApprovalRegisterCheck(User user);
 
     /**
      * <p> 管理员-钱包流水 </p>
@@ -52,14 +51,13 @@ public interface AdminService {
 
     /**
      * <p> 审核流水 </p>
-     * @param walletOrderState 0-通过，1-不通过
      * @return Integer
      * @author Wuer (wuer@maihaoche.com)
      * @date 2019/2/14 4:13 PM
      * @since V1.0.0-SNAPSHOT
      *
      */
-    Integer updateAdminWalletOrderState(String walletOrderState, WalletOrder walletOrder);
+    Integer updateAdminWalletOrderState(WalletOrder walletOrder);
 
 
 

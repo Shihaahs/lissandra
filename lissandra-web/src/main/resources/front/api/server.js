@@ -31,7 +31,7 @@ export default {
         admin: {
             registerCheck: {
                 approval: 'admin/is/approval/register.json',
-                check: 'admin/is/check/register.json'
+                check: 'admin/list/check/register.json'
             },
             rechargeAndWithdrawCheck: {
                 check: 'admin/list/check/walletOrder.json',

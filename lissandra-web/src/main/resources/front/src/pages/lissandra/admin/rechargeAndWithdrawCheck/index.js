@@ -1,5 +1,5 @@
 /**
- * title: '电子商务借卖交易平台 | 商品管理'
+ * title: '电子商务借卖交易平台 | 充值/提现审核'
  */
 import React, {Fragment, PureComponent} from 'react'
 import {connect} from 'dva'
@@ -18,54 +18,72 @@ class RechargeAndWithdrawCheck extends PureComponent {
             title: '序号',
             dataIndex: 'index',
             render: (text, record) => text || '-'
-        },/* {
-            title: '商品图片',
-            dataIndex: 'appName',
-            render: (text, record) => text || '-'
-        },*/ {
-            title: '商品名称',
-            dataIndex: 'productName',
+        }, {
+            title: '操作流水号',
+            dataIndex: 'walletOrderNo',
             render: (text, record) => text || '-'
         }, {
-            title: '商品价格',
-            dataIndex: 'productPrice',
+            title: '操作方式',
+            dataIndex: 'walletOrderWay',
+            render: (text, record) => {
+                if (record.walletOrderWay === 1) {
+                    return '充值';
+                } else if (record.walletOrderWay === 2) {
+                    return '提现';
+                } else {
+                    return "-"
+                }
+            }
+        }, {
+            title: '操作金额(￥)',
+            dataIndex: 'walletOrderMoney',
             render: (text, record) => text || '-'
         }, {
-            title: '商品描述',
-            dataIndex: 'productDescription',
+            title: '发起人',
+            dataIndex: 'userName',
             render: (text, record) => text || '-'
         }, {
-            title: '操作',
-            render: (text, record) => (
-                <span>
-            <Popconfirm
-                placement="bottomRight"
-                title='确认上架'
-                okText='确认'
-                cancelText='取消'
-                icon={<Icon type="question-circle-o" style={{color: 'red'}}/>}
-                onCancel={null}
-                onConfirm={this.isShelf.bind(this, record.productId, record.isShelf)}
-            >
+            title: '发起时间',
+            dataIndex: 'gmtCreate',
+            render: (text, record) => text || '-'
+        }, {
+            title: '审核情况',
+            render: (text, record) =>  {
+                if (record.walletOrderState === 0) {
+                    return <span style={{color: '#117F22'}}>已审批通过</span>;
+                } else if (record.walletOrderState === 1) {
+                    return <span style={{color: '#E3071A'}}>审批不通过</span>;
+                } else if (record.walletOrderState === 2) {
+                    return <span>
+                              <Popconfirm
+                                  placement="bottomRight"
+                                  title='确认通过'
+                                  okText='确认'
+                                  cancelText='取消'
+                                  icon={<Icon type="question-circle-o" style={{color: 'red'}}/>}
+                                  onCancel={null}
+                                  onConfirm={this.Approval.bind(this, record.walletOrderId)}
+                              >
 
-              <a>上架</a>
-            </Popconfirm>
-            <Divider type="vertical"/>
-            <a onClick={this.onUpdateModalClicked.bind(this, record)}>编辑</a>
-            <Divider type="vertical"/>
-            <Popconfirm
-                placement="bottomRight"
-                title='确认删除'
-                okText='确认'
-                cancelText='取消'
-                icon={<Icon type="question-circle-o" style={{color: 'red'}}/>}
-                onCancel={null}
-                onConfirm={this.deleteById.bind(this, record.productId)}
-            >
-              <a>删除</a>
-            </Popconfirm>
-          </span>
-            )
+                                <a>通过</a>
+                              </Popconfirm>
+                              <Divider type="vertical"/>
+                              <Popconfirm
+                                  placement="bottomRight"
+                                  title='确认不通过'
+                                  okText='确认'
+                                  cancelText='取消'
+                                  icon={<Icon type="question-circle-o" style={{color: 'red'}}/>}
+                                  onCancel={null}
+                                  onConfirm={this.NotApproval.bind(this, record.walletOrderId)}
+                              >
+                                <a>不通过</a>
+                              </Popconfirm>
+                            </span>;
+                } else {
+                    return '-';
+                }
+            }
         }]
     }
 
@@ -75,9 +93,9 @@ class RechargeAndWithdrawCheck extends PureComponent {
                 <div>
                     <Breadcrumb>
                         <Breadcrumb.Item>电子商务借卖交易平台</Breadcrumb.Item>
-                        <Breadcrumb.Item>商品管理</Breadcrumb.Item>
+                        <Breadcrumb.Item>充值/提现审核</Breadcrumb.Item>
                     </Breadcrumb>
-                    <h1>商品管理</h1>
+                    <h1>充值/提现审核</h1>
                 </div>
                 {!this.props.loadingVisible && !this.props.loadingErrorText &&
                 <PageContainer
@@ -85,20 +103,16 @@ class RechargeAndWithdrawCheck extends PureComponent {
                         <Fragment>
                     <SearchForm
                         transferFormRef={this.transferSearchFormRef.bind(this)}
-                        searchAppList={this.props.searchAppList}
                     />
                             <BrLine height={1}/>
                         <Button type="primary" onClick={this.onSearchSubmit.bind(this)}>查询</Button>&nbsp;
                         <Button onClick={this.onSearchReset.bind(this)}>重置</Button>&nbsp;
-                        <Button type="primary" style={{float: 'right'}} onClick={this.onAddModalClicked.bind(this)}>
-                            <Icon type="folder-add"/>录入商品
-                        </Button>
 
                         <BrLine/>
                         <Table
                             columns={this.tableColumns}
                             dataSource={this.props.tableDataSource}
-                            rowKey={record => record.productId}
+                            rowKey={record => record.walletOrderId}
                             pagination={{
                                 defaultCurrent: this.props.pageCurrent,
                                 current: this.props.pageCurrent,
@@ -114,33 +128,6 @@ class RechargeAndWithdrawCheck extends PureComponent {
                         />
                     </Fragment>}
                 />}
-                <Modal
-                    title="录入商品"
-                    visible={this.props.addModalVisible}
-                    okText="录入"
-                    onOk={this.onAddModalOk.bind(this)}
-                    cancelText="取消"
-                    onCancel={this.onAddModalCancel.bind(this)}
-                    confirmLoading={this.props.addModalConfirmLoading}
-                >
-                    <AddForm
-                        transferFormRef={this.transferFormRef.bind(this)}
-                    />
-                </Modal>
-
-                <Modal
-                    title="编辑商品"
-                    visible={this.props.updateModalVisible}
-                    okText="编辑"
-                    onOk={this.onUpdateModalOk.bind(this)}
-                    cancelText="取消"
-                    onCancel={this.onUpdateModalCancel.bind(this)}
-                    confirmLoading={this.props.updateModalConfirmLoading}
-                >
-                    <AddForm
-                        transferFormRef={this.transferUpdateFormRef.bind(this)}
-                    />
-                </Modal>
             </div>
         )
     }
@@ -173,79 +160,6 @@ class RechargeAndWithdrawCheck extends PureComponent {
         this.form = form
     }
 
-    // 新增对话框
-    onAddModalClicked() {
-        this.props.dispatch({
-            type: 'rechargeAndWithdrawCheck/showAddModal'
-        })
-        if (this.form) {
-            this.form.resetFields()
-        }
-    }
-
-    // 新增对话框 - 确认
-    onAddModalOk() {
-        this.form.validateFieldsAndScroll((err, values) => {
-            if (!err) {
-                this.props.dispatch({
-                    type: 'rechargeAndWithdrawCheck/add',
-                    payload: values
-                })
-            }
-        })
-    }
-
-    // 新增对话框 - 取消
-    onAddModalCancel() {
-        this.props.dispatch({
-            type: 'rechargeAndWithdrawCheck/hideAddModal'
-        })
-    }
-
-    // 获得修改搜索 form 的 ref
-    transferUpdateFormRef(form) {
-        this.updateForm = form
-    }
-
-    // 弹出 修改对话框
-    onUpdateModalClicked(record) {
-        if (this.updateForm) {
-            this.updateForm.resetFields()
-            this.updateForm.setFieldsValue(record)
-            console.log(record)
-        } else {
-            setTimeout(() =>{
-                this.updateForm.resetFields()
-                this.updateForm.setFieldsValue(record)
-                console.log(record)
-            }, 0)
-        }
-
-        this.props.dispatch({
-            type: 'rechargeAndWithdrawCheck/showUpdateModal'
-        })
-
-    }
-
-    // 修改对话框 - 确认
-    onUpdateModalOk() {
-        this.updateForm.validateFieldsAndScroll((err, values) => {
-            console.log(values);
-            if (!err) {
-                this.props.dispatch({
-                    type: 'rechargeAndWithdrawCheck/update',
-                    payload: values
-                })
-            }
-        })
-    }
-
-    // 修改对话框 - 取消
-    onUpdateModalCancel() {
-        this.props.dispatch({
-            type: 'rechargeAndWithdrawCheck/hideUpdateModal'
-        })
-    }
     // 分页量变化
     onTablePageSizeChange(pageCurrent, pageSize) {
         this.loadTableDataSource({
@@ -262,23 +176,26 @@ class RechargeAndWithdrawCheck extends PureComponent {
         })
     }
 
-    // 删除
-    deleteById(id) {
+    // 审核通过
+    Approval(walletOrderId) {
+        const walletOrderState = 0;
         this.props.dispatch({
-            type: 'rechargeAndWithdrawCheck/deleteById',
+            type: 'rechargeAndWithdrawCheck/update',
             payload: {
-                id
+                walletOrderId,
+                walletOrderState
             }
         })
     }
 
-    // 上架
-    isShelf(productId, isShelf) {
+    // 审核不通过
+    NotApproval(walletOrderId) {
+        const walletOrderState = 1;
         this.props.dispatch({
-            type: 'rechargeAndWithdrawCheck/isShelf',
+            type: 'rechargeAndWithdrawCheck/update',
             payload: {
-                productId,
-                isShelf
+                walletOrderId,
+                walletOrderState
             }
         })
     }

@@ -60,7 +60,7 @@ export default {
         ) {
             yield put({
                 type: 'startAddModalConfirmLoading'
-            })
+            });
             const {success, data, message} = yield call(service.add, {
                 appName,
                 appId,

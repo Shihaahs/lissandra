@@ -86,13 +86,13 @@ public class BVOServiceImpl implements BVOService {
     }
 
     @Override
-    public BigDecimal getBVOWalletBalanceByUser(Wallet wallet) {
+    public Wallet getBVOWalletBalanceByUser(Wallet wallet) {
         Assert.notNull(wallet, "BVOServiceImpl-getBVOWalletBalanceByUser -> wallet对象为空");
         if (null == wallet.getUserId() || 0L == wallet.getUserId()) {
             log.error("BVOServiceImpl-getBVOWalletBalanceByUser -> wallet.getUserId为空");
             return null;
         }
-        return walletManager.selectById(wallet.getUserId()).getBalance();
+        return walletManager.selectOne(new EntityWrapper<Wallet>().eq("user_id", wallet.getUserId()));
     }
 
     @Override
@@ -106,6 +106,9 @@ public class BVOServiceImpl implements BVOService {
         //获取当前用户所应对的钱包信息
         Wallet wallet =  walletManager.selectOne(new EntityWrapper<Wallet>().eq("user_id", walletOrder.getUserId()));
         walletOrder.setWalletId(wallet.getWalletId());
+        //未处理
+        walletOrder.setWalletOrderState(0);
+        walletOrder.setWithdraw(new BigDecimal(0));
         walletOrder.setUserName(wallet.getUserName());
 
 
@@ -118,9 +121,7 @@ public class BVOServiceImpl implements BVOService {
         //数据库查重，保证单号的唯一性
         int count;
         do {
-            count = walletOrderManager
-                    .selectCount(
-                            new EntityWrapper<WalletOrder>()
+            count = walletOrderManager.selectCount(new EntityWrapper<WalletOrder>()
                                     .eq("wallet_order_no", walletOrderNo.toString()));
         } while (count != 0);
         walletOrder.setWalletOrderNo(walletOrderNo.toString());
@@ -141,6 +142,8 @@ public class BVOServiceImpl implements BVOService {
         Wallet wallet =  walletManager.selectOne(new EntityWrapper<Wallet>().eq("user_id", walletOrder.getUserId()));
         walletOrder.setWalletId(wallet.getWalletId());
         walletOrder.setUserName(wallet.getUserName());
+        walletOrder.setWalletOrderState(0);
+        walletOrder.setRecharge(new BigDecimal(0));
 
         if (walletOrder.getWithdraw().compareTo(wallet.getBalance()) > 0) {
             return 99;

@@ -3,6 +3,8 @@ package com.shi.lissandra.service.core.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.shi.lissandra.common.enums.ApprovalEnum;
+import com.shi.lissandra.common.enums.WalletOrderStateEnum;
 import com.shi.lissandra.common.page.PageResult;
 import com.shi.lissandra.common.request.PageRequestDTO;
 import com.shi.lissandra.dal.domain.User;
@@ -47,19 +49,9 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public PageResult<User> findAdminAllRegisterCheck(PageRequestDTO pageRequestDTO) {
         Assert.notNull(pageRequestDTO, "AdminServiceImpl-findAdminAllRegisterCheck -> 分页条件参数为空");
-        if (null == pageRequestDTO.getIsApproval()) {
-            log.error("AdminServiceImpl-findAdminAllRegisterCheck -> pageRequestDTO.getIsApproval为空");
-            return null;
-        }
-        Wrapper<User> wrapper = conditionAdapter(pageRequestDTO);
-        if (2 == pageRequestDTO.getIsApproval()) {
-            wrapper.eq("is_approval", 2);
-        } else {
-            wrapper.in("is_approval", new Integer[]{0, 1});
-        }
 
         Page<User> userPage = userManager.selectPage(
-                initPage(pageRequestDTO), wrapper);
+                initPage(pageRequestDTO), conditionAdapter(pageRequestDTO));
 
         return new PageResult<>(pageRequestDTO.getPageSize(),
                 pageRequestDTO.getPageCurrent(),
@@ -68,18 +60,18 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Integer isApprovalRegisterCheck(String isApproval, User user) {
-        if (null == isApproval || isApproval.isEmpty()) {
+    public Integer isApprovalRegisterCheck(User user) {
+        if (null == user.getIsApproval() || user.getIsApproval().equals(ApprovalEnum.WAIT_APPROVAL.getCode())) {
             log.error("AdminServiceImpl-isApprovalRegisterCheck -> isApproval为空");
             return null;
         }
-        if ("0".equals(isApproval)) {
+        if (ApprovalEnum.APPROVAL.getCode().equals(user.getIsApproval())) {
             //注册审批通过
-            user.setIsApproval(0);
+            user.setIsApproval(ApprovalEnum.APPROVAL.getCode());
         }
-        if ("1".equals(isApproval)) {
+        if (ApprovalEnum.NOT_APPROVAL.getCode().equals(user.getIsApproval())) {
             //注册审批不通过
-            user.setIsApproval(1);
+            user.setIsApproval(ApprovalEnum.NOT_APPROVAL.getCode());
         }
         return userManager.updateById(user);
     }
@@ -87,19 +79,9 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public PageResult<WalletOrder> findAdminAllWalletOrder(PageRequestDTO pageRequestDTO) {
         Assert.notNull(pageRequestDTO, "AdminServiceImpl-findAdminAllWalletOrder -> 分页条件参数为空");
-        if (null == pageRequestDTO.getWalletOrderState()) {
-            log.error("AdminServiceImpl-findAdminAllWalletOrder -> pageRequestDTO.getWalletOrderState为空");
-            return null;
-        }
-        Wrapper<WalletOrder> wrapper = conditionAdapter(pageRequestDTO);
-        if (2 == pageRequestDTO.getWalletOrderState()) {
-            wrapper.eq("wallet_order_state", 2);
-        } else {
-            wrapper.in("wallet_order_state", new Integer[]{0, 1});
-        }
 
         Page<WalletOrder> walletOrderPage = walletOrderManager.selectPage(
-                initPage(pageRequestDTO), wrapper);
+                initPage(pageRequestDTO), conditionAdapter(pageRequestDTO));
 
         return new PageResult<>(pageRequestDTO.getPageSize(),
                 pageRequestDTO.getPageCurrent(),
@@ -108,13 +90,13 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Integer updateAdminWalletOrderState(String walletOrderState, WalletOrder walletOrder) {
-        if (null == walletOrderState || walletOrderState.isEmpty()
-                || null == walletOrder.getWalletOrderId() || 0L == walletOrder.getWalletOrderId()) {
+    public Integer updateAdminWalletOrderState( WalletOrder walletOrder) {
+        if (null == walletOrder.getWalletOrderState() || null == walletOrder.getWalletOrderId()
+                || WalletOrderStateEnum.WAIT_APPROVAL.getCode().equals(walletOrder.getWalletOrderState())) {
             log.error("AdminServiceImpl-updateAdminWalletOrderState -> walletOrderState或walletOrder.getWalletOrderId()为空");
             return null;
         }
-        if ("0".equals(walletOrderState)) {
+        if (WalletOrderStateEnum.APPROVAL.getCode().equals(walletOrder.getWalletOrderState())) {
             walletOrder = walletOrderManager.selectOne(new EntityWrapper<WalletOrder>().eq("wallet_order_id", walletOrder.getWalletOrderId()));
             //钱包流水审批通过
             walletOrder.setWalletOrderState(0);
@@ -157,7 +139,7 @@ public class AdminServiceImpl implements AdminService {
             }
 
         }
-        if ("1".equals(walletOrderState)) {
+        if (WalletOrderStateEnum.NOT_APPROVAL.getCode().equals(walletOrder.getWalletOrderState())) {
             //钱包流水审批不通过
             walletOrder.setWalletOrderState(1);
             log.info("Admin不通过钱包流水号: " + walletOrder.getWalletOrderNo());

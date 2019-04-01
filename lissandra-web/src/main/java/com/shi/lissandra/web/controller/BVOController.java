@@ -64,7 +64,7 @@ public class BVOController {
 
     @ApiOperation(value = "借卖方-获取钱包余额", notes = "根据当前登录用户id查询")
     @RequestMapping(value = BVO_GET_WALLET_BALANCE_BY_USER, method = RequestMethod.POST)
-    public APIResult<BigDecimal> getBVOWalletBalanceByUser(@RequestBody Wallet wallet) {
+    public APIResult<Wallet> getBVOWalletBalanceByUser(@RequestBody Wallet wallet) {
         try {
             return APIResult.ok(bvoService.getBVOWalletBalanceByUser(wallet));
         } catch (Exception e) {

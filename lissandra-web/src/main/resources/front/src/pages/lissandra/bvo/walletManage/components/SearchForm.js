@@ -10,13 +10,20 @@ class SearchForm extends PureComponent {
   }
   
   render() {
-    const {getFieldDecorator} = this.props.form
     return (
         <Form layout="inline">
-            <FormItem>{getFieldDecorator('productName')(<Input placeholder="商品名称" style={{
-                width: 300,
-                marginRight: 10
-            }}/>)}</FormItem>
+            <FormItem
+                {...this.formItemLayout}
+                label="当前余额(￥)" style={{
+            }}>
+                {(<Input readOnly style={{
+                    width: 200,
+                    marginRight: 10,
+                    border: 0,
+                    outline: 0,
+                    background: 0,
+                    fontSize:30
+            }} value={this.props.setBalance}/>)}</FormItem>
         </Form>
     )
   }

@@ -33,18 +33,18 @@ let routes = [
         "path": "/lissandra/admin/rechargeAndWithdrawCheck",
         "exact": true,
         "component": require('../lissandra/admin/rechargeAndWithdrawCheck/index.js').default,
-        "title": "电子商务借卖交易平台 | 商品管理",
+        "title": "电子商务借卖交易平台 | 充值/提现审核",
         "Routes": [require('../../../node_modules/umi-plugin-react/lib/plugins/title/TitleWrapper.js').default],
-        "_title": "电子商务借卖交易平台 | 商品管理",
+        "_title": "电子商务借卖交易平台 | 充值/提现审核",
         "_title_default": "电子商务借卖交易平台"
       },
       {
         "path": "/lissandra/admin/registerCheck",
         "exact": true,
         "component": require('../lissandra/admin/registerCheck/index.js').default,
-        "title": "电子商务借卖交易平台 | 商品管理",
+        "title": "电子商务借卖交易平台 | 注册审核",
         "Routes": [require('../../../node_modules/umi-plugin-react/lib/plugins/title/TitleWrapper.js').default],
-        "_title": "电子商务借卖交易平台 | 商品管理",
+        "_title": "电子商务借卖交易平台 | 注册审核",
         "_title_default": "电子商务借卖交易平台"
       },
       {

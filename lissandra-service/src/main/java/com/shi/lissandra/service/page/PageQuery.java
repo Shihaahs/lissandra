@@ -62,7 +62,7 @@ public class PageQuery {
 
         Wrapper wrapper = new EntityWrapper<T>();
         //按照时间进行排序显示
-        wrapper.orderDesc(Collections.singleton("gmt_create"));
+        wrapper.orderDesc(Collections.singleton("gmt_modified"));
 
         if (null != pageRequestDTO.getProductName() && !pageRequestDTO.getProductName().isEmpty()) {
             wrapper.like("product_name", pageRequestDTO.getProductName());
