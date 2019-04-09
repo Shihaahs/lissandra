@@ -15,9 +15,9 @@ let routes = [
         "path": "/404",
         "exact": true,
         "component": require('../404.js').default,
-        "title": "没有该页面 | 统一埋点平台",
+        "title": "没有该页面 | 电子商务借卖交易平台",
         "Routes": [require('../../../node_modules/umi-plugin-react/lib/plugins/title/TitleWrapper.js').default],
-        "_title": "没有该页面 | 统一埋点平台",
+        "_title": "没有该页面 | 电子商务借卖交易平台",
         "_title_default": "电子商务借卖交易平台"
       },
       {

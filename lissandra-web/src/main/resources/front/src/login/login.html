@@ -80,7 +80,7 @@
                                 </span>
                                 <select id="registerPermission" class="form-control" style="width: 320px; height: 46px;border-radius: 0;
                                     -webkit-border-radius: 0;-webkit-appearance: button; border-top-right-radius: 30px; border-bottom-right-radius: 30px;">
-                                    <option disabled="disabled" selected="selected" hidden="hidden">Register Role</option>
+                                    <option disabled="disabled" selected="selected" hidden="hidden" value="9">Register Role</option>
                                     <option value="0">管理员</option>
                                     <option value="1">品牌商</option>
                                     <option value="2">借卖方</option>
@@ -153,6 +153,10 @@
             console.log("register_module");
             $("#register_module").show();
             $("#login_module").css("display", "none");
+            //清除原文本
+            $("#registerName").val("");
+            $("#registerPermission").val("9");
+            $("#registerPhone").val("");
         } else {
             console.log("login_module");
             $("#login_module").show();
@@ -210,7 +214,7 @@
         const name = $("#registerName").val();
         const permission = $("#registerPermission").val();
         const phone = $("#registerPhone").val();
-        const pwd = $("#registerPassword").val();
+        const pwd = $("#firstPassword").val();
         register(name,permission,phone,pwd);
     }
 
@@ -231,12 +235,12 @@
                 if ("OK" === data.data) {
                     window.location.href = "index";
                 } else if ("1000" === data.code) {
-                    alert("账号或密码错误！");
+                    alert("账号或密码错误！ ");
                     return false;
                 }
             },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("请求失败！"+ errorThrown);
+            error: function (data) {
+                alert("登录失败！ "+ data.message);
             }
 
         })
@@ -244,7 +248,7 @@
 
     function register(name, permission, phone, password) {
         const user = {
-            "name": name,
+            "userName": name,
             "permission": permission,
             "phone": phone,
             "password": password
@@ -256,14 +260,9 @@
             cache: false,
             async: false,
             dataType: "json",
+            contentType: "application/json;charset=utf-8",
             success: function (data) {
-                if ("OK" === data.data) {
-                    alert("注册成功!");
-                    window.location.reload();
-                } else {
-                    alert("不合法！错误信息如下：" + data.errorMsg);
-                    return false;
-                }
+                location.href = "/api/to/login";
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("请求失败！" + errorThrown);

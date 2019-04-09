@@ -7,6 +7,7 @@ import com.shi.lissandra.service.core.LoginRegisterService;
 import com.shi.lissandra.web.security.token.TokenHelper;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.beanutils.ConvertUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -49,14 +50,20 @@ public class LoginRegisterController {
     @RequestMapping(value = LISSANDRA_LOGIN, method = RequestMethod.POST)
     public APIResult login(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
         user = loginRegisterService.checkLogin(user);
-        if (null != user && 0 == user.getIsApproval()) {
-            request.getSession().setAttribute("user", user);
-            Cookie cookie = new Cookie("x-auth-token",tokenHelper.getToken(user));
-            //可在同一应用服务器内共享cookie
-            cookie.setPath("/");
-            response.addCookie(cookie);
-            log.info("login -> " + user.getUserName() + "用户已登录 ");
-            return APIResult.ok(SUCCESS.getMessage());
+        if (null != user) {
+            if (2 != user.getIsApproval()) {
+                request.getSession().setAttribute("user", user);
+                Cookie cookie = new Cookie("x-auth-token", tokenHelper.getToken(user));
+                //可在同一应用服务器内共享cookie
+                cookie.setPath("/");
+                response.addCookie(cookie);
+                log.info("login -> " + user.getUserName() + "用户已登录 ");
+                return APIResult.ok(SUCCESS.getMessage());
+            } else {
+                log.info("login -> " + user.getUserName() + " - 用户信息等待管理员审核 ");
+                return APIResult.error(LOGIN_WAITTING_CHECK.getCode(), LOGIN_WAITTING_CHECK.getMessage());
+            }
+
         }
         return APIResult.error(LOGIN_FAILURE.getCode(), LOGIN_FAILURE.getMessage());
     }
@@ -109,24 +116,16 @@ public class LoginRegisterController {
     @RequestMapping(value = PUBLIC_FIND_USER, method = RequestMethod.POST)
     public APIResult<User> getCurrentLoginUser(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        //User user = (User) ConvertUtils.convert(session.getAttribute("user"), User.class);
-        User user = new User();
-        user.setUserId(3L);
-        user.setUserName("石傻傻");
-        user.setPhone("123");
+        User user = (User)session.getAttribute("user");
         if (null != user) {
+            log.info("当前登录用户 -> " + user.toString());
             return APIResult.ok(user);
         }
-        return APIResult.error(LOGOUT_FAILURE.getCode(), LOGOUT_FAILURE.getMessage());
+        return APIResult.error(NO_LOGIN_USER.getCode(), NO_LOGIN_USER.getMessage());
     }
 
     @RequestMapping(value = TO_LOGIN, method = RequestMethod.GET)
     public String toLogin() {
-        return "login";
-    }
-
-    @RequestMapping(value = TO_REGISTER, method = RequestMethod.GET)
-    public String toRegister() {
         return "login";
     }
 

@@ -43,7 +43,8 @@ export default {
             find:{
                 user: 'public/find/user.json'
             }
-        }
+        },
+        logout: 'logout.json'
 
     },
 

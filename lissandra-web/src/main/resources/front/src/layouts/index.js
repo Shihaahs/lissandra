@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {Layout} from 'antd'
+import {Layout, message as msg} from 'antd'
 import SiderMenu from '../components/SiderMenu/SiderMenu'
 import {getMenuData} from '../commons/menu'
 import logo from '../assets/logo.png'
@@ -26,25 +26,75 @@ class BasicLayout extends Component {
     }
 
     componentDidMount() {
-        //验证管理者，只有管理者是石傻傻，
-        //才开放应用管理界面
-        /*TyAPI.post('public/find/user')
-            .then(json => {
-                if (json.data.loginName === '石傻傻') {
-                    this.setState({
-                        menuData: [... this.state.menuData].concat({
-                            name: '项目管理',
-                            icon: 'code',
-                            path: 'pandora/appauth',
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        if (currentUser == null) {
+            console.log("post user layout");
+            TyAPI.post('lissandra/public/find/user')
+                .then(json => {
+                    if ("200" === json.code) {
+                        let user = {
+                            userId: json.data.userId,
+                            userName: json.data.userName,
+                            permission: json.data.permission,
+                        };
+                    } else {
+                        msg.error("当前用户未登录");
+                        location.href = "http://127.0.0.1:8099/api/to/login";
+                    }
+                });
+        }
+        //权限认证
+
+        if (currentUser && currentUser.permission) {
+            if (currentUser.permission === 0) {
+                this.setState({
+                    menuData: [...this.state.menuData].concat({
+                            name: '注册审核',
+                            icon: 'user-add',
+                            path: '/lissandra/admin/registerCheck',
+                        },
+                        {
+                            name: '充值/提现审核',
+                            icon: 'pay-circle',
+                            path: '/lissandra/admin/rechargeAndWithdrawCheck',
                         })
-                    })
-                }
-            });*/
+                });
+            } else if (currentUser.permission === 1) {
+                this.setState({
+                    menuData: [...this.state.menuData].concat({
+                            name: '商品管理',
+                            icon: 'dashboard',
+                            path: '/lissandra/mvo/productManage',
+
+                        },
+                        {
+                            name: '订单管理',
+                            icon: 'form',
+                            path: '/lissandra/mvo/orderManage',
+                        })
+                });
+            } else if (currentUser.permission === 2) {
+                this.setState({
+                    menuData: [...this.state.menuData].concat({
+                            name: '商品浏览',
+                            icon: 'schedule',
+                            path: '/lissandra/bvo/productSearch',
+                        },
+                        {
+                            name: '钱包管理',
+                            icon: 'red-envelope',
+                            path: '/lissandra/bvo/walletManage',
+                        })
+                });
+            }
+        }
+
+
     }
 
     render() {
-        const {children, location} = this.props
-        const {collapsed} = this.state
+        const {children, location} = this.props;
+        const {collapsed} = this.state;
 
         return (
             <Layout>

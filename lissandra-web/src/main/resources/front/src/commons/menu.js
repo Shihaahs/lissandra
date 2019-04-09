@@ -6,37 +6,37 @@ export function isUrl(path) {
 }
 
 const menuData = [
-    {
-        name: '商品管理',
-        icon: 'dashboard',
-        path: 'mvo/productManage',
-
-    },
-    {
-        name: '订单管理',
-        icon: 'form',
-        path: 'mvo/orderManage',
-    },
-    {
-        name: '商品浏览',
-        icon: 'schedule',
-        path: 'bvo/productSearch',
-    },
-    {
-        name: '钱包管理',
-        icon: 'red-envelope',
-        path: 'bvo/walletManage',
-    },
-    {
-        name: '注册审核',
-        icon: 'user-add',
-        path: 'admin/registerCheck',
-    },
-    {
-        name: '充值/提现审核',
-        icon: 'pay-circle',
-        path: 'admin/rechargeAndWithdrawCheck',
-    },
+    // {
+    //     name: '商品管理',
+    //     icon: 'dashboard',
+    //     path: 'mvo/productManage',
+    //
+    // },
+    // {
+    //     name: '订单管理',
+    //     icon: 'form',
+    //     path: 'mvo/orderManage',
+    // },
+    // {
+    //     name: '商品浏览',
+    //     icon: 'schedule',
+    //     path: 'bvo/productSearch',
+    // },
+    // {
+    //     name: '钱包管理',
+    //     icon: 'red-envelope',
+    //     path: 'bvo/walletManage',
+    // },
+    // {
+    //     name: '注册审核',
+    //     icon: 'user-add',
+    //     path: 'admin/registerCheck',
+    // },
+    // {
+    //     name: '充值/提现审核',
+    //     icon: 'pay-circle',
+    //     path: 'admin/rechargeAndWithdrawCheck',
+    // },
 
 ];
 

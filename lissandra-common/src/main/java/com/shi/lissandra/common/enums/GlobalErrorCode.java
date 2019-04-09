@@ -19,10 +19,12 @@ public enum GlobalErrorCode implements ErrorCode{
 
 
 
-    LOGIN_FAILURE("1000","Login Failure!"),
+    LOGIN_FAILURE("1000","Login Failure! Error Phone or Error Password!"),
     LOGOUT_FAILURE("1001","Logout Failure!"),
     REGISTER_FAILURE("1002","Register Failure!"),
     REGISTER_FAILURE_PHONE_REPEAT("1003","Phone has been existed!"),
+    LOGIN_WAITTING_CHECK("1004","User need to be checked!"),
+    NO_LOGIN_USER("1005","No Login User!"),
 
     WITHDRAW_ERROR("5000", "Account balance is not enough!"),
 

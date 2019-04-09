@@ -109,7 +109,7 @@ public class BVOServiceImpl implements BVOService {
         Wallet wallet =  walletManager.selectOne(new EntityWrapper<Wallet>().eq("user_id", walletOrder.getUserId()));
         walletOrder.setWalletId(wallet.getWalletId());
         //未处理
-        walletOrder.setWalletOrderState(0);
+        walletOrder.setWalletOrderState(2);
         walletOrder.setWithdraw(new BigDecimal(0));
         walletOrder.setUserName(wallet.getUserName());
 
@@ -127,7 +127,6 @@ public class BVOServiceImpl implements BVOService {
                                     .eq("wallet_order_no", walletOrderNo.toString()));
         } while (count != 0);
         walletOrder.setWalletOrderNo(walletOrderNo.toString());
-
         return walletOrderManager.insert(walletOrder);
     }
 
@@ -144,7 +143,7 @@ public class BVOServiceImpl implements BVOService {
         Wallet wallet =  walletManager.selectOne(new EntityWrapper<Wallet>().eq("user_id", walletOrder.getUserId()));
         walletOrder.setWalletId(wallet.getWalletId());
         walletOrder.setUserName(wallet.getUserName());
-        walletOrder.setWalletOrderState(0);
+        walletOrder.setWalletOrderState(2);
         walletOrder.setRecharge(new BigDecimal(0));
 
         if (walletOrder.getWithdraw().compareTo(wallet.getBalance()) > 0) {

@@ -62,8 +62,6 @@ export default {
             })
         },
         * getTableList({payload: {pageCurrent = 1, pageSize = 10, addition = {}}}, {call, put}) {
-            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
             const {success, data, message} = yield call(service.list, Object.assign({
                 pageCurrent, pageSize
             }, addition))

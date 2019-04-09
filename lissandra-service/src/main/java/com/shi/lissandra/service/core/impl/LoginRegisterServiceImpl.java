@@ -29,6 +29,10 @@ public class LoginRegisterServiceImpl implements LoginRegisterService {
 
     @Override
     public User checkLogin(User user) {
+        if (null == user.getPhone() || user.getPhone().isEmpty()
+                || null == user.getPassword() || user.getPassword().isEmpty()) {
+            return null;
+        }
         return userManager.selectOne(user);
     }
 

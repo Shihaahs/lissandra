@@ -66,7 +66,7 @@ export default {
                 type: 'startAddModalConfirmLoading'
             });
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-            if (walletOrderWay === '1') {   //充值
+            if (walletOrderWay === '2') {   //充值
                 const {success, data, message} = yield call(service.recharge, {
                     walletOrderId,
                     walletId,
@@ -98,7 +98,7 @@ export default {
                     })
                 }
             }
-            if (walletOrderWay === '2') {      //提现
+            if (walletOrderWay === '1') {      //提现
                 const {success, data, message} = yield call(service.withdraw, {
                     walletOrderId,
                     walletId,

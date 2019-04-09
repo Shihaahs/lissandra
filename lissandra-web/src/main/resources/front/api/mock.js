@@ -42,7 +42,9 @@ export default {
             find:{
                 user: 'public/find/user'
             }
-        }
+        },
+
+        logout: 'logout'
     }
 
 
