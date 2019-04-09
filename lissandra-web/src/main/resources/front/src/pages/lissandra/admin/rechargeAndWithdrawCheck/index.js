@@ -27,9 +27,9 @@ class RechargeAndWithdrawCheck extends PureComponent {
             dataIndex: 'walletOrderWay',
             render: (text, record) => {
                 if (record.walletOrderWay === 1) {
-                    return '充值';
-                } else if (record.walletOrderWay === 2) {
                     return '提现';
+                } else if (record.walletOrderWay === 2) {
+                    return '充值';
                 } else {
                     return "-"
                 }

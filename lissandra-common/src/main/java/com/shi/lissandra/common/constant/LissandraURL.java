@@ -30,6 +30,9 @@ public class LissandraURL {
 
 
 
+    public static final String TO_LOGIN = "/api/to/login";
+    public static final String TO_REGISTER = "/api/to/register";
+    public static final String TO_INDEX = "/api/to/index";
     public static final String PUBLIC_FIND_USER = "/api/public/find/user.json";
 
 

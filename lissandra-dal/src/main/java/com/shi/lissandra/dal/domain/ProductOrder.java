@@ -17,6 +17,8 @@ import com.shi.lissandra.common.base.BaseModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("product_order")
@@ -62,13 +64,13 @@ public class ProductOrder extends BaseModel {
     /**
      * 创建时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @TableField("gmt_create")
     private Date gmtCreate;
     /**
      * 修改时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @TableField("gmt_modified")
     private Date gmtModified;
 

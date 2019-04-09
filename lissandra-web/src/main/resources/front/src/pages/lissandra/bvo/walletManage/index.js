@@ -27,9 +27,9 @@ class WalletManage extends PureComponent {
             dataIndex: 'walletOrderWay',
             render: (text, record) => {
                 if (record.walletOrderWay === 1) {
-                    return '充值';
-                } else if (record.walletOrderWay === 2) {
                     return '提现';
+                } else if (record.walletOrderWay === 2) {
+                    return '充值';
                 } else {
                     return "-"
                 }
@@ -46,11 +46,11 @@ class WalletManage extends PureComponent {
             title: '审核情况',
             dataIndex: 'walletOrderState',
             render: (text, record) => {
-                if (record.walletOrderState === 0) {
-                    return <span>待审核</span>;
-                } else if (record.walletOrderState === 1) {
+                if (record.walletOrderState === 2) {
+                    return "待审核";
+                } else if (record.walletOrderState === 0) {
                     return <span style={{color: '#117F22'}}>已通过</span>;
-                } else if (record.walletOrderState === 2) {
+                } else if (record.walletOrderState === 1) {
                     return <span style={{color: '#E3071A'}}>未通过</span>;
                 } else {
                     return "-"

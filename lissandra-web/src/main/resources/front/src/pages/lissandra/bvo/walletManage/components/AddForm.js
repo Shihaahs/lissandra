@@ -32,8 +32,8 @@ class AddForm extends PureComponent {
                         style={{width: '100%'}}
                         placeholder="请选择操作方式"
                     >
-                            <Option key='1' value='1'>充值</Option>
-                            <Option key='2' value='2'>提现</Option>
+                            <Option key='1' value='2'>充值</Option>
+                            <Option key='2' value='1'>提现</Option>
                     </Select>)}
                 </FormItem>
                 <FormItem

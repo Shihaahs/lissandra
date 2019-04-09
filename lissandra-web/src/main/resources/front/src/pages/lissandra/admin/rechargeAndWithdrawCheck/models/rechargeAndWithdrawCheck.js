@@ -37,6 +37,8 @@ export default {
         },
         addition: {
             userName: '',
+            walletOrderNo: '',
+            walletOrderWay: '',
         }
     },
     effects: {

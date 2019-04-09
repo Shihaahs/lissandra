@@ -100,6 +100,7 @@ public class AdminServiceImpl implements AdminService {
             walletOrder = walletOrderManager.selectOne(new EntityWrapper<WalletOrder>().eq("wallet_order_id", walletOrder.getWalletOrderId()));
             //钱包流水审批通过
             walletOrder.setWalletOrderState(0);
+            walletOrder.setGmtModified(null);
             //相应的用户钱包余额变动
             if (walletOrder.getRecharge().compareTo(new BigDecimal(0)) > 0) {
                 //这是一个充值审批

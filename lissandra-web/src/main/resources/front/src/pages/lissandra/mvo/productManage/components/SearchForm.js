@@ -17,6 +17,16 @@ class SearchForm extends PureComponent {
                 width: 300,
                 marginRight: 10
             }}/>)}</FormItem>
+            <FormItem>
+                {getFieldDecorator('isShelf')(<Select
+                    showSearch
+                    style={{width: 300, marginRight: 10}}
+                    placeholder="是否上架"
+                >
+                    <Option key='1' value='1'>已上架</Option>
+                    <Option key='2' value='0'>未上架</Option>
+                </Select>)}
+            </FormItem>
         </Form>
     )
   }

@@ -68,10 +68,22 @@ public class PageQuery {
             wrapper.like("product_name", pageRequestDTO.getProductName());
         }
         if (null != pageRequestDTO.getUserName() && !pageRequestDTO.getUserName().isEmpty()) {
-            wrapper.like("user_name", pageRequestDTO.getUserName());
+            wrapper.like("user_name", pageRequestDTO.getUserName().trim());
         }
         if (null != pageRequestDTO.getProductManufactureName() && !pageRequestDTO.getProductManufactureName().isEmpty()) {
             wrapper.like("product_manufacture_name", pageRequestDTO.getProductManufactureName());
+        }
+        if (null != pageRequestDTO.getWalletOrderNo() && !pageRequestDTO.getWalletOrderNo().isEmpty()) {
+            wrapper.like("wallet_order_no", pageRequestDTO.getWalletOrderNo());
+        }
+        if (null != pageRequestDTO.getWalletOrderWay()) {
+            wrapper.eq("wallet_order_way", pageRequestDTO.getWalletOrderWay());
+        }
+        if (null != pageRequestDTO.getPhone() && !pageRequestDTO.getPhone().isEmpty()) {
+            wrapper.like("phone", pageRequestDTO.getPhone());
+        }
+        if (null != pageRequestDTO.getPermission()) {
+            wrapper.eq("permission", pageRequestDTO.getPermission());
         }
         if (null != pageRequestDTO.getIsApproval()) {
             wrapper.eq("is_approval", pageRequestDTO.getIsApproval().toString());

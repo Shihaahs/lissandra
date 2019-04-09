@@ -4,6 +4,11 @@ server:
 
 #spring
 spring:
+  thymeleaf:
+    prefix: classpath:/front/src/login/
+    suffix: .html
+    cache: false  #实时改变
+
   application:
     name: lissandra
 

@@ -1,5 +1,6 @@
 ### IntelliJ IDEA ###
 /.idea/
+.idea/
 
 **/target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -29,6 +30,7 @@
 
 # Compiled class file
 *.class
+*.vm
 
 # Log file
 *.log

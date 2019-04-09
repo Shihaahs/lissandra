@@ -24,6 +24,7 @@ import org.springframework.util.Assert;
 
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.Date;
 
 import static com.shi.lissandra.service.page.PageQuery.conditionAdapter;
@@ -74,6 +75,7 @@ public class BVOServiceImpl implements BVOService {
             return null;
         }
         Wrapper<WalletOrder> wrapper = conditionAdapter(pageRequestDTO);
+        wrapper.orderDesc(Collections.singleton("gmt_create"));
         wrapper.eq("user_id", pageRequestDTO.getUserId());
 
         Page<WalletOrder> walletOrderPage = walletOrderManager.selectPage(

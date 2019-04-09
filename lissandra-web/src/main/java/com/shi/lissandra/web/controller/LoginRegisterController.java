@@ -8,10 +8,10 @@ import com.shi.lissandra.web.security.token.TokenHelper;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +33,7 @@ import static com.shi.lissandra.common.enums.GlobalErrorCode.*;
  */
 
 @Slf4j
-@RestController
+@Controller
 public class LoginRegisterController {
 
     @Autowired
@@ -45,6 +45,7 @@ public class LoginRegisterController {
 
 
     @ApiOperation(value = "登录", notes = "登录")
+    @ResponseBody
     @RequestMapping(value = LISSANDRA_LOGIN, method = RequestMethod.POST)
     public APIResult login(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
         user = loginRegisterService.checkLogin(user);
@@ -61,6 +62,7 @@ public class LoginRegisterController {
     }
 
     @ApiOperation(value = "登出", notes = "登出")
+    @ResponseBody
     @RequestMapping(value = LISSANDRA_LOGOUT, method = RequestMethod.POST)
     public APIResult logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -79,6 +81,7 @@ public class LoginRegisterController {
 
 
     @ApiOperation(value = "注册", notes = "注册")
+    @ResponseBody
     @RequestMapping(value = LISSANDRA_REGISTRE, method = RequestMethod.POST)
     public APIResult register(@RequestBody User user) {
         if (null == user.getPhone() || user.getPhone().isEmpty()) {
@@ -102,6 +105,7 @@ public class LoginRegisterController {
 
 
     @ApiOperation(value = "获取登录人", notes = "获取登录人")
+    @ResponseBody
     @RequestMapping(value = PUBLIC_FIND_USER, method = RequestMethod.POST)
     public APIResult<User> getCurrentLoginUser(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -115,4 +119,22 @@ public class LoginRegisterController {
         }
         return APIResult.error(LOGOUT_FAILURE.getCode(), LOGOUT_FAILURE.getMessage());
     }
+
+    @RequestMapping(value = TO_LOGIN, method = RequestMethod.GET)
+    public String toLogin() {
+        return "login";
+    }
+
+    @RequestMapping(value = TO_REGISTER, method = RequestMethod.GET)
+    public String toRegister() {
+        return "login";
+    }
+
+    @RequestMapping(value = TO_INDEX, method = RequestMethod.GET)
+    public ModelAndView toIndex() {
+        return new ModelAndView(new RedirectView("http://127.0.0.1:8000"));
+    }
+
+
+
 }

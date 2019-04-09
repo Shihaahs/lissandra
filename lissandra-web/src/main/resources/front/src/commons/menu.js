@@ -24,17 +24,17 @@ const menuData = [
     },
     {
         name: '钱包管理',
-        icon: 'schedule',
+        icon: 'red-envelope',
         path: 'bvo/walletManage',
     },
     {
         name: '注册审核',
-        icon: 'schedule',
+        icon: 'user-add',
         path: 'admin/registerCheck',
     },
     {
         name: '充值/提现审核',
-        icon: 'schedule',
+        icon: 'pay-circle',
         path: 'admin/rechargeAndWithdrawCheck',
     },
 

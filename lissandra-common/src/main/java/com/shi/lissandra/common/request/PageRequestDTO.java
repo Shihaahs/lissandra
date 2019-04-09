@@ -38,6 +38,22 @@ public class PageRequestDTO implements Serializable {
      */
     private Integer walletOrderState;
     /**
+     * 钱包流水号
+     */
+    private String walletOrderNo;
+    /**
+     * 钱包流水操作方式
+     */
+    private Integer walletOrderWay;
+    /**
+     * 手机号
+     */
+    private String phone;
+    /**
+     * 用户角色
+     */
+    private Integer permission;
+    /**
      * 开始时间
      */
     private String startTime;
