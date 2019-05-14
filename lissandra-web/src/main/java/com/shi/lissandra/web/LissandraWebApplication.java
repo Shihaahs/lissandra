@@ -1,7 +1,5 @@
 package com.shi.lissandra.web;
 
-import com.spring4all.swagger.EnableSwagger2Doc;
-import net.bytebuddy.build.ToStringPlugin;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +16,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableTransactionManagement
 @ComponentScan(basePackages = { "com.shi.lissandra.dal", "com.shi.lissandra.service","com.shi.lissandra.common","com.shi.lissandra.web"})
-@EnableSwagger2Doc
 @SpringBootApplication(exclude = {HibernateJpaAutoConfiguration.class })
 public class LissandraWebApplication {
     private final static Logger logger = LoggerFactory.getLogger(LissandraWebApplication.class);
@@ -26,7 +23,7 @@ public class LissandraWebApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(LissandraWebApplication.class, args);
-        logger.info("--- Lissandra started ---> http://localhost:8099/");
+        logger.info("--- Lissandra started ---> http://localhost:8099/api/to/login");
         logger.info("--- Swagger is online ---> http://localhost:8099/swagger-ui.html");
     }
 

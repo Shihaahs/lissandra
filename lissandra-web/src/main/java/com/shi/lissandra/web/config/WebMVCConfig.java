@@ -22,8 +22,10 @@ public class WebMVCConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
         //将 /front/src/login/** 的请求 映射到 /front/src/login/下
-        registry.addResourceHandler("/front/src/login/**")
-                .addResourceLocations("classpath:/front/src/login/");
+        registry.addResourceHandler("/static/**")
+                .addResourceLocations("classpath:/static/");
+//        registry.addResourceHandler("/front/src/login/**")
+//                .addResourceLocations("classpath:/front/src/login/");
 
         super.addResourceHandlers(registry);
     }

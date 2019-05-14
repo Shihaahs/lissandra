@@ -20,7 +20,3 @@ app.model({ namespace: 'productSearch', ...(require('/Users/wuer/WorkSpace/IdeaW
 app.model({ namespace: 'walletManage', ...(require('/Users/wuer/WorkSpace/IdeaWorkspace/lissandra/lissandra-web/src/main/resources/front/src/pages/lissandra/bvo/walletManage/models/walletManage.js').default) });
 app.model({ namespace: 'orderManage', ...(require('/Users/wuer/WorkSpace/IdeaWorkspace/lissandra/lissandra-web/src/main/resources/front/src/pages/lissandra/mvo/orderManage/models/orderManage.js').default) });
 app.model({ namespace: 'productManage', ...(require('/Users/wuer/WorkSpace/IdeaWorkspace/lissandra/lissandra-web/src/main/resources/front/src/pages/lissandra/mvo/productManage/models/productManage.js').default) });
-app.model({ namespace: 'accesslog', ...(require('/Users/wuer/WorkSpace/IdeaWorkspace/lissandra/lissandra-web/src/main/resources/front/src/pages/pandora/accesslog/models/accesslog.js').default) });
-app.model({ namespace: 'appauth', ...(require('/Users/wuer/WorkSpace/IdeaWorkspace/lissandra/lissandra-web/src/main/resources/front/src/pages/pandora/appauth/models/appauth.js').default) });
-app.model({ namespace: 'burypoint', ...(require('/Users/wuer/WorkSpace/IdeaWorkspace/lissandra/lissandra-web/src/main/resources/front/src/pages/pandora/burypoint/models/burypoint.js').default) });
-app.model({ namespace: 'userprint', ...(require('/Users/wuer/WorkSpace/IdeaWorkspace/lissandra/lissandra-web/src/main/resources/front/src/pages/pandora/userprint/models/userprint.js').default) });

@@ -26,68 +26,71 @@ class BasicLayout extends Component {
     }
 
     componentDidMount() {
-        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-        if (currentUser == null) {
-            console.log("post user layout");
-            TyAPI.post('lissandra/public/find/user')
-                .then(json => {
-                    if ("200" === json.code) {
-                        let user = {
-                            userId: json.data.userId,
-                            userName: json.data.userName,
-                            permission: json.data.permission,
-                        };
-                    } else {
-                        msg.error("当前用户未登录");
-                        location.href = "http://127.0.0.1:8099/api/to/login";
+
+        console.log(this.props);
+        TyAPI.post('lissandra/public/find/user')
+            .then(json => {
+                if ("200" === json.code) {
+                    let user = {
+                        userId: json.data.userId,
+                        userName: json.data.userName,
+                        permission: json.data.permission,
+                    };
+                    localStorage.setItem("currentUser", JSON.stringify(user));
+                    //checkPermission(user);
+                    console.log("权限校验");
+                    if (user.permission === 0) {
+                        this.props.location.pathname = "/lissandra/admin/registerCheck";
+                        this.setState({
+                            menuData: [...this.state.menuData].concat({
+                                    name: '注册审核',
+                                    icon: 'user-add',
+                                    path: '/lissandra/admin/registerCheck',
+                                },
+                                {
+                                    name: '充值/提现审核',
+                                    icon: 'pay-circle',
+                                    path: '/lissandra/admin/rechargeAndWithdrawCheck',
+                                })
+                        });
+                        console.log("加载admin权限");
+                    } else if (user.permission === 1) {
+                        this.props.location.pathname = "/lissandra/mvo/productManage";
+                        this.setState({
+                            menuData: [...this.state.menuData].concat({
+                                    name: '商品管理',
+                                    icon: 'dashboard',
+                                    path: '/lissandra/mvo/productManage',
+
+                                },
+                                {
+                                    name: '订单管理',
+                                    icon: 'form',
+                                    path: '/lissandra/mvo/orderManage',
+                                })
+                        });
+                        console.log("加载mvo权限");
+                    } else if (user.permission === 2) {
+                        this.props.location.pathname = "/lissandra/bvo/productSearch";
+                        this.setState({
+                            menuData: [...this.state.menuData].concat({
+                                    name: '商品浏览',
+                                    icon: 'schedule',
+                                    path: '/lissandra/bvo/productSearch',
+                                },
+                                {
+                                    name: '钱包管理',
+                                    icon: 'red-envelope',
+                                    path: '/lissandra/bvo/walletManage',
+                                })
+                        });
+                        console.log("加载bvo权限");
                     }
-                });
-        }
-        //权限认证
-
-        if (currentUser && currentUser.permission) {
-            if (currentUser.permission === 0) {
-                this.setState({
-                    menuData: [...this.state.menuData].concat({
-                            name: '注册审核',
-                            icon: 'user-add',
-                            path: '/lissandra/admin/registerCheck',
-                        },
-                        {
-                            name: '充值/提现审核',
-                            icon: 'pay-circle',
-                            path: '/lissandra/admin/rechargeAndWithdrawCheck',
-                        })
-                });
-            } else if (currentUser.permission === 1) {
-                this.setState({
-                    menuData: [...this.state.menuData].concat({
-                            name: '商品管理',
-                            icon: 'dashboard',
-                            path: '/lissandra/mvo/productManage',
-
-                        },
-                        {
-                            name: '订单管理',
-                            icon: 'form',
-                            path: '/lissandra/mvo/orderManage',
-                        })
-                });
-            } else if (currentUser.permission === 2) {
-                this.setState({
-                    menuData: [...this.state.menuData].concat({
-                            name: '商品浏览',
-                            icon: 'schedule',
-                            path: '/lissandra/bvo/productSearch',
-                        },
-                        {
-                            name: '钱包管理',
-                            icon: 'red-envelope',
-                            path: '/lissandra/bvo/walletManage',
-                        })
-                });
-            }
-        }
+                } else {
+                    msg.error("当前用户未登录");
+                    location.href = "http://localhost:8099/api/to/login";
+                }
+            });
 
 
     }
@@ -128,6 +131,12 @@ class BasicLayout extends Component {
             </Layout>
         )
     }
+}
+
+function checkPermission(currentUser) {
+    //权限认证
+
+
 }
 
 export default BasicLayout

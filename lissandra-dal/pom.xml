@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>lissandra-dal</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <!-- ===== 一方包 BEGIN ===== -->

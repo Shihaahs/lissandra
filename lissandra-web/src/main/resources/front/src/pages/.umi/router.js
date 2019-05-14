@@ -84,51 +84,6 @@ let routes = [
         "_title_default": "电子商务借卖交易平台"
       },
       {
-        "path": "/pandora/accesslog",
-        "exact": true,
-        "component": require('../pandora/accesslog/index.js').default,
-        "title": "统一埋点平台 | 日志明细",
-        "Routes": [require('../../../node_modules/umi-plugin-react/lib/plugins/title/TitleWrapper.js').default],
-        "_title": "统一埋点平台 | 日志明细",
-        "_title_default": "电子商务借卖交易平台"
-      },
-      {
-        "path": "/pandora/accesslog/search",
-        "exact": true,
-        "component": require('../pandora/accesslog/search.js').default,
-        "title": "统一埋点平台 | 日志明细",
-        "Routes": [require('../../../node_modules/umi-plugin-react/lib/plugins/title/TitleWrapper.js').default],
-        "_title": "统一埋点平台 | 日志明细",
-        "_title_default": "电子商务借卖交易平台"
-      },
-      {
-        "path": "/pandora/appauth",
-        "exact": true,
-        "component": require('../pandora/appauth/index.js').default,
-        "title": "统一埋点平台 | 项目管理",
-        "Routes": [require('../../../node_modules/umi-plugin-react/lib/plugins/title/TitleWrapper.js').default],
-        "_title": "统一埋点平台 | 项目管理",
-        "_title_default": "电子商务借卖交易平台"
-      },
-      {
-        "path": "/pandora/burypoint",
-        "exact": true,
-        "component": require('../pandora/burypoint/index.js').default,
-        "title": "统一埋点平台 | 埋点配置",
-        "Routes": [require('../../../node_modules/umi-plugin-react/lib/plugins/title/TitleWrapper.js').default],
-        "_title": "统一埋点平台 | 埋点配置",
-        "_title_default": "电子商务借卖交易平台"
-      },
-      {
-        "path": "/pandora/userprint",
-        "exact": true,
-        "component": require('../pandora/userprint/index.js').default,
-        "title": "统一埋点平台 | 用户登录",
-        "Routes": [require('../../../node_modules/umi-plugin-react/lib/plugins/title/TitleWrapper.js').default],
-        "_title": "统一埋点平台 | 用户登录",
-        "_title_default": "电子商务借卖交易平台"
-      },
-      {
         "component": () => React.createElement(require('/Users/wuer/WorkSpace/IdeaWorkspace/lissandra/lissandra-web/src/main/resources/front/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false }),
         "_title": "电子商务借卖交易平台",
         "_title_default": "电子商务借卖交易平台"

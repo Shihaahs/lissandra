@@ -7,7 +7,6 @@ import com.shi.lissandra.common.request.PageRequestDTO;
 import com.shi.lissandra.dal.domain.User;
 import com.shi.lissandra.dal.domain.WalletOrder;
 import com.shi.lissandra.service.core.AdminService;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +32,6 @@ public class AdminController {
     private AdminService adminService;
 
 
-    @ApiOperation(value = "管理员-注册审核列表", notes = "根据条件分页参数查询")
     @RequestMapping(value = ADMIN_LIST_CHECK_REGISTER, method = RequestMethod.POST)
     public APIResult<PageResult<User>> findAdminAllRegisterCheck(@RequestBody PageRequestDTO pageRequestDTO) {
         try {
@@ -45,7 +43,6 @@ public class AdminController {
     }
 
 
-    @ApiOperation(value = "管理员-钱包审核列表", notes = "根据条件分页参数查询")
     @RequestMapping(value = ADMIN_LIST_CHECK_WALLET_ORDER, method = RequestMethod.POST)
     public APIResult<PageResult<WalletOrder>> findAdminAllWalletOrder(@RequestBody PageRequestDTO pageRequestDTO) {
         try {
@@ -56,7 +53,6 @@ public class AdminController {
         return APIResult.error(GlobalErrorCode.FAILURE.getCode(),GlobalErrorCode.FAILURE.getMessage());
     }
 
-    @ApiOperation(value = "管理员-注册审核操作", notes = "根据传入的操作值")
     @RequestMapping(value = ADMIN_IS_APPROVAL_REGISTER, method = RequestMethod.POST)
     public APIResult isApprovalRegisterCheck(@RequestBody User user) {
         try {
@@ -68,7 +64,6 @@ public class AdminController {
     }
 
 
-    @ApiOperation(value = "管理员-钱包审核操作", notes = "根据传入的操作值")
     @RequestMapping(value = ADMIN_UPDATE_WALLET_ORDER_STATE, method = RequestMethod.POST)
     public APIResult updateAdminWalletOrderState(@RequestBody WalletOrder walletOrder) {
         try {

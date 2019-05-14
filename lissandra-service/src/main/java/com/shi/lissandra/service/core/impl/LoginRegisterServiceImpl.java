@@ -6,7 +6,6 @@ import com.shi.lissandra.dal.domain.User;
 import com.shi.lissandra.dal.manager.UserManager;
 import com.shi.lissandra.service.core.LoginRegisterService;
 import com.shi.lissandra.service.core.MVOService;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -106,7 +106,7 @@ export default class GlobalHeader extends PureComponent {
                         localStorage.setItem("currentUser", JSON.stringify(user));
                     } else {
                         msg.error("当前用户未登录");
-                        location.href = "http://127.0.0.1:8099/api/to/login";
+                        location.href = "http://localhost:8099/api/to/login";
                     }
                 });
         }

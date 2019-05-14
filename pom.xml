@@ -18,8 +18,8 @@
     <modules>
         <module>lissandra-dal</module>
         <module>lissandra-common</module>
-        <module>lissandra-test</module>
         <module>lissandra-service</module>
+        <module>lissandra-web</module>
     </modules>
 
     <properties>
@@ -59,22 +59,6 @@
             <version>2.3</version>
         </dependency>
 
-        <!-- swagger2 support -->
-        <dependency>
-            <groupId>com.spring4all</groupId>
-            <artifactId>swagger-spring-boot-starter</artifactId>
-            <version>1.7.1.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.0</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.0</version>
-        </dependency>
 
         <!-- JSON支持 -->
         <dependency>

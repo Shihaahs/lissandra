@@ -7,7 +7,6 @@ import com.shi.lissandra.common.request.PageRequestDTO;
 import com.shi.lissandra.dal.domain.Product;
 import com.shi.lissandra.dal.domain.ProductOrder;
 import com.shi.lissandra.service.core.MVOService;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,7 +35,6 @@ public class MVOController {
     @Autowired
     private MVOService mvoService;
 
-    @ApiOperation(value = "品牌商-订单列表", notes = "根据条件分页参数查询")
     @RequestMapping(value = MVO_LIST_ORDER_BY_PAGE, method = RequestMethod.POST)
     public APIResult<PageResult<ProductOrder>> getAllMVOOrderByPage(@RequestBody PageRequestDTO pageRequestDTO) {
         try {
@@ -48,7 +46,6 @@ public class MVOController {
 
     }
 
-    @ApiOperation(value = "品牌商-商品列表", notes = "根据条件分页参数查询")
     @RequestMapping(value = MVO_LIST_PRODUCT_BY_PAGE, method = RequestMethod.POST)
     public APIResult<PageResult<Product>> getAllMVOProductByPage(@RequestBody PageRequestDTO pageRequestDTO) {
         try {
@@ -60,7 +57,6 @@ public class MVOController {
 
     }
 
-    @ApiOperation(value = "品牌商-录入商品", notes = "录入商品信息")
     @RequestMapping(value = MVO_ADD_PRODUCT, method = RequestMethod.POST)
     public APIResult addMVOProduct(@RequestBody Product product) {
         try {
@@ -70,7 +66,6 @@ public class MVOController {
         }
         return APIResult.error(GlobalErrorCode.FAILURE.getCode(),GlobalErrorCode.FAILURE.getMessage());
     }
-    @ApiOperation(value = "品牌商-删除商品", notes = "根据商品id进行逻辑删除")
     @RequestMapping(value = MVO_DELETE_PRODUCT_BY_ID, method = RequestMethod.POST)
     public APIResult deleteMVOProductById(@RequestBody Product product) {
         try {
@@ -80,7 +75,6 @@ public class MVOController {
         }
         return APIResult.error(GlobalErrorCode.FAILURE.getCode(),GlobalErrorCode.FAILURE.getMessage());
     }
-    @ApiOperation(value = "品牌商-修改商品信息", notes = "根据id修改商品信息")
     @RequestMapping(value = MVO_UPDATE_PRODUCT_INFO_BY_ID, method = RequestMethod.POST)
     public APIResult updateMVOProductInfoById(@RequestBody Product product) {
         try {
@@ -90,7 +84,6 @@ public class MVOController {
         }
         return APIResult.error(GlobalErrorCode.FAILURE.getCode(),GlobalErrorCode.FAILURE.getMessage());
     }
-    @ApiOperation(value = "品牌商-修改商品是否上架", notes = "修改商品是否上架，0-未上架，1-已上架")
     @RequestMapping(value = MVO_UPDATE_PRODUCT_IS_SHELF_BY_ID, method = RequestMethod.POST)
     public APIResult updateMVOProductIsShelfById(@RequestBody Product product) {
         try {

@@ -5,7 +5,6 @@ import com.shi.lissandra.dal.domain.User;
 import com.shi.lissandra.dal.manager.UserManager;
 import com.shi.lissandra.service.core.LoginRegisterService;
 import com.shi.lissandra.web.security.token.TokenHelper;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,11 +40,8 @@ public class LoginRegisterController {
     private TokenHelper tokenHelper;
     @Autowired
     private LoginRegisterService loginRegisterService;
-    @Autowired
-    private UserManager userManager;
 
 
-    @ApiOperation(value = "登录", notes = "登录")
     @ResponseBody
     @RequestMapping(value = LISSANDRA_LOGIN, method = RequestMethod.POST)
     public APIResult login(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
@@ -68,7 +64,6 @@ public class LoginRegisterController {
         return APIResult.error(LOGIN_FAILURE.getCode(), LOGIN_FAILURE.getMessage());
     }
 
-    @ApiOperation(value = "登出", notes = "登出")
     @ResponseBody
     @RequestMapping(value = LISSANDRA_LOGOUT, method = RequestMethod.POST)
     public APIResult logout(HttpServletRequest request) {
@@ -87,7 +82,6 @@ public class LoginRegisterController {
     }
 
 
-    @ApiOperation(value = "注册", notes = "注册")
     @ResponseBody
     @RequestMapping(value = LISSANDRA_REGISTRE, method = RequestMethod.POST)
     public APIResult register(@RequestBody User user) {
@@ -111,7 +105,6 @@ public class LoginRegisterController {
     }
 
 
-    @ApiOperation(value = "获取登录人", notes = "获取登录人")
     @ResponseBody
     @RequestMapping(value = PUBLIC_FIND_USER, method = RequestMethod.POST)
     public APIResult<User> getCurrentLoginUser(HttpServletRequest request) {
@@ -126,14 +119,23 @@ public class LoginRegisterController {
 
     @RequestMapping(value = TO_LOGIN, method = RequestMethod.GET)
     public String toLogin() {
-        return "login";
+        return "redirect:../../login/login.html";
     }
 
     @RequestMapping(value = TO_INDEX, method = RequestMethod.GET)
-    public ModelAndView toIndex() {
-        return new ModelAndView(new RedirectView("http://127.0.0.1:8000"));
+    public String toIndex() {
+        return "index";
     }
 
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String toLoginWithNone() {
+        return "redirect:/login/login.html";
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String toLoginWithNoneParam() {
+        return "redirect:login/login.html";
+    }
 
 
 }

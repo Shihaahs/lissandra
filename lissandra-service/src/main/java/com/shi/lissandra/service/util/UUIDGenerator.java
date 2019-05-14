@@ -26,6 +26,7 @@ public class UUIDGenerator {
         return UUID.randomUUID().toString()+UUID.randomUUID().toString();
     }
 
+    //测试
     public static void main(String[] args) {
         System.out.println(getUUID(4));
     }

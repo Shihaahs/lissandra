@@ -8,7 +8,6 @@ import com.shi.lissandra.dal.domain.Product;
 import com.shi.lissandra.dal.domain.Wallet;
 import com.shi.lissandra.dal.domain.WalletOrder;
 import com.shi.lissandra.service.core.BVOService;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,7 +38,6 @@ public class BVOController {
     @Autowired
     private BVOService bvoService;
 
-    @ApiOperation(value = "借卖方-商品列表", notes = "根据条件分页参数查询")
     @RequestMapping(value = BVO_LIST_PRODUCT_BY_PAGE, method = RequestMethod.POST)
     public APIResult<PageResult<Product>> getAllBVOProductByPage(@RequestBody PageRequestDTO pageRequestDTO) {
         try {
@@ -51,7 +49,6 @@ public class BVOController {
     }
 
 
-    @ApiOperation(value = "借卖方-钱包管理", notes = "根据条件分页参数查询")
     @RequestMapping(value = BVO_LIST_WALLET_ORDER_BY_USER, method = RequestMethod.POST)
     public APIResult<PageResult<WalletOrder>> getAllBVOWalletOrderByUser(@RequestBody PageRequestDTO pageRequestDTO) {
         try {
@@ -62,7 +59,6 @@ public class BVOController {
         return APIResult.error(FAILURE.getCode(), FAILURE.getMessage());
     }
 
-    @ApiOperation(value = "借卖方-获取钱包余额", notes = "根据当前登录用户id查询")
     @RequestMapping(value = BVO_GET_WALLET_BALANCE_BY_USER, method = RequestMethod.POST)
     public APIResult<Wallet> getBVOWalletBalanceByUser(@RequestBody Wallet wallet) {
         try {
@@ -73,7 +69,6 @@ public class BVOController {
         return APIResult.error(FAILURE.getCode(), FAILURE.getMessage());
     }
 
-    @ApiOperation(value = "借卖方-钱包充值", notes = "根据当前登录用户id进行操作")
     @RequestMapping(value = BVO_WALLET_ORDER_RECHARGE, method = RequestMethod.POST)
     public APIResult rechargeBVOWalletOrder(@RequestBody WalletOrder walletOrder) {
         try {
@@ -84,7 +79,6 @@ public class BVOController {
         return APIResult.error(FAILURE.getCode(), FAILURE.getMessage());
     }
 
-    @ApiOperation(value = "借卖方-钱包提现", notes = "根据当前登录用户id进行操作")
     @RequestMapping(value = BVO_WALLET_ORDER_WITHDRAW, method = RequestMethod.POST)
     public APIResult withdrawBVOWalletOrder(@RequestBody WalletOrder walletOrder) {
         try {

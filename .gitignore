@@ -1,8 +1,9 @@
 ### IntelliJ IDEA ###
-/.idea/
-.idea/
+/.idea/**
+.idea/**
 
 **/target/
+/target/**
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###

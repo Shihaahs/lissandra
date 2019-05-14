@@ -5,45 +5,33 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.shi.lissandra.common.enums.ErrorCode;
 import com.shi.lissandra.common.enums.GlobalErrorCode;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 
 import java.beans.ConstructorProperties;
 import java.io.Serializable;
 
-@ApiModel(
-        description = "响应结果"
-)
+
 public class APIResult<T> implements Serializable {
 
-    @ApiModelProperty("调用是否成功")
     @JSONField(
             ordinal = 1
     )
     private boolean success;
-    @ApiModelProperty(
-            value = "状态码",
-            required = true
-    )
+
     @JSONField(
             ordinal = 2
     )
     private String code;
-    @ApiModelProperty("调用结果消息")
+
     @JSONField(
             ordinal = 3
     )
     private String message;
-    @ApiModelProperty("成功时响应数据")
+
     @JSONField(
             ordinal = 4
     )
     private T data;
-    @ApiModelProperty(
-            value = "时间戳",
-            required = true,
-            dataType = "Long"
-    )
+
     @JSONField(
             ordinal = 5
     )
