@@ -122,11 +122,6 @@ public class LoginRegisterController {
         return "redirect:../../login/login.html";
     }
 
-    @RequestMapping(value = TO_INDEX, method = RequestMethod.GET)
-    public String toIndex() {
-        return "index";
-    }
-
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String toLoginWithNone() {
         return "redirect:/login/login.html";
@@ -135,6 +130,11 @@ public class LoginRegisterController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String toLoginWithNoneParam() {
         return "redirect:login/login.html";
+    }
+
+    @RequestMapping(value = TO_INDEX, method = RequestMethod.GET)
+    public String toIndex() {
+        return "index";
     }
 
 

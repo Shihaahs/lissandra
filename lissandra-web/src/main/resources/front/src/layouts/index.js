@@ -88,7 +88,9 @@ class BasicLayout extends Component {
                     }
                 } else {
                     msg.error("当前用户未登录");
-                    location.href = "http://localhost:8099/api/to/login";
+                    var loginURL = "http://" + location.hostname + ":8099/api/to/login";
+                    console.log(loginURL);
+                    location.href = loginURL;
                 }
             });
 

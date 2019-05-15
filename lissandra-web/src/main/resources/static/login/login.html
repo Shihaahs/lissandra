@@ -37,11 +37,12 @@
                     <!--登录模块-->
                     <div class="login_module" id="login_module">
                         <div class="content">
-                            <div class="input-group form-group-no-border input-lg" >
+                            <div class="input-group form-group-no-border input-lg">
                                 <span class="input-group-addon">
                                     <i class="now-ui-icons users_circle-08"></i>
                                 </span>
-                                <input type="text" id="loginPhone" class="form-control" placeholder="Phone Number" minlength="11"
+                                <input type="text" id="loginPhone" class="form-control" placeholder="Phone Number"
+                                       minlength="11"
                                        maxlength="11" autocomplete="off"
                                        onkeyup="this.value=this.value.replace(/\D/g,'')"
                                        onafterpaste="this.value=this.value.replace(/\D/g,'')"
@@ -55,7 +56,8 @@
                             </div>
                         </div>
                         <div class="footer text-center">
-                            <a href="#" class="btn btn-primary btn-round btn-lg btn-block" onclick="toLogin()">Enter System</a>
+                            <a href="#" class="btn btn-primary btn-round btn-lg btn-block" onclick="toLogin()">Enter
+                                System</a>
                         </div>
                         <div class="pull-left">
                             <h6>
@@ -81,7 +83,9 @@
                                 </span>
                                 <select id="registerPermission" class="form-control" style="width: 320px; height: 46px;border-radius: 0;
                                     -webkit-border-radius: 0;-webkit-appearance: button; border-top-right-radius: 30px; border-bottom-right-radius: 30px;">
-                                    <option disabled="disabled" selected="selected" hidden="hidden" value="9">Register Role</option>
+                                    <option disabled="disabled" selected="selected" hidden="hidden" value="9">Register
+                                        Role
+                                    </option>
                                     <option value="0">管理员</option>
                                     <option value="1">品牌商</option>
                                     <option value="2">借卖方</option>
@@ -113,7 +117,8 @@
                             </div>
                         </div>
                         <div class="footer text-center">
-                            <a href="#" class="btn btn-primary btn-round btn-lg btn-block" id="submit" onclick="toRegister()">
+                            <a href="#" class="btn btn-primary btn-round btn-lg btn-block" id="submit"
+                               onclick="toRegister()">
                                 Register </a>
                         </div>
                         <div class="pull-left">
@@ -209,7 +214,7 @@
     function toLogin() {
         const phone = $("#loginPhone").val();
         const pwd = $("#loginPassword").val();
-        login(phone,pwd);
+        login(phone, pwd);
     }
 
     function toRegister() {
@@ -218,7 +223,7 @@
         const permission = $("#registerPermission").val();
         const phone = $("#registerPhone").val();
         const pwd = $("#firstPassword").val();
-        register(name,permission,phone,pwd);
+        register(name, permission, phone, pwd);
     }
 
     function login(phone, password) {
@@ -243,7 +248,7 @@
                 }
             },
             error: function (data) {
-                alert("登录失败！ "+ data.message);
+                alert("登录失败！ " + data.message);
             }
 
         })
@@ -273,6 +278,14 @@
 
         })
     }
+
+
+    //键盘回车 - 登录
+    $(document).keyup(function (event) {
+        if (event.keyCode === 13) {
+            toLogin();
+        }
+    });
 
 </script>
 

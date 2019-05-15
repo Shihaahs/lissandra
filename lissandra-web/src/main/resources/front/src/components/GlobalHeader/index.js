@@ -80,7 +80,9 @@ export default class GlobalHeader extends PureComponent {
                 .then(json => {
                     if ("200" === json.code) {
                         localStorage.removeItem("currentUser");
-                        location.href = "http://127.0.0.1:8099/api/to/login";
+                        var loginURL = "http://" + location.hostname + ":8099/api/to/login";
+                        console.log(loginURL);
+                        location.href = loginURL;
                     } else {
                         msg.error("登出失败");
                     }
@@ -106,7 +108,9 @@ export default class GlobalHeader extends PureComponent {
                         localStorage.setItem("currentUser", JSON.stringify(user));
                     } else {
                         msg.error("当前用户未登录");
-                        location.href = "http://localhost:8099/api/to/login";
+                        var loginURL = "http://" + location.hostname + ":8099/api/to/login";
+                        console.log(loginURL);
+                        location.href = loginURL;
                     }
                 });
         }
