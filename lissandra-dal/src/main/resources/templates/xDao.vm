@@ -1,9 +1,0 @@
-package ${package.Mapper};
-
-import ${package.Entity}.${entity};
-import com.shi.lissandra.common.base.BaseDao;
-
-
-public interface ${entity}Dao extends BaseDao<${entity}> {
-
-}
