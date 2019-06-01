@@ -28,6 +28,10 @@ public class LissandraURL {
     public static final String ADMIN_LIST_CHECK_WALLET_ORDER = "/api/admin/list/check/walletOrder.json";
     public static final String ADMIN_UPDATE_WALLET_ORDER_STATE = "/api/admin/update/walletOrderState.json";
 
+    /**
+     * 管理员接口 - 业务统一生成报表
+     */
+    public static final String ADMIN_GET_BUSINESS_REPORT = "/api/admin/getBusinessReport.json";
 
 
     public static final String TO_LOGIN = "/api/to/login";

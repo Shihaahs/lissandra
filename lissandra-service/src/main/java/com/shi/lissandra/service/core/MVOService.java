@@ -2,6 +2,7 @@ package com.shi.lissandra.service.core;
 
 import com.shi.lissandra.common.page.PageResult;
 import com.shi.lissandra.common.request.PageRequestDTO;
+import com.shi.lissandra.common.vo.ProductOrderVO;
 import com.shi.lissandra.dal.domain.Product;
 import com.shi.lissandra.dal.domain.ProductOrder;
 
@@ -17,7 +18,7 @@ public interface MVOService {
      * @since V1.0.0-SNAPSHOT
      *
      */
-    PageResult<ProductOrder> findMVOAllOrder(PageRequestDTO pageRequestDTO);
+    PageResult<ProductOrderVO> findMVOAllOrder(PageRequestDTO pageRequestDTO);
 
     /**
      * <p> 获取品牌商-商品信息 </p>

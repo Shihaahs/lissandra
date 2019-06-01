@@ -3,13 +3,18 @@ package com.shi.lissandra.service.core.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.google.common.collect.Lists;
 import com.shi.lissandra.common.page.PageResult;
 import com.shi.lissandra.common.request.PageRequestDTO;
+import com.shi.lissandra.common.vo.ProductOrderVO;
+import com.shi.lissandra.common.vo.ProductVO;
 import com.shi.lissandra.dal.domain.Product;
 import com.shi.lissandra.dal.domain.ProductOrder;
+import com.shi.lissandra.dal.domain.ProductOrderRef;
 import com.shi.lissandra.dal.domain.WalletOrder;
 import com.shi.lissandra.dal.manager.ProductManager;
 import com.shi.lissandra.dal.manager.ProductOrderManager;
+import com.shi.lissandra.dal.manager.ProductOrderRefManager;
 import com.shi.lissandra.service.core.MVOService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +24,10 @@ import org.springframework.util.Assert;
 import static com.shi.lissandra.service.page.PageQuery.*;
 import static java.util.stream.Collectors.toList;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * All rights Reserved, Designed By www.maihaoche.com
@@ -41,28 +49,66 @@ public class MVOServiceImpl implements MVOService {
     @Autowired
     private ProductOrderManager orderManager;
     @Autowired
-    private ProductOrderManager productOrderManager;
+    private ProductOrderRefManager productOrderRefManager;
+
 
     @Override
-    public PageResult<ProductOrder> findMVOAllOrder(PageRequestDTO pageRequestDTO) {
+    public PageResult<ProductOrderVO> findMVOAllOrder(PageRequestDTO pageRequestDTO) {
         Assert.notNull(pageRequestDTO, "MVOServiceImpl-findMVOAllOrder -> 分页条件参数为空");
 
         //这里多对多的逻辑做了省略
         List<Long> orderIds = orderManager.selectList(
                 new EntityWrapper<ProductOrder>()
-                        .eq("user_id", pageRequestDTO.getUserId()))
+                        .eq("own_id", pageRequestDTO.getUserId()))
                 .stream().map(ProductOrder::getProductOrderId).collect(toList());
         //品牌商只能看到自己的订单
         Wrapper<ProductOrder> wrapper = conditionAdapter(pageRequestDTO);
-        wrapper.in("order_id", orderIds);
-        Page<ProductOrder> productOrderPage = productOrderManager.selectPage(
+        wrapper.in("product_order_id", orderIds);
+        Page<ProductOrder> productOrderPage = orderManager.selectPage(
                 initPage(pageRequestDTO),
                 wrapper);
 
+        List<Long> productOrderIds = Lists.transform(productOrderPage.getRecords(), ProductOrder::getProductOrderId);
+        List<ProductOrderVO> productOrderVOList = new ArrayList<>();
+        List<ProductOrderRef> productOrderRefList = productOrderRefManager.selectList(new EntityWrapper<ProductOrderRef>()
+                .in("product_order_id", productOrderIds));
+        Map<Long, List<ProductOrderRef>> productOrderMap = productOrderRefList
+                .stream()
+                .collect(Collectors.groupingBy(ProductOrderRef::getProductOrderId));
+
+        List<Long> productIds = Lists.transform(productOrderRefList, ProductOrderRef::getProductId);
+        Map<Long, Product> productMap = productManager.selectList(new EntityWrapper<Product>().in("product_id", productIds))
+                .stream().collect(Collectors.toMap(Product::getProductId, x -> x));
+        productOrderPage.getRecords().forEach( productOrder -> {
+            List<ProductVO> productVOList = new ArrayList<>();
+            List<ProductOrderRef> productOrderRefs = productOrderMap.get(productOrder.getProductOrderId());
+
+            ProductOrderVO productOrderVO = new ProductOrderVO();
+            productOrderVO.setUserName(productOrder.getUserName());
+            productOrderVO.setGmtModified(productOrder.getGmtModified());
+            productOrderVO.setProductOrderId(productOrder.getProductOrderId());
+            productOrderVO.setProductOrderNo(productOrder.getProductOrderNo());
+            productOrderVO.setSendInformation(productOrder.getSendInformation());
+            productOrderVO.setProductCount(Integer.valueOf(productOrderRefs.size()).toString());
+
+            productOrderRefs.forEach(productOrderRef -> {
+                ProductVO productVO = new ProductVO();
+                Product product = productMap.get(productOrderRef.getProductId());
+                productVO.setProductId(product.getProductId());
+                productVO.setProductName(product.getProductName());
+                productVO.setProductPrice(product.getProductPrice().toString());
+                productVO.setProductQuantity(productOrderRef.getProductQuantity());
+                productVOList.add(productVO);
+            });
+            productOrderVO.setProductList(productVOList);
+            productOrderVOList.add(productOrderVO);
+        });
+
+
         return new PageResult<>(pageRequestDTO.getPageSize(),
                 pageRequestDTO.getPageCurrent(),
-                (int) productOrderPage.getTotal(),
-                productOrderPage.getRecords());
+                productOrderVOList.size(),
+                productOrderVOList);
     }
 
     @Override

@@ -1,6 +1,7 @@
 import TyAPI from '../../../../../utils/TyAPI'
 
 export default {
+
     list({
              productOrderId,
              productId,

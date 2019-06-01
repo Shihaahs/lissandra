@@ -34,7 +34,7 @@ export default {
             },
             rechargeAndWithdrawCheck: {
                 check: 'admin/rechargeAndWithdrawCheck/check',
-                update: 'admin/rechargeAndWithdrawCheck/update'
+                update: 'admin/rechargeAndWithdrawCheck/update',
             },
         },
 

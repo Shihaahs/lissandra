@@ -4,6 +4,7 @@ import com.shi.lissandra.common.entity.APIResult;
 import com.shi.lissandra.common.enums.GlobalErrorCode;
 import com.shi.lissandra.common.page.PageResult;
 import com.shi.lissandra.common.request.PageRequestDTO;
+import com.shi.lissandra.common.vo.ProductOrderVO;
 import com.shi.lissandra.dal.domain.Product;
 import com.shi.lissandra.dal.domain.ProductOrder;
 import com.shi.lissandra.service.core.MVOService;
@@ -36,11 +37,11 @@ public class MVOController {
     private MVOService mvoService;
 
     @RequestMapping(value = MVO_LIST_ORDER_BY_PAGE, method = RequestMethod.POST)
-    public APIResult<PageResult<ProductOrder>> getAllMVOOrderByPage(@RequestBody PageRequestDTO pageRequestDTO) {
+    public APIResult<PageResult<ProductOrderVO>> getAllMVOOrderByPage(@RequestBody PageRequestDTO pageRequestDTO) {
         try {
             return APIResult.ok(mvoService.findMVOAllOrder(pageRequestDTO));
         } catch (Exception e) {
-            log.error("MVOController-getAllMVOProductByPage -> 出现异常:" + e.getMessage());
+            log.error("MVOController-getAllMVOOrderByPage -> 出现异常:" + e.getMessage());
         }
         return APIResult.error(GlobalErrorCode.FAILURE.getCode(),GlobalErrorCode.FAILURE.getMessage());
 

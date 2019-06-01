@@ -184,7 +184,7 @@
 
         if (phone.length !== 11) {
             $("#submit").attr("disabled", "true");
-            $("#submit").html("Phone Too Short");
+            $("#submit").html("Phone Error");
             $("#submit").attr("style", "background-color: gray");
         } else if (pwd === cpwd) {
             $("#submit").removeAttr("disabled");
@@ -223,6 +223,11 @@
         const permission = $("#registerPermission").val();
         const phone = $("#registerPhone").val();
         const pwd = $("#firstPassword").val();
+        console.log(name);
+        if (name === '' || permission === '' || phone === '' || pwd === '') {
+            alert("必须填写所有信息");
+            return;
+        }
         register(name, permission, phone, pwd);
     }
 
@@ -240,10 +245,14 @@
             dataType: "json",
             contentType: "application/json;charset=utf-8",
             success: function (data) {
+
                 if ("OK" === data.data) {
                     window.location.href = "../index.html";
                 } else if ("1000" === data.code) {
                     alert("账号或密码错误！ ");
+                    return false;
+                }else if ("1004" === data.code) {
+                    alert("用户信息等待管理员审核！ ");
                     return false;
                 }
             },
@@ -270,7 +279,17 @@
             dataType: "json",
             contentType: "application/json;charset=utf-8",
             success: function (data) {
-                location.href = "../login/login.html";
+                if ("200" === data.code) {
+                    alert("注册成功");
+                    location.href = "../login/login.html";
+                } else if ("1003" === data.code) {
+                    alert("手机号已存在！");
+                    return false;
+                }else if ("1002" === data.code) {
+                    alert("注册失败，未检测到手机号！");
+                    return false;
+                }
+
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("请求失败！" + errorThrown);

@@ -24,14 +24,51 @@ export default {
             startTime: '',
             endTime: '',
             productName: '',
-        }
+            userId:'',
+        },
+        showModal: {
+            visible: false,
+            confirmLoading: false,
+            data: {
+                showDataSource: []
+            }
+        },
+        show: {
+            showDataSource : [],
+        },
     },
     effects: {
+        * show(
+            {
+                payload: {
+                    showDataSource: showDataSource
+                }
+            },
+            {call, put, select}
+        ) {
+            yield put({
+                type: 'setShowDataSource',
+                payload: {
+                    show: {
+                        showDataSource: showDataSource
+                    }
+                }
+            });
+            yield put({
+                type: 'showShowModal'
+            });
+        },
 
         * getTableList({payload: {pageCurrent = 1, pageSize = 10, addition = {}}}, {call, put}) {
+            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+            if (!currentUser.userId) {
+                console.log("reload page");
+                parent.location.reload();
+            }
+            addition.userId = currentUser.userId;
             const {success, data, message} = yield call(service.list, Object.assign({
                 pageCurrent, pageSize
-            }, addition))
+            }, addition));
             if (success && success.toString() === 'true') {
                 yield put({
                     type: 'showTable',
@@ -157,6 +194,53 @@ export default {
                 },
                 addition: {
                     ...addition
+                }
+            }
+        },
+        hideShowModal(state) {
+            return {
+                ...state,
+                showModal: {
+                    ...state.showModal,
+                    visible: false
+                }
+            }
+        },
+        startShowModalConfirmLoading(state) {
+            return {
+                ...state,
+                showModal: {
+                    ...state.showModal,
+                    confirmLoading: true
+                }
+            }
+        },
+        stopShowModalConfirmLoading(state) {
+            return {
+                ...state,
+                showModal: {
+                    ...state.showModal,
+                    confirmLoading: false
+                }
+            }
+        },
+        showShowModal(state) {
+            return {
+                ...state,
+                showModal: {
+                    ...state.showModal,
+                    visible: true,
+                    confirmLoading: false,
+                }
+
+            }
+        },
+        setShowDataSource(state, {payload: {show: {showDataSource}}}) {
+            return {
+                ...state,
+                show: {
+                    ...state.show,
+                    showDataSource
                 }
             }
         },

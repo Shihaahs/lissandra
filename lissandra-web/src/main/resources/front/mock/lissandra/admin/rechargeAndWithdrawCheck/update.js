@@ -1,5 +1,5 @@
 export default {
-  '/mock/lissandra/mvo/rechargeAndWithdrawCheck/check': (req, res, next) => {
+  '/mock/lissandra/admin/rechargeAndWithdrawCheck/check': (req, res, next) => {
     setTimeout(() => {
       if (Math.ceil(Math.random() * 10) % 10 === 4) {
         res.json({

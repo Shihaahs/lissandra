@@ -1,10 +1,10 @@
-/**  
+/** 
  * All rights Reserved, Designed By www.maihaoche.com
- * 
+ *
  * @Package com.mhc.pandora.core.base.config
  * @author: 三帝（sandi@maihaoche.com）
  * @date: 2018-12-18 11:00:45
- * @Copyright: 2017-2020 www.maihaoche.com Inc. All rights reserved. 
+ * @Copyright: 2017-2020 www.maihaoche.com Inc. All rights reserved.
  * 注意：本内容仅限于卖好车内部传阅，禁止外泄以及用于其他的商业目
  */
 package com.shi.lissandra.web.config;
@@ -18,13 +18,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**   
- * <p> MyBatis-Plus 配置 </p>
- *   
- * @author: 三帝（sandi@maihaoche.com） 
- * @date: 2018-12-18 11:00:45   
- * @since V1.0 
- */
+
 @Configuration
 @MapperScan("com.shi.lissandra.dal.dao*")
 public class MybatisPlusConfig {
@@ -48,16 +42,16 @@ public class MybatisPlusConfig {
 		return paginationInterceptor;
 	}
 
-	/**    
+	/**  
 	 * <p> 乐观锁插件配置 </p>
-	 *  
-	 * @return 
+	 * 
+	 * @return
 	 */
 	@Bean
 	public OptimisticLockerInterceptor optimisticLockerInterceptor() {
 		return new OptimisticLockerInterceptor();
 	}
-	
+
 	/**
      * 注入sql注入器
      */

@@ -2,64 +2,41 @@ package com.shi.lissandra.dal.domain;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableLogic;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
-import com.baomidou.mybatisplus.annotations.*;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Date;
-
-import com.baomidou.mybatisplus.annotations.Version;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.shi.lissandra.common.base.BaseModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
-import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName("product_order")
-public class ProductOrder extends BaseModel {
+@TableName("product_order_ref")
+public class ProductOrderRef extends BaseModel {
 
     private static final long serialVersionUID = 1L;
     /**
      * 产品订单id，主键，自增长
      */
-    @TableId(value = "product_order_id", type = IdType.AUTO)
-    private Long productOrderId;
+    @TableId(value = "product_order_ref_id", type = IdType.AUTO)
+    private Long productOrderRefId;
     /**
-     * 产品id集合
+     * 产品订单集合
      */
-    @TableField("product_id")
-    private Long productId;
+    @TableField("product_order_id")
+    private Long productOrderId;
     /**
      * 订单编号
      */
-    @TableField("product_order_no")
-    private String productOrderNo;
-    /**
-     * 下单人id
-     */
-    @TableField("user_id")
-    private Long userId;
-    /**
-     * 接单人id
-     */
-    @TableField("own_id")
-    private Long ownId;
-    /**
-     * 下单人姓名
-     */
-    @TableField("user_name")
-    private String userName;
-    /**
-     * 寄送信息
-     */
-    @TableField("send_information")
-    private String sendInformation;
+    @TableField("product_id")
+    private Long productId;
+
+    @TableField("product_quantity")
+    private String productQuantity;
+
     /**
      * 逻辑删除，0-存在，1-已被删除
      */

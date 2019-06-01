@@ -8,6 +8,7 @@ import PageContainer from '../../../../components/PageContainer'
 import BrLine from '../../../../components/BrLine'
 import TyHistory from '../../../../utils/TyHistory'
 import SearchForm from "./components/SearchForm";
+import AddForm from "../orderManage/components/AddForm";
 
 
 class OrderManage extends PureComponent {
@@ -30,8 +31,13 @@ class OrderManage extends PureComponent {
             dataIndex: 'userName',
             render: (text, record) => text || '-'
         }, {
-            title: '订单商品',
-            dataIndex: 'productId',
+            title: '订单商品数量',
+            dataIndex: 'productCount',
+            render:  (text, record) =>
+                <a onClick={this.showProduct.bind(this,record.productList)}>{text}</a>,
+        }, {
+            title: '订单备注',
+            dataIndex: 'sendInformation',
             render: (text, record) => text || '-'
         }, {
             title: '订单时间',
@@ -99,6 +105,20 @@ class OrderManage extends PureComponent {
                         />
                     </Fragment>}
                 />}
+                <Modal
+                    title="订单详情"
+                    okText="确定"
+                    onOk={this.onShowModalOk.bind(this)}
+                    cancelText="取消"
+                    onCancel={this.onShowModalCancel.bind(this)}
+                    confirmLoading={this.props.showModalConfirmLoading}
+                    visible={this.props.showModalVisible}
+                >
+                    <AddForm
+                        transferFormRef={this.transferShowFormRef.bind(this)}
+                        showDataSource={this.props.showDataSource}
+                    />
+                </Modal>
             </div>
         )
     }
@@ -106,6 +126,10 @@ class OrderManage extends PureComponent {
     // 获得条件搜索 form 的 ref
     transferSearchFormRef(form) {
         this.searchForm = form
+    }
+    // 获得修改搜索 form 的 ref
+    transferShowFormRef(form) {
+        this.showForm = form
     }
 
     // 搜索提交
@@ -141,7 +165,7 @@ class OrderManage extends PureComponent {
 
     // 分页跳转
     onTablePageNumChange(pageCurrent, pageSize) {
-        console.log("pageCurrent" + pageCurrent)
+        console.log("pageCurrent" + pageCurrent);
         this.loadTableDataSource({
             pageCurrent, pageSize
         })
@@ -156,7 +180,43 @@ class OrderManage extends PureComponent {
             }
         })
     }
+    // 修改对话框 - 取消
+    onShowModalOk() {
+        this.props.dispatch({
+            type: 'orderManage/hideShowModal'
+        })
+    }
 
+    // 修改对话框 - 取消
+    onShowModalCancel() {
+        this.props.dispatch({
+            type: 'orderManage/hideShowModal'
+        })
+    }
+
+    // 弹出
+    showProduct(showDataSource) {
+        if (this.showForm) {
+            this.showForm.showDataSource = showDataSource;
+            console.log(showDataSource)
+        } else {
+            setTimeout(() => {
+                this.showForm.showDataSource = showDataSource;
+                console.log(showDataSource)
+            }, 0)
+        }
+
+        this.props.dispatch({
+            type: 'orderManage/show',
+            payload: {
+                showDataSource
+            }
+        })
+        // this.props.dispatch({
+        //     type: 'orderManage/showShowModal'
+        // })
+
+    }
     // 载入数据
     loadTableDataSource({
                             pageCurrent = this.props.pageCurrent,
@@ -202,6 +262,10 @@ const mapStateToProps = ({orderManage}) => ({
     pageSize: orderManage.page.size,
     pageTotal: orderManage.page.total,
     pageCount: orderManage.page.count,
-    addition: orderManage.addition
+    addition: orderManage.addition,
+    showDataSource: orderManage.show.showDataSource,
+    showModalVisible: orderManage.showModal.visible,
+    showModalConfirmLoading: orderManage.showModal.confirmLoading,
+
 });
 export default connect(mapStateToProps)(OrderManage)

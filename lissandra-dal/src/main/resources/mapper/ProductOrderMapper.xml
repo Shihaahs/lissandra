@@ -5,9 +5,10 @@
         <!-- 通用查询映射结果 -->
         <resultMap id="BaseResultMap" type="com.shi.lissandra.dal.domain.ProductOrder">
                     <id column="product_order_id" property="productOrderId"/>
-                    <result column="product_ids" property="productIds"/>
-                    <result column="order_no" property="orderNo"/>
+                    <result column="product_id" property="productId"/>
+                    <result column="product_order_no" property="productOrderNo"/>
                     <result column="user_id" property="userId"/>
+                    <result column="own_id" property="ownId"/>
                     <result column="user_name" property="userName"/>
                     <result column="send_information" property="sendInformation"/>
                     <result column="is_delete" property="isDelete"/>

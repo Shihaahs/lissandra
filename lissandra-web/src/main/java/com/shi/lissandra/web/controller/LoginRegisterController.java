@@ -89,7 +89,6 @@ public class LoginRegisterController {
             log.info("register -> 用户注册失败，未检测到手机号 ");
             return APIResult.error(REGISTER_FAILURE.getCode(), REGISTER_FAILURE.getMessage());
         }
-        //后期需要对手机号进行参数校验
 
         if (loginRegisterService.checkRegister(user.getPhone())) {
             try {

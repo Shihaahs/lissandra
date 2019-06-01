@@ -35,7 +35,7 @@ export default {
             },
             rechargeAndWithdrawCheck: {
                 check: 'admin/list/check/walletOrder.json',
-                update: 'admin/update/walletOrderState.json'
+                update: 'admin/update/walletOrderState.json',
             },
         },
 

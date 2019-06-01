@@ -4,6 +4,7 @@ import com.shi.lissandra.common.page.PageResult;
 import com.shi.lissandra.common.request.PageRequestDTO;
 import com.shi.lissandra.dal.domain.User;
 import com.shi.lissandra.dal.domain.WalletOrder;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  * All rights Reserved, Designed By www.maihaoche.com
@@ -60,6 +61,14 @@ public interface AdminService {
     Integer updateAdminWalletOrderState(WalletOrder walletOrder);
 
 
+    /**
+     * <p> 生成业务报表 </p>
+     * @param pageRequestDTO 分页参数
+     * @return XSSFWorkbook excel
+     * @date 2019/4/9 16:35
+     *
+     */
+    XSSFWorkbook getBusinessReport(PageRequestDTO pageRequestDTO);
 
 
 }

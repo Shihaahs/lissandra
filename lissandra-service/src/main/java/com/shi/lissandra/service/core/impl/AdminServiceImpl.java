@@ -14,12 +14,19 @@ import com.shi.lissandra.dal.manager.UserManager;
 import com.shi.lissandra.dal.manager.WalletManager;
 import com.shi.lissandra.dal.manager.WalletOrderManager;
 import com.shi.lissandra.service.core.AdminService;
+import com.shi.lissandra.service.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
+import org.apache.poi.xssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 import static com.shi.lissandra.service.page.PageQuery.conditionAdapter;
 import static com.shi.lissandra.service.page.PageQuery.initPage;
@@ -38,6 +45,8 @@ import static com.shi.lissandra.service.page.PageQuery.initPage;
 @Slf4j
 @Service
 public class AdminServiceImpl implements AdminService {
+
+    private static final Integer COLUMN_WIDTH = 25 * 256;
 
     @Autowired
     private WalletOrderManager walletOrderManager;
@@ -146,5 +155,124 @@ public class AdminServiceImpl implements AdminService {
             log.info("Admin不通过钱包流水号: " + walletOrder.getWalletOrderNo());
         }
         return walletOrderManager.updateById(walletOrder);
+    }
+
+
+    /**
+     * 管理员接口 - 业务统一生成报表
+     */
+    @Override
+    public XSSFWorkbook getBusinessReport(PageRequestDTO pageRequestDTO) {
+
+        Wrapper<WalletOrder> wrapper = conditionAdapter(pageRequestDTO);
+        //分页条件查询
+        Page<WalletOrder> walletOrderPage = walletOrderManager.selectPage(
+                initPage(pageRequestDTO), wrapper);
+        return createExcelInfo(walletOrderPage.getRecords());
+    }
+
+
+    private XSSFWorkbook createExcelInfo(List<WalletOrder> records) {
+
+        //创建一个工作表
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        String name = DateUtil.parseToString(new Date(), "yyyy-MM-dd");
+        XSSFSheet sheet = workbook.createSheet(name);
+        //添加表头
+        XSSFRow xssfRow = sheet.createRow(0);
+
+        XSSFFont font = workbook.createFont();
+        font.setBold(true);
+        font.setFontHeight(14);
+        //表头格式
+        XSSFCellStyle headCellStyle = workbook.createCellStyle();
+        headCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+        headCellStyle.setAlignment(HorizontalAlignment.CENTER);
+        headCellStyle.setFont(font);
+        //自动换行
+        headCellStyle.setWrapText(true);
+        //数据格式
+        XSSFCellStyle cellStyle = workbook.createCellStyle();
+        cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+        //自动换行
+        cellStyle.setWrapText(true);
+        int column = 0;
+
+        //添加表头内容
+        XSSFCell headCell = xssfRow.createCell(column);
+        headCell.setCellValue("操作流水号");
+        headCell.setCellStyle(headCellStyle);
+        sheet.setColumnWidth(column, COLUMN_WIDTH);
+        column++;
+
+        headCell = xssfRow.createCell(column);
+        headCell.setCellValue("操作方式");
+        headCell.setCellStyle(headCellStyle);
+        sheet.setColumnWidth(column, COLUMN_WIDTH);
+        column++;
+
+        headCell = xssfRow.createCell(column);
+        headCell.setCellValue("操作金额(￥)");
+        headCell.setCellStyle(headCellStyle);
+        sheet.setColumnWidth(column, COLUMN_WIDTH);
+        column++;
+
+        headCell = xssfRow.createCell(column);
+        headCell.setCellValue("发起人");
+        headCell.setCellStyle(headCellStyle);
+        sheet.setColumnWidth(column, COLUMN_WIDTH);
+        column++;
+
+        headCell = xssfRow.createCell(column);
+        headCell.setCellValue("发起时间");
+        headCell.setCellStyle(headCellStyle);
+        sheet.setColumnWidth(column, COLUMN_WIDTH);
+        column++;
+
+        headCell = xssfRow.createCell(column);
+        headCell.setCellValue("审核情况");
+        headCell.setCellStyle(headCellStyle);
+        sheet.setColumnWidth(column, COLUMN_WIDTH);
+
+
+        int row = 1;
+        //填充数据
+        for (WalletOrder walletOrder : records) {
+            column = 0;
+            xssfRow = sheet.createRow(row);
+
+            XSSFCell cell = xssfRow.createCell(column);
+            cell.setCellValue(walletOrder.getWalletOrderNo());
+            cell.setCellStyle(cellStyle);
+            column++;
+
+            cell = xssfRow.createCell(column);
+            cell.setCellValue(walletOrder.getWalletOrderState() == 2 ? "充值" : "提现");
+            cell.setCellStyle(cellStyle);
+            column++;
+
+            cell = xssfRow.createCell(column);
+            cell.setCellValue(walletOrder.getWalletOrderMoney().toString());
+            cell.setCellStyle(cellStyle);
+            column++;
+
+            cell = xssfRow.createCell(column);
+            cell.setCellValue(walletOrder.getUserName());
+            cell.setCellStyle(cellStyle);
+            column++;
+
+            cell = xssfRow.createCell(column);
+            cell.setCellValue(DateUtil.parseToString(walletOrder.getGmtModified(),"yyyy-MM-dd HH:mm:ss"));
+            cell.setCellStyle(cellStyle);
+            column++;
+
+            cell = xssfRow.createCell(column);
+            cell.setCellValue(WalletOrderStateEnum.getDesc(walletOrder.getWalletOrderState()));
+            cell.setCellStyle(cellStyle);
+
+            row++;
+        }
+        return workbook;
     }
 }

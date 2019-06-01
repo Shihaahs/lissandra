@@ -1,5 +1,9 @@
 package com.shi.lissandra.common.enums;
 
+import lombok.Getter;
+
+import java.util.Arrays;
+
 /**
  * All rights Reserved, Designed By www.maihaoche.com
  *
@@ -13,18 +17,26 @@ package com.shi.lissandra.common.enums;
 
 public enum WalletOrderStateEnum {
 
-    APPROVAL(0),
-    NOT_APPROVAL(1),
-    WAIT_APPROVAL(2);
+    APPROVAL(0, "审核通过"),
+    NOT_APPROVAL(1, "审核不通过"),
+    WAIT_APPROVAL(2, "待审核");
 
+    @Getter
     private Integer code;
+    @Getter
+    private String desc;
 
-    private WalletOrderStateEnum(Integer code){
+    WalletOrderStateEnum(Integer code, String desc){
         this.code = code;
+        this.desc = desc;
     }
 
-    public Integer getCode(){
-        return this.code;
+    public static String getDesc(Integer code){
+        return Arrays.stream(values())
+                .filter(e -> e.getCode().equals(code))
+                .map(WalletOrderStateEnum::getDesc)
+                .findFirst()
+                .orElse("");
     }
 
 }

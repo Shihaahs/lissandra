@@ -2,9 +2,9 @@ import TyAPI from '../../../../../utils/TyAPI'
 
 export default {
     update({
-              walletOrderId,
-              walletOrderState,
-           } = {}) {
+                     walletOrderId,
+                     walletOrderState,
+                 } = {}) {
         return TyAPI.post('lissandra/admin/rechargeAndWithdrawCheck/update', {
             walletOrderId: walletOrderId || '',
             walletOrderState: walletOrderState,

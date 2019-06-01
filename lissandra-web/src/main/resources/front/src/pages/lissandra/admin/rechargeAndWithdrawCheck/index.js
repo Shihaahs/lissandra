@@ -106,7 +106,11 @@ class RechargeAndWithdrawCheck extends PureComponent {
                     />
                             <BrLine height={1}/>
                         <Button type="primary" onClick={this.onSearchSubmit.bind(this)}>查询</Button>&nbsp;
+
                         <Button onClick={this.onSearchReset.bind(this)}>重置</Button>&nbsp;
+
+
+                            <Button type="primary" style={{float:"right"}} onClick={this.onUpload.bind(this)}>下载xls</Button>&nbsp;
 
                         <BrLine/>
                         <Table
@@ -148,6 +152,11 @@ class RechargeAndWithdrawCheck extends PureComponent {
                 })
             }
         })
+    }
+
+    // 搜索提交
+    onUpload() {
+        location.href = "api/admin/getBusinessReport.json"
     }
 
     // 搜索重置
