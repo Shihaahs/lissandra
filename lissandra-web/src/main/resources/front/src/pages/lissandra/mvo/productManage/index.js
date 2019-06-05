@@ -267,7 +267,7 @@ class ProductManage extends PureComponent {
 
     // 分页跳转
     onTablePageNumChange(pageCurrent, pageSize) {
-        console.log("pageCurrent" + pageCurrent)
+        console.log("pageCurrent" + pageCurrent);
         this.loadTableDataSource({
             pageCurrent, pageSize
         })

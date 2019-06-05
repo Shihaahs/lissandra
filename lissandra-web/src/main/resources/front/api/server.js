@@ -12,7 +12,8 @@ export default {
                 shelf: 'mvo/update/product/isShelf.json'
             },
             orderManage: {
-                list: 'mvo/list/order/all.json'
+                list: 'mvo/list/order/all.json',
+                get: 'mvo/get/order.json'
             },
         },
 

@@ -1,6 +1,7 @@
 import service from '../services/orderManage'
 import {delay, formatISODate} from '../../../../../utils/TyTools'
 import TyHistory from '../../../../../utils/TyHistory'
+import {message as msg} from 'antd'
 
 
 export default {
@@ -23,8 +24,8 @@ export default {
         addition: {
             startTime: '',
             endTime: '',
-            productName: '',
-            userId:'',
+            productOrderNo: '',
+            userName:'',
         },
         showModal: {
             visible: false,
@@ -59,11 +60,48 @@ export default {
             });
         },
 
+        * isShelf({payload: {
+            productId: productId,
+            isShelf: isShelf
+        }}, {call, put, select}) {
+            const {success, data, message} = yield call(service.shelf, {productId,isShelf});
+            if (success && success.toString() === 'true') {
+                msg.success('上架成功')
+            } else {
+                msg.error('上架失败' + (message ? '：' + message : ''))
+            }
+            yield put({
+                type: 'getTableList',
+                payload: {
+                    pageCurrent: yield select(state => state.productManage.page.current),
+                    pageSize: yield select(state => state.productManage.page.size)
+                }
+            })
+        },
+        * get({payload: {
+            currentId: currentId
+        }}, {call, put, select}) {
+            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+            let userId = currentUser.userId;
+            const {success, data, message} = yield call(service.get, {userId});
+            if (success && success.toString() === 'true') {
+                msg.success('拉取成功')
+            } else {
+                msg.error('拉取失败' + (message ? '：' + message : ''))
+            }
+            yield put({
+                type: 'getTableList',
+                payload: {
+                    pageCurrent: yield select(state => state.productManage.page.current),
+                    pageSize: yield select(state => state.productManage.page.size)
+                }
+            })
+        },
         * getTableList({payload: {pageCurrent = 1, pageSize = 10, addition = {}}}, {call, put}) {
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
             if (!currentUser.userId) {
                 console.log("reload page");
-                parent.location.reload();
+                parent.location.reload(true);
             }
             addition.userId = currentUser.userId;
             const {success, data, message} = yield call(service.list, Object.assign({

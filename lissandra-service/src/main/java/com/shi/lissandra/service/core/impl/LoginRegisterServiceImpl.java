@@ -3,11 +3,15 @@ package com.shi.lissandra.service.core.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.shi.lissandra.dal.domain.User;
+import com.shi.lissandra.dal.domain.Wallet;
 import com.shi.lissandra.dal.manager.UserManager;
+import com.shi.lissandra.dal.manager.WalletManager;
 import com.shi.lissandra.service.core.LoginRegisterService;
 import com.shi.lissandra.service.core.MVOService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 
 /**
  * All rights Reserved, Designed By www.maihaoche.com
@@ -25,6 +29,8 @@ public class LoginRegisterServiceImpl implements LoginRegisterService {
 
     @Autowired
     private UserManager userManager;
+    @Autowired
+    private WalletManager walletManager;
 
     @Override
     public User checkLogin(User user) {
@@ -37,7 +43,17 @@ public class LoginRegisterServiceImpl implements LoginRegisterService {
 
     @Override
     public Integer registerUser(User user) {
-        return userManager.insert(user);
+
+        int row = userManager.insert(user);
+        if (user.getPermission().equals(2)) {
+            Wallet wallet = new Wallet();
+            wallet.setBalance(new BigDecimal(0));
+            wallet.setUserId(user.getUserId());
+            wallet.setUserName(user.getUserName());
+            row = walletManager.insert(wallet);
+        }
+
+        return row;
     }
 
     @Override

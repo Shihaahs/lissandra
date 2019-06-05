@@ -10,10 +10,7 @@ import com.shi.lissandra.dal.domain.ProductOrder;
 import com.shi.lissandra.service.core.MVOService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static com.shi.lissandra.common.constant.LissandraURL.*;
 
@@ -43,7 +40,7 @@ public class MVOController {
         } catch (Exception e) {
             log.error("MVOController-getAllMVOOrderByPage -> 出现异常:" + e.getMessage());
         }
-        return APIResult.error(GlobalErrorCode.FAILURE.getCode(),GlobalErrorCode.FAILURE.getMessage());
+        return APIResult.error(GlobalErrorCode.FAILURE.getCode(), GlobalErrorCode.FAILURE.getMessage());
 
     }
 
@@ -54,7 +51,7 @@ public class MVOController {
         } catch (Exception e) {
             log.error("MVOController-getAllMVOProductByPage -> 出现异常:" + e.getMessage());
         }
-        return APIResult.error(GlobalErrorCode.FAILURE.getCode(),GlobalErrorCode.FAILURE.getMessage());
+        return APIResult.error(GlobalErrorCode.FAILURE.getCode(), GlobalErrorCode.FAILURE.getMessage());
 
     }
 
@@ -65,8 +62,9 @@ public class MVOController {
         } catch (Exception e) {
             log.error("MVOController-addMVOProduct -> 出现异常:" + e.getMessage());
         }
-        return APIResult.error(GlobalErrorCode.FAILURE.getCode(),GlobalErrorCode.FAILURE.getMessage());
+        return APIResult.error(GlobalErrorCode.FAILURE.getCode(), GlobalErrorCode.FAILURE.getMessage());
     }
+
     @RequestMapping(value = MVO_DELETE_PRODUCT_BY_ID, method = RequestMethod.POST)
     public APIResult deleteMVOProductById(@RequestBody Product product) {
         try {
@@ -74,8 +72,9 @@ public class MVOController {
         } catch (Exception e) {
             log.error("MVOController-deleteMVOProductById -> 出现异常:" + e.getMessage());
         }
-        return APIResult.error(GlobalErrorCode.FAILURE.getCode(),GlobalErrorCode.FAILURE.getMessage());
+        return APIResult.error(GlobalErrorCode.FAILURE.getCode(), GlobalErrorCode.FAILURE.getMessage());
     }
+
     @RequestMapping(value = MVO_UPDATE_PRODUCT_INFO_BY_ID, method = RequestMethod.POST)
     public APIResult updateMVOProductInfoById(@RequestBody Product product) {
         try {
@@ -83,8 +82,9 @@ public class MVOController {
         } catch (Exception e) {
             log.error("MVOController-updateMVOProductInfoById -> 出现异常:" + e.getMessage());
         }
-        return APIResult.error(GlobalErrorCode.FAILURE.getCode(),GlobalErrorCode.FAILURE.getMessage());
+        return APIResult.error(GlobalErrorCode.FAILURE.getCode(), GlobalErrorCode.FAILURE.getMessage());
     }
+
     @RequestMapping(value = MVO_UPDATE_PRODUCT_IS_SHELF_BY_ID, method = RequestMethod.POST)
     public APIResult updateMVOProductIsShelfById(@RequestBody Product product) {
         try {
@@ -92,7 +92,14 @@ public class MVOController {
         } catch (Exception e) {
             log.error("MVOController-updateMVOProductIsShelfById -> 出现异常:" + e.getMessage());
         }
-        return APIResult.error(GlobalErrorCode.FAILURE.getCode(),GlobalErrorCode.FAILURE.getMessage());
+        return APIResult.error(GlobalErrorCode.FAILURE.getCode(), GlobalErrorCode.FAILURE.getMessage());
+    }
+
+
+    @RequestMapping(value = "/api/mvo/get/order", method = RequestMethod.GET)
+    public APIResult getMVOOrder(@RequestParam Long userId) {
+        return APIResult.ok(mvoService.getMVOOrder(userId));
+
     }
 
 

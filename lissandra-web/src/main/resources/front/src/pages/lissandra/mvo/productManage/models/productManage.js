@@ -58,13 +58,18 @@ export default {
             yield put({
                 type: 'startAddModalConfirmLoading'
             })
+            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+            if (!currentUser.userId) {
+                console.log("reload page");
+                parent.location.reload(true);
+            }
             const {success, data, message} = yield call(service.add, {
                 isShelf,
                 productDescription,
                 productId,
                 // productImage,
-                productManufactureId,
-                productManufactureName,
+                productManufactureId: currentUser.userId,
+                productManufactureName: currentUser.userName,
                 productName,
                 productPrice
             })
@@ -167,7 +172,7 @@ export default {
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
             if (!currentUser.userId) {
                 console.log("reload page");
-                parent.location.reload();
+                parent.location.reload(true);
             }
             addition.userId = currentUser.userId;
             const {success, data, message} = yield call(service.list, Object.assign({

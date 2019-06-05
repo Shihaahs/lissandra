@@ -13,6 +13,11 @@ public class PageRequestDTO implements Serializable {
      * 店铺名称查询
      */
     private String userName;
+
+    /**
+     * 店铺名称查询
+     */
+    private String productOrderNo;
     /**
      * 店铺名称查询
      */

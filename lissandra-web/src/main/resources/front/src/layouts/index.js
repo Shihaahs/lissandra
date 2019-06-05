@@ -31,6 +31,7 @@ class BasicLayout extends Component {
         TyAPI.post('lissandra/public/find/user')
             .then(json => {
                 if ("200" === json.code) {
+                    localStorage.removeItem("currentUser");
                     let user = {
                         userId: json.data.userId,
                         userName: json.data.userName,

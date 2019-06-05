@@ -8,13 +8,17 @@ class SearchForm extends PureComponent {
   constructor() {
     super()
   }
-  
+
   render() {
     const {getFieldDecorator} = this.props.form
     return (
         <Form layout="inline">
-            <FormItem>{getFieldDecorator('productName')(<Input placeholder="商品名称" style={{
-                width: 300,
+            <FormItem>{getFieldDecorator('productOrderNo')(<Input placeholder="订单编号" style={{
+                width: 200,
+                marginRight: 10
+            }}/>)}</FormItem>
+            <FormItem>{getFieldDecorator('userName')(<Input placeholder="订单人" style={{
+                width: 200,
                 marginRight: 10
             }}/>)}</FormItem>
             <FormItem>{getFieldDecorator('startTime')(
@@ -32,7 +36,7 @@ class SearchForm extends PureComponent {
         </Form>
     )
   }
-  
+
   // 向父组件传递 form 的 ref
   componentDidMount() {
     this.props.transferFormRef(this.props.form)

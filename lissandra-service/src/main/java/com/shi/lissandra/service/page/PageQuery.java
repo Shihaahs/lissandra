@@ -67,6 +67,9 @@ public class PageQuery {
         if (null != pageRequestDTO.getProductName() && !pageRequestDTO.getProductName().isEmpty()) {
             wrapper.like("product_name", pageRequestDTO.getProductName());
         }
+        if (null != pageRequestDTO.getProductOrderNo() && !pageRequestDTO.getProductOrderNo().isEmpty()) {
+            wrapper.like("product_order_no", pageRequestDTO.getProductOrderNo());
+        }
         if (null != pageRequestDTO.getUserName() && !pageRequestDTO.getUserName().isEmpty()) {
             wrapper.like("user_name", pageRequestDTO.getUserName().trim());
         }
@@ -101,7 +104,7 @@ public class PageQuery {
             //这里只转换"yyyy-MM-dd"格式的string
             Date starTime = DateUtil.convertToDate(pageRequestDTO.getStartTime(), DateUtil.ZONE_PATTERN);
             if (null != starTime) {
-                wrapper.gt("gmt_create", starTime);
+                wrapper.gt("gmt_modified", starTime);
             } else {
                 log.error(pageRequestDTO.getStartTime() + "转换成" + DateUtil.ZONE_PATTERN + "时出错，不被加入查询条件");
             }
@@ -109,7 +112,7 @@ public class PageQuery {
         if (null != pageRequestDTO.getEndTime() && pageRequestDTO.getEndTime().length() != 0) {
             Date endTime = DateUtil.convertToDate(pageRequestDTO.getEndTime(), DateUtil.ZONE_PATTERN);
             if (null != endTime) {
-                wrapper.lt("gmt_create", endTime);
+                wrapper.lt("gmt_modified", endTime);
             } else {
                 log.error(pageRequestDTO.getEndTime() + "转换成" + DateUtil.ZONE_PATTERN + "时出错，不被加入查询条件");
             }

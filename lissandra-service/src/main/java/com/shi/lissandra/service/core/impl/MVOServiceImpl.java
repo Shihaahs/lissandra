@@ -8,25 +8,25 @@ import com.shi.lissandra.common.page.PageResult;
 import com.shi.lissandra.common.request.PageRequestDTO;
 import com.shi.lissandra.common.vo.ProductOrderVO;
 import com.shi.lissandra.common.vo.ProductVO;
-import com.shi.lissandra.dal.domain.Product;
-import com.shi.lissandra.dal.domain.ProductOrder;
-import com.shi.lissandra.dal.domain.ProductOrderRef;
-import com.shi.lissandra.dal.domain.WalletOrder;
+import com.shi.lissandra.dal.domain.*;
 import com.shi.lissandra.dal.manager.ProductManager;
 import com.shi.lissandra.dal.manager.ProductOrderManager;
 import com.shi.lissandra.dal.manager.ProductOrderRefManager;
+import com.shi.lissandra.dal.manager.UserManager;
 import com.shi.lissandra.service.core.MVOService;
+import com.shi.lissandra.service.util.DateUtil;
+import com.shi.lissandra.service.util.UUIDGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
 
 import static com.shi.lissandra.service.page.PageQuery.*;
+import static com.shi.lissandra.service.util.DateUtil.NORMAL_DATE;
 import static java.util.stream.Collectors.toList;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -47,6 +47,8 @@ public class MVOServiceImpl implements MVOService {
     @Autowired
     private ProductManager productManager;
     @Autowired
+    private UserManager userManager;
+    @Autowired
     private ProductOrderManager orderManager;
     @Autowired
     private ProductOrderRefManager productOrderRefManager;
@@ -61,6 +63,14 @@ public class MVOServiceImpl implements MVOService {
                 new EntityWrapper<ProductOrder>()
                         .eq("own_id", pageRequestDTO.getUserId()))
                 .stream().map(ProductOrder::getProductOrderId).collect(toList());
+
+        if (CollectionUtils.isEmpty(orderIds)) {
+            return new PageResult<>(pageRequestDTO.getPageSize(),
+                    pageRequestDTO.getPageCurrent(),
+                    0,
+                    Collections.emptyList());
+        }
+
         //品牌商只能看到自己的订单
         Wrapper<ProductOrder> wrapper = conditionAdapter(pageRequestDTO);
         wrapper.in("product_order_id", orderIds);
@@ -164,5 +174,47 @@ public class MVOServiceImpl implements MVOService {
             product.setIsShelf(0);
         }
         return productManager.updateById(product);
+    }
+
+    @Override
+    public Integer getMVOOrder(Long userId) {
+        if (Objects.isNull(userId)) {
+            return 2;
+        }
+        List<Product> productList = productManager.selectList(
+                new EntityWrapper<Product>().eq("product_manufacture_id", userId));
+        List<User> userList = userManager.selectList(new EntityWrapper<User>().eq("permission", 2));
+        int userSize = userList.size();
+
+        List<Long> productIds = Lists.transform(productList, Product::getProductId);
+
+        int userRandom = new Random().nextInt(userSize);
+
+        User user = userList.get(userRandom);
+
+        ProductOrder productOrder = new ProductOrder();
+        productOrder.setOwnId(userId);
+        productOrder.setUserId(user.getUserId());
+        productOrder.setUserName(user.getUserName());
+        productOrder.setSendInformation("默认快递");
+        productOrder.setProductOrderNo(getOrderNo(userId));
+        orderManager.insert(productOrder);
+
+        productIds.forEach(productId -> {
+            ProductOrderRef productOrderRef = new ProductOrderRef();
+            productOrderRef.setProductId(productId);
+            Integer quantity = (new Random().nextInt(10) + 1);
+            productOrderRef.setProductQuantity(quantity.toString());
+            productOrderRef.setProductOrderId(productOrder.getProductOrderId());
+            productOrderRefManager.insert(productOrderRef);
+        });
+
+        return 1;
+    }
+
+    public String getOrderNo(Long id) {
+        return "PO-" + id.toString() + "-" +
+                DateUtil.parseToString(new Date(), "yyyyMMdd") + "-" +
+                UUIDGenerator.getUUID(4);
     }
 }

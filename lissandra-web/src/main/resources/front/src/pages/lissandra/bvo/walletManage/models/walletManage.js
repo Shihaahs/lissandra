@@ -62,9 +62,7 @@ export default {
             },
             {call, put, select}
         ) {
-            yield put({
-                type: 'startAddModalConfirmLoading'
-            });
+
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
             if (walletOrderWay === '2') {   //充值
                 const {success, data, message} = yield call(service.recharge, {
@@ -93,9 +91,6 @@ export default {
                     })
                 } else {
                     msg.error('充值操作提交失败，请重试' + (message ? '：' + message : ''));
-                    yield put({
-                        type: 'stopAddModalConfirmLoading'
-                    })
                 }
             }
             if (walletOrderWay === '1') {      //提现
@@ -125,9 +120,6 @@ export default {
                     })
                 } else {
                     msg.error('提现失败操作提交，请重试' + (message ? '：' + message : ''));
-                    yield put({
-                        type: 'stopAddModalConfirmLoading'
-                    })
                 }
             }
         },
@@ -158,7 +150,7 @@ export default {
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
             if (!currentUser.userId) {
                 console.log("刷新页面");
-                parent.location.reload();
+                parent.location.reload(true);
             }
             addition.userId = currentUser.userId;
             const {success, data, message} = yield call(service.list, Object.assign({

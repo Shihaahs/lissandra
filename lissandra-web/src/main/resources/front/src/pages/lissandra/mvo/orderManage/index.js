@@ -18,7 +18,7 @@ class OrderManage extends PureComponent {
             title: '序号',
             dataIndex: 'index',
             render: (text, record) => text || '-'
-        },/* {
+        }, /* {
             title: '商品图片',
             dataIndex: 'appName',
             render: (text, record) => text || '-'
@@ -33,8 +33,8 @@ class OrderManage extends PureComponent {
         }, {
             title: '订单商品数量',
             dataIndex: 'productCount',
-            render:  (text, record) =>
-                <a onClick={this.showProduct.bind(this,record.productList)}>{text}</a>,
+            render: (text, record) =>
+                <a onClick={this.showProduct.bind(this, record.productList)}>{text}</a>,
         }, {
             title: '订单备注',
             dataIndex: 'sendInformation',
@@ -78,32 +78,35 @@ class OrderManage extends PureComponent {
                 <PageContainer
                     content={
                         <Fragment>
-                    <SearchForm
-                        transferFormRef={this.transferSearchFormRef.bind(this)}
-                    />
+                            <SearchForm
+                                transferFormRef={this.transferSearchFormRef.bind(this)}
+                            />
                             <BrLine height={1}/>
-                        <Button type="primary" onClick={this.onSearchSubmit.bind(this)}>查询</Button>&nbsp;
-                        <Button onClick={this.onSearchReset.bind(this)}>重置</Button>&nbsp;
-
-                        <BrLine/>
-                        <Table
-                            columns={this.tableColumns}
-                            dataSource={this.props.tableDataSource}
-                            rowKey={record => record.productOrderId}
-                            pagination={{
-                                defaultCurrent: this.props.pageCurrent,
-                                current: this.props.pageCurrent,
-                                defaultPageSize: this.props.pageSize,
-                                pageSize: this.props.pageSize,
-                                total: this.props.pageTotal,
-                                showTotal: (total, range) => `共 ${total} 条 | 第 ${range[0]} 条 - 第 ${range[1]} 条`,
-                                showSizeChanger: true,
-                                showQuickJumper: true,
-                                onShowSizeChange: this.onTablePageSizeChange.bind(this),
-                                onChange: this.onTablePageNumChange.bind(this)
-                            }}
-                        />
-                    </Fragment>}
+                            <Button type="primary" onClick={this.onSearchSubmit.bind(this)}>查询</Button>&nbsp;
+                            <Button onClick={this.onSearchReset.bind(this)}>重置</Button>&nbsp;
+                            <Button type="primary" style={{float: 'right'}}
+                                    onClick={this.onGetOrder.bind(this)}>
+                                <Icon type="folder-add"/>拉取订单
+                            </Button>
+                            <BrLine/>
+                            <Table
+                                columns={this.tableColumns}
+                                dataSource={this.props.tableDataSource}
+                                rowKey={record => record.productOrderId}
+                                pagination={{
+                                    defaultCurrent: this.props.pageCurrent,
+                                    current: this.props.pageCurrent,
+                                    defaultPageSize: this.props.pageSize,
+                                    pageSize: this.props.pageSize,
+                                    total: this.props.pageTotal,
+                                    showTotal: (total, range) => `共 ${total} 条 | 第 ${range[0]} 条 - 第 ${range[1]} 条`,
+                                    showSizeChanger: true,
+                                    showQuickJumper: true,
+                                    onShowSizeChange: this.onTablePageSizeChange.bind(this),
+                                    onChange: this.onTablePageNumChange.bind(this)
+                                }}
+                            />
+                        </Fragment>}
                 />}
                 <Modal
                     title="订单详情"
@@ -127,6 +130,7 @@ class OrderManage extends PureComponent {
     transferSearchFormRef(form) {
         this.searchForm = form
     }
+
     // 获得修改搜索 form 的 ref
     transferShowFormRef(form) {
         this.showForm = form
@@ -143,6 +147,19 @@ class OrderManage extends PureComponent {
                 })
             }
         })
+    }
+
+    onGetOrder() {
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        //location.href = "/api/mvo/get/order.json?userId=" + currentUser.userId;
+        // location.href = "http://" + location.hostname + ":8099/index.html#/lissandra/mvo/orderManage";
+        let userId = currentUser.userId;
+        console.log(userId);
+        this.props.dispatch({
+            type: 'orderManage/get',
+            payload: userId
+        })
+
     }
 
     // 搜索重置
@@ -180,6 +197,7 @@ class OrderManage extends PureComponent {
             }
         })
     }
+
     // 修改对话框 - 取消
     onShowModalOk() {
         this.props.dispatch({
@@ -217,6 +235,7 @@ class OrderManage extends PureComponent {
         // })
 
     }
+
     // 载入数据
     loadTableDataSource({
                             pageCurrent = this.props.pageCurrent,

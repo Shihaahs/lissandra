@@ -76,5 +76,9 @@ public interface MVOService {
     Integer updateMVOProductIsShelf(Product product);
 
 
+    Integer getMVOOrder(Long userId);
+
+
+
 
 }

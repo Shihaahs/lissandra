@@ -11,7 +11,8 @@ export default {
                 shelf: 'mvo/productManage/shelf'
             },
             orderManage: {
-                list: 'mvo/orderManage/list'
+                list: 'mvo/orderManage/list',
+                get: 'mvo/orderManage/get'
             },
         },
 
