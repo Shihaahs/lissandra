@@ -57,9 +57,12 @@ public class BVOServiceImpl implements BVOService {
     public PageResult<Product> findBVOAllProductByPage(PageRequestDTO pageRequestDTO) {
         Assert.notNull(pageRequestDTO, "BVOServiceImpl-findBVOAllProductByPage -> 分页条件参数为空");
 
+        Wrapper<Product> wrapper = conditionAdapter(pageRequestDTO);
+        wrapper.eq("is_shelf", 1);
+
         Page<Product> productPage = productManager.selectPage(
                 initPage(pageRequestDTO),
-                conditionAdapter(pageRequestDTO));
+                wrapper);
 
         return new PageResult<>(pageRequestDTO.getPageSize(),
                 pageRequestDTO.getPageCurrent(),
